@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ai-governance-monitor": {
+      "command": "python",
+      "args": ["-m", "mcp_server"]
+    }
+  }
+}
