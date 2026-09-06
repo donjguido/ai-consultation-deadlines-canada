@@ -24,7 +24,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -r pipeline/requirements.txt
+      - run: pip install -r pipeline/requirements.txt -r mcp_server/requirements.txt pytest
+      - name: Test the pipeline before touching anything
+        # Guards the status rules, the store, the site build, the template and the
+        # MCP server. A failure here stops the run before any API tokens are spent
+        # or anything is deployed.
+        run: python -m pytest
       - name: Fetch candidates from all sources
         run: python -m pipeline.fetch data/candidates.json
       - name: Classify new candidates with Claude
@@ -38,6 +43,10 @@ jobs:
           fi
       - name: Build site, feed, calendar, and digest
         run: python -m pipeline.build data/items.json site
+      - name: Check the updated store and the built site
+        # Re-run after classification so a record the classifier just added cannot
+        # deploy a broken store or a half-rendered page.
+        run: python -m pytest tests/test_store.py tests/test_build.py
       - name: Commit updated data
         if: github.event_name != 'push'
         run: |
