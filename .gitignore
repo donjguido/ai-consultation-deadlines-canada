@@ -3,3 +3,7 @@ data/candidates.json
 .playwright-mcp/
 *.png
 funding/
+
+# Local project memory (personal, not shared)
+CLAUDE.md
+.claude/
