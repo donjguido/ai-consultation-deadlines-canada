@@ -37,6 +37,19 @@ python -m http.server 8000 --directory site              # then open http://loca
 
 The build step works without an API key; the seed store is already populated.
 
+### Tests
+
+```
+pip install pytest -r mcp_server/requirements.txt
+python -m pytest
+```
+
+Offline and quick. The suite checks the status rules, validates `data/items.json`,
+renders the site into a temp directory and inspects every artefact, and exercises the
+MCP server. The deploy workflow runs it before fetching anything and again after
+classification, so a failing test blocks the deploy. Run it before committing changes
+to the pipeline, the template, or the store.
+
 ## Curation
 
 Every Monday and Thursday: open the diff of `data/items.json`, check items with `"verified": false` against their source page, set the flag, confirm the French fields match the English, and retire dead items with a `retired_reason`. Commit, then trigger the workflow (push to `main` or `gh workflow run daily.yml`) to rebuild and deploy.
