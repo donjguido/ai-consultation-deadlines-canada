@@ -1,0 +1,98 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Canadian AI Governance Monitor//v0.1//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:Moniteur canadien de la gouvernance de l'IA : échéances
+X-WR-CALNAME:Moniteur canadien de la gouvernance de l'IA : échéances
+DESCRIPTION:Dates de clôture des consultations fédérales\, appels de mé
+ moires\, périodes de commentaires de la Gazette\, appels de financement\,
+  examens de normes et pétitions où les Canadiens peuvent influencer la g
+ ouvernance de l'IA.
+X-WR-CALDESC:Dates de clôture des consultations fédérales\, appels de m
+ émoires\, périodes de commentaires de la Gazette\, appels de financement
+ \, examens de normes et pétitions où les Canadiens peuvent influencer la
+  gouvernance de l'IA.
+X-WR-CALLANG:fr-ca
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+X-PUBLISHED-TTL:PT12H
+BEGIN:VEVENT
+UID:ised-2026-ai-transparency@canadian-ai-governance-monitor
+DTSTAMP:20260906T152436Z
+LAST-MODIFIED:20260906T152436Z
+DTSTART;VALUE=DATE:20260923
+DTEND;VALUE=DATE:20260924
+SUMMARY:Échéance : Faites-vous entendre sur la transparence de l'IA au Ca
+ nada
+DESCRIPTION:Innovation\, Sciences et Développement économique Canada\nCon
+ sultation de deux mois\, menée dans le cadre de la stratégie « L'IA pou
+ r tous »\, sur cinq mécanismes de transparence : la détection des conte
+ nus générés par l'IA\, la divulgation des interactions avec un système
+  d'IA\, une information normalisée sur les systèmes d'IA\, le signalemen
+ t des incidents graves liés à l'IA et le suivi des activités des agents
+  d'IA.\nPourquoi c'est important : C'est le premier véhicule fédéral po
+ rtant sur le signalement des incidents et le suivi des agents depuis l'aba
+ ndon de la LIAD \; les mémoires déposés ici façonneront le régime de 
+ transparence de base applicable aux modèles de pointe au Canada.\nComment
+  participer : Répondez au questionnaire en ligne ou envoyez un mémoire 
+ écrit par courriel à partir de la page de consultation d'ISDE avant le 2
+ 3 septembre 2026.\nhttps://ised-isde.canada.ca/site/ised/en/have-your-say-
+ advancing-ai-transparency-canada\nSuivi par le Moniteur canadien de la gou
+ vernance de l'IA : https://donjguido.github.io/canadian-ai-governance-moni
+ tor
+URL:https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-tra
+ nsparency-canada
+TRANSP:TRANSPARENT
+CATEGORIES:frontier-models,deepfakes,standards
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Faites-vous entendre sur la transparence de l'IA au Canada : cl
+ ôture dans 7 jours
+TRIGGER;VALUE=DURATION:-P7D
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Faites-vous entendre sur la transparence de l'IA au Canada : cl
+ ôture demain
+TRIGGER;VALUE=DURATION:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dgsi-138-clinical-ai@canadian-ai-governance-monitor
+DTSTAMP:20260906T152436Z
+LAST-MODIFIED:20260906T152436Z
+DTSTART;VALUE=DATE:20261005
+DTEND;VALUE=DATE:20261006
+SUMMARY:Échéance : CAN/DGSI 138 — L'IA responsable et visible pour le p
+ atient dans l'aide à la décision clinique : examen public
+DESCRIPTION:Institut de normalisation en gouvernance numérique\nExamen pub
+ lic de 60 jours d'un projet de Norme nationale du Canada fixant des exigen
+ ces de gouvernance\, de transparence\, de supervision humaine et de survei
+ llance du cycle de vie pour l'IA d'aide à la décision clinique.\nPourquo
+ i c'est important : La norme impose des obligations concrètes de supervis
+ ion humaine et de suivi après déploiement pour une IA à enjeux élevés
+ \, un modèle que des organismes de réglementation hors du secteur de la 
+ santé reprendront vraisemblablement.\nComment participer : Téléchargez 
+ le projet de norme et transmettez vos commentaires au moyen du formulaire 
+ d'examen public de l'Institut avant le 5 octobre 2026.\nhttps://dgc-cgn.or
+ g/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
+ \nSuivi par le Moniteur canadien de la gouvernance de l'IA : https://donjg
+ uido.github.io/canadian-ai-governance-monitor
+URL:https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clini
+ cal-decision-support/
+TRANSP:TRANSPARENT
+CATEGORIES:health,standards
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:CAN/DGSI 138 — L'IA responsable et visible pour le patient da
+ ns l'aide à la décision clinique : examen public : clôture dans 7 jours
+TRIGGER;VALUE=DURATION:-P7D
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:CAN/DGSI 138 — L'IA responsable et visible pour le patient da
+ ns l'aide à la décision clinique : examen public : clôture demain
+TRIGGER;VALUE=DURATION:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

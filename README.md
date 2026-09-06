@@ -8,6 +8,7 @@ Status: **prototype, 6 September 2026**. Live at https://donjguido.github.io/can
 
 - [docs/DESIGN.md](docs/DESIGN.md): design plan (scope, status model, architecture, site design, distribution, quality, roadmap)
 - [docs/SOURCES.md](docs/SOURCES.md): data-source inventory with what works today
+- [docs/MCP.md](docs/MCP.md): MCP server so AI assistants can query the monitor
 
 ## Layout
 
@@ -17,8 +18,8 @@ data/sources.yaml      source inventory and fetcher config
 pipeline/models.py     data model and status rules (new = 14 days, closing soon = 7 days)
 pipeline/fetch.py      fetchers: Consulting with Canadians CSV, RSS, HTML index pages
 pipeline/classify.py   Claude structured-output classifier
-pipeline/build.py      renders site/, feed.xml, deadlines.ics, items.json, digest.md
-pipeline/template.html website template (bilingual, light and dark)
+pipeline/build.py      renders site/, feed.xml + feed-fr.xml, deadlines.ics + deadlines-fr.ics, items.json, digest.md + digest-fr.md
+pipeline/template.html website template (EN/FR toggle, light and dark)
 site/                  generated output (open index.html in a browser)
 funding/               local only, not committed
 .github/workflows/     manually-triggered run and GitHub Pages deploy
@@ -38,15 +39,29 @@ The build step works without an API key; the seed store is already populated.
 
 ## Curation
 
-Every Monday and Thursday: open the diff of `data/items.json`, check items with `"verified": false` against their source page, set the flag, add French titles, and retire dead items with a `retired_reason`. Commit, then trigger the workflow (push to `main` or `gh workflow run daily.yml`) to rebuild and deploy.
+Every Monday and Thursday: open the diff of `data/items.json`, check items with `"verified": false` against their source page, set the flag, confirm the French fields match the English, and retire dead items with a `retired_reason`. Commit, then trigger the workflow (push to `main` or `gh workflow run daily.yml`) to rebuild and deploy.
 
 ## Outputs
 
-- Website: https://donjguido.github.io/canadian-ai-governance-monitor/
-- RSS: https://donjguido.github.io/canadian-ai-governance-monitor/feed.xml
-- Calendar: https://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics — every open item with a stated closing date, as an all-day event with 7-day and 1-day reminders. Subscribe to it (`webcal://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics`) and Google, Outlook and Apple Calendar re-read it as deadlines are added, changed, or pass.
-- JSON: https://donjguido.github.io/canadian-ai-governance-monitor/items.json
-- Weekly digest: https://donjguido.github.io/canadian-ai-governance-monitor/digest.md
+For people:
+
+- Website: https://donjguido.github.io/canadian-ai-governance-monitor/ (French at https://donjguido.github.io/canadian-ai-governance-monitor/?lang=fr)
+- RSS: https://donjguido.github.io/canadian-ai-governance-monitor/feed.xml (French: `/feed-fr.xml`)
+- Calendar: https://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics (French: `/deadlines-fr.ics`) — every open item with a stated closing date, as an all-day event with 7-day and 1-day reminders. Subscribe to it (`webcal://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics`) and Google, Outlook and Apple Calendar re-read it as deadlines are added, changed, or pass.
+- Weekly digest: https://donjguido.github.io/canadian-ai-governance-monitor/digest.md (French: `/digest-fr.md`)
+
+For machines:
+
+- Full records (JSON): https://donjguido.github.io/canadian-ai-governance-monitor/items.json
+- JSON Feed 1.1, with status and deadline per item: https://donjguido.github.io/canadian-ai-governance-monitor/feed.json
+- Orientation for AI agents: https://donjguido.github.io/canadian-ai-governance-monitor/llms.txt
+- Every item as Markdown, in one fetch: https://donjguido.github.io/canadian-ai-governance-monitor/llms-full.txt
+- MCP server for live queries: `python -m mcp_server` (see [docs/MCP.md](docs/MCP.md))
+
+The site is built to be read by crawlers, agents and screen readers as well as by browsers:
+the item list is rendered into the HTML rather than only into JavaScript, the head carries
+schema.org JSON-LD describing the dataset and every item, and each build also writes
+`robots.txt` (crawling and AI use explicitly permitted, data CC BY 4.0) and `sitemap.xml`.
 
 ## Feedback
 

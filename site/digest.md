@@ -64,11 +64,11 @@ Nothing this week.
 
 ## Recently closed
 
-- **Petition e-7550: end incentives, subsidies and permit acceleration for AI data centres** (House of Commons e-petitions, closes 2026-09-24)
+- **Petition e-7550: end incentives, subsidies and permit acceleration for AI data centres** (House of Commons e-petitions, closed 2026-09-24)
   Asks Ottawa to end incentives for AI data centres, revoke permits lacking community vetting, and regulate safety, transparency and resource efficiency. 29,991 validated signatures. The page currently reads 'Closed for signature' although the stated window runs to 24 September 2026.
   How to participate: If signing is reopened, sign online on the petition page; otherwise watch for the government response, due within 45 days of presentation.
   https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7550
-- **Petition e-7427: federal moratorium on hyperscale AI data centres in Alberta** (House of Commons e-petitions, closes 2026-09-17)
+- **Petition e-7427: federal moratorium on hyperscale AI data centres in Alberta** (House of Commons e-petitions, closed 2026-09-17)
   Seeks a moratorium on projects such as Wonder Valley and Synapse Olds, a ban on federal support for fossil-fuelled or water-intensive facilities, and mandatory federal environmental assessment with Indigenous consultation. 27,472 validated signatures. The page reads 'Closed for signature' despite a window ending 17 September 2026.
   How to participate: Watch the petition page for presentation in the House and the government response.
   https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7427

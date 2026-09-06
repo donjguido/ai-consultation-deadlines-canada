@@ -1,0 +1,81 @@
+# Canadian AI Governance Monitor
+# A public register of Canadian federal channels for shaping AI governance.
+#
+# Crawling, indexing and machine reading are welcome, AI systems included.
+# Data is CC BY 4.0: reuse it with attribution to the Canadian AI Governance
+# Monitor, and link to each item's official source page rather than replacing it.
+# Underlying government content is under the Open Government Licence - Canada.
+#
+# Prefer the structured outputs over scraping the HTML:
+#   https://donjguido.github.io/canadian-ai-governance-monitor/llms.txt        orientation for agents
+#   https://donjguido.github.io/canadian-ai-governance-monitor/llms-full.txt   every item as Markdown
+#   https://donjguido.github.io/canadian-ai-governance-monitor/items.json      full records
+#   https://donjguido.github.io/canadian-ai-governance-monitor/feed.json       JSON Feed 1.1
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: TimpiBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Kagibot
+Allow: /
+
+Sitemap: https://donjguido.github.io/canadian-ai-governance-monitor/sitemap.xml

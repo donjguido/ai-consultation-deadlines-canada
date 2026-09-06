@@ -39,7 +39,20 @@ software rule). Exclude items where AI is only incidental.
 
 Write for a general audience. Be concrete about how to participate: name the form, email
 address, or portal if the text gives one. Use only these topic tags: {", ".join(TOPICS)}.
-If a closing date is stated, return it as ISO 8601; otherwise leave it null."""
+If a closing date is stated, return it as ISO 8601; otherwise leave it null.
+
+The monitor is bilingual, so every item ships in both official languages. Write the English
+fields first, then write summary_fr, why_it_matters_fr and how_to_participate_fr as Canadian
+French of the same quality — idiomatic prose a francophone civil servant would recognise, not
+a word-for-word calque. Keep proper nouns, programme names, portal names, email addresses and
+dates accurate; use the official French name of a department, committee or programme when one
+exists (e.g. "Innovation, Sciences et Développement économique Canada", "Comité permanent de
+l'industrie et de la technologie de la Chambre des communes"). Write dates in French style
+(23 septembre 2026) and use French typography (« » for quotes, a space before : ; ! ?).
+
+For title_fr and body_fr: use the official French title and body name if the page text supplies
+one; otherwise give a faithful French rendering. Leave title_fr null only for a title that has
+no sensible French form."""
 
 MODEL = "claude-opus-5"
 
@@ -83,9 +96,12 @@ def main(candidates_path: str, items_path: str, threshold: float = 0.5) -> None:
         if not c.relevant or c.relevance < threshold:
             continue
         item = Item(
-            id=cid, title=cand["title"], body=cand.get("body", ""), type=c.type, url=cand["url"],
+            id=cid, title=cand["title"], title_fr=cand.get("title_fr") or c.title_fr,
+            body=cand.get("body", ""), body_fr=c.body_fr, type=c.type, url=cand["url"],
             opened=cand.get("opened"), closes=cand.get("closes") or c.closes, first_seen=today,
-            summary=c.summary, why_it_matters=c.why_it_matters, how_to_participate=c.how_to_participate,
+            summary=c.summary, summary_fr=c.summary_fr,
+            why_it_matters=c.why_it_matters, why_it_matters_fr=c.why_it_matters_fr,
+            how_to_participate=c.how_to_participate, how_to_participate_fr=c.how_to_participate_fr,
             topics=c.topics, relevance=c.relevance, source=cand["source"],
         )
         existing[cid] = json.loads(item.model_dump_json())

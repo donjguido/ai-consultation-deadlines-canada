@@ -11,12 +11,13 @@ DESCRIPTION:Closing dates for federal consultations\, calls for briefs\, Ga
 X-WR-CALDESC:Closing dates for federal consultations\, calls for briefs\, G
  azette comment periods\, funding calls\, standards reviews\, and petitions
   where Canadians can shape how AI is governed.
+X-WR-CALLANG:en-ca
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
 UID:ised-2026-ai-transparency@canadian-ai-governance-monitor
-DTSTAMP:20260906T140824Z
-LAST-MODIFIED:20260906T140824Z
+DTSTAMP:20260906T152436Z
+LAST-MODIFIED:20260906T152436Z
 DTSTART;VALUE=DATE:20260923
 DTEND;VALUE=DATE:20260924
 SUMMARY:Deadline: Have your say on advancing AI transparency in Canada
@@ -51,8 +52,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:dgsi-138-clinical-ai@canadian-ai-governance-monitor
-DTSTAMP:20260906T140824Z
-LAST-MODIFIED:20260906T140824Z
+DTSTAMP:20260906T152436Z
+LAST-MODIFIED:20260906T152436Z
 DTSTART;VALUE=DATE:20261005
 DTEND;VALUE=DATE:20261006
 SUMMARY:Deadline: CAN/DGSI 138 Patient-Visible and Accountable AI in Clinic

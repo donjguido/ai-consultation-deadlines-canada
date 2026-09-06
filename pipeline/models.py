@@ -32,14 +32,18 @@ class Item(BaseModel):
     title: str
     title_fr: Optional[str] = None
     body: str = Field(description="Department, committee, or agency")
+    body_fr: Optional[str] = Field(default=None, description="French name of the department, committee, or agency")
     type: ItemType
     url: str
     opened: Optional[date] = None
     closes: Optional[date] = None
     first_seen: date = Field(description="Date the monitor first observed the item")
     summary: str = Field(description="1-2 sentence plain-language summary")
+    summary_fr: Optional[str] = Field(default=None, description="French summary")
     why_it_matters: str = Field(description="1 sentence on AI-safety relevance")
+    why_it_matters_fr: Optional[str] = Field(default=None, description="French why_it_matters")
     how_to_participate: str = Field(default="", description="Concrete next step: email, form, portal")
+    how_to_participate_fr: Optional[str] = Field(default=None, description="French how_to_participate")
     topics: list[str] = Field(default_factory=list)
     relevance: float = Field(ge=0, le=1, description="Classifier confidence that this is AI-safety relevant")
     source: str = Field(description="Source key from sources.yaml")
@@ -85,7 +89,12 @@ class Classification(BaseModel):
     relevance: float = Field(ge=0, le=1)
     type: ItemType
     summary: str
+    summary_fr: str = Field(description="French translation of summary")
     why_it_matters: str
+    why_it_matters_fr: str = Field(description="French translation of why_it_matters")
     how_to_participate: str
+    how_to_participate_fr: str = Field(description="French translation of how_to_participate")
+    title_fr: Optional[str] = Field(default=None, description="Official French title if the source gives one, otherwise a faithful French rendering")
+    body_fr: Optional[str] = Field(default=None, description="Official French name of the department, committee, or agency")
     topics: list[str] = Field(description="2-4 tags from the controlled vocabulary")
     closes: Optional[date] = Field(default=None, description="Closing date if stated in the text")
