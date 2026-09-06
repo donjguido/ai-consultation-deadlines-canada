@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <title>AI Consultation Deadlines Canada — open federal consultations on AI</title>
 <meta name="description" content="__DESC__">
-<meta name="generator" content="canadian-ai-governance-monitor pipeline">
+<meta name="generator" content="ai-consultation-deadlines-canada pipeline">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="theme-color" content="#F4F6F8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121A20" media="(prefers-color-scheme: dark)">
@@ -229,8 +229,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 <footer class="wrap">
     <p data-en="Prototype. Status badges are computed from stated closing dates: &lt;b&gt;New&lt;/b&gt; = opened or first seen in the last 14 days; &lt;b&gt;Closing soon&lt;/b&gt; = closes within 7 days; &lt;b&gt;Retired&lt;/b&gt; = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting."
        data-fr="Prototype. Les étiquettes sont calculées à partir des dates de clôture annoncées : &lt;b&gt;Nouveau&lt;/b&gt; = ouvert ou repéré au cours des 14 derniers jours ; &lt;b&gt;Se termine bientôt&lt;/b&gt; = clôture dans les 7 jours ; &lt;b&gt;Retiré&lt;/b&gt; = date de clôture dépassée ou retiré. Les éléments marqués ⚠ n'ont pas encore été vérifiés par une personne. Vérifiez toujours les échéances sur la page officielle avant de soumettre.">Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting.</p>
-    <p data-en="© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the &lt;a href=&quot;https://github.com/donjguido/canadian-ai-governance-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;original repo&lt;/a&gt;."
-       data-fr="© 2026 Julian Guidote. Code sous licence MIT, données sous CC BY 4.0. Une erreur ou une suggestion ? Ouvrez une demande de tirage (pull request) sur le &lt;a href=&quot;https://github.com/donjguido/canadian-ai-governance-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;dépôt d'origine&lt;/a&gt;.">© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href="https://github.com/donjguido/canadian-ai-governance-monitor" target="_blank" rel="noopener">original repo</a>.</p>
+    <p data-en="© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the &lt;a href=&quot;https://github.com/donjguido/ai-consultation-deadlines-canada&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;original repo&lt;/a&gt;."
+       data-fr="© 2026 Julian Guidote. Code sous licence MIT, données sous CC BY 4.0. Une erreur ou une suggestion ? Ouvrez une demande de tirage (pull request) sur le &lt;a href=&quot;https://github.com/donjguido/ai-consultation-deadlines-canada&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;dépôt d'origine&lt;/a&gt;.">© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href="https://github.com/donjguido/ai-consultation-deadlines-canada" target="_blank" rel="noopener">original repo</a>.</p>
 </footer>
 
 <script>
@@ -360,7 +360,7 @@ function icsFold(line){
 }
 function icsEvent(r,stamp){
   const c=calText(r), out=["BEGIN:VEVENT",
-    "UID:"+r.id+"@canadian-ai-governance-monitor","DTSTAMP:"+stamp,"LAST-MODIFIED:"+stamp,
+    "UID:"+r.id+"@ai-consultation-deadlines-canada","DTSTAMP:"+stamp,"LAST-MODIFIED:"+stamp,
     "DTSTART;VALUE=DATE:"+ymd(r.closes),"DTEND;VALUE=DATE:"+ymd(nextDay(r.closes)),
     "SUMMARY:"+icsEsc(c.title),"DESCRIPTION:"+icsEsc(c.details),"URL:"+icsEsc(r.url),"TRANSP:TRANSPARENT"];
   if(r.topics.length)out.push("CATEGORIES:"+r.topics.map(icsEsc).join(","));
@@ -371,7 +371,7 @@ function icsEvent(r,stamp){
 }
 function icsFile(rows){
   const stamp=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+/,"");
-  let out=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//AI Consultation Deadlines Canada//v0.1//EN",
+  let out=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//AI Consultation Deadlines Canada//v1.0//EN",
     "CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:"+icsEsc(L[lang].calName)];
   rows.forEach(r=>{out=out.concat(icsEvent(r,stamp))});
   out.push("END:VCALENDAR");

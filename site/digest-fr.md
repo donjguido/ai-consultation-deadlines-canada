@@ -73,4 +73,4 @@ Rien cette semaine.
   Comment participer : Surveillez la page de la pétition pour sa présentation à la Chambre et la réponse du gouvernement.
   https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7427
 
-Liste complète : https://donjguido.github.io/canadian-ai-governance-monitor  ·  Fil RSS : https://donjguido.github.io/canadian-ai-governance-monitor/feed-fr.xml  ·  Calendrier : https://donjguido.github.io/canadian-ai-governance-monitor/deadlines-fr.ics
+Liste complète : https://donjguido.github.io/ai-consultation-deadlines-canada  ·  Fil RSS : https://donjguido.github.io/ai-consultation-deadlines-canada/feed-fr.xml  ·  Calendrier : https://donjguido.github.io/ai-consultation-deadlines-canada/deadlines-fr.ics

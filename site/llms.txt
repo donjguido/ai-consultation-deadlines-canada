@@ -18,19 +18,19 @@ reproduced under the Open Government Licence - Canada.
 
 ## Structured data
 
-- [items.json](https://donjguido.github.io/canadian-ai-governance-monitor/items.json): every record, full fields. Start here.
-- [feed.json](https://donjguido.github.io/canadian-ai-governance-monitor/feed.json): JSON Feed 1.1, newest first, with a `_monitor` object per item carrying status, deadline and verification.
-- [llms-full.txt](https://donjguido.github.io/canadian-ai-governance-monitor/llms-full.txt): every item as Markdown, the whole corpus in one fetch.
-- [feed.xml](https://donjguido.github.io/canadian-ai-governance-monitor/feed.xml): RSS 2.0, English.
-- [feed-fr.xml](https://donjguido.github.io/canadian-ai-governance-monitor/feed-fr.xml): RSS 2.0, French.
-- [digest.md](https://donjguido.github.io/canadian-ai-governance-monitor/digest.md): this week's digest, English. [digest-fr.md](https://donjguido.github.io/canadian-ai-governance-monitor/digest-fr.md) for French.
+- [items.json](https://donjguido.github.io/ai-consultation-deadlines-canada/items.json): every record, full fields. Start here.
+- [feed.json](https://donjguido.github.io/ai-consultation-deadlines-canada/feed.json): JSON Feed 1.1, newest first, with a `_monitor` object per item carrying status, deadline and verification.
+- [llms-full.txt](https://donjguido.github.io/ai-consultation-deadlines-canada/llms-full.txt): every item as Markdown, the whole corpus in one fetch.
+- [feed.xml](https://donjguido.github.io/ai-consultation-deadlines-canada/feed.xml): RSS 2.0, English.
+- [feed-fr.xml](https://donjguido.github.io/ai-consultation-deadlines-canada/feed-fr.xml): RSS 2.0, French.
+- [digest.md](https://donjguido.github.io/ai-consultation-deadlines-canada/digest.md): this week's digest, English. [digest-fr.md](https://donjguido.github.io/ai-consultation-deadlines-canada/digest-fr.md) for French.
 
 ## Live query
 
 An MCP server exposes the same store as tools an agent can call directly -- `list_open`,
 `closing_soon`, `list_new`, `search`, `get_item`, `list_topics`, `monitor_status` -- so an
 assistant can answer "what is open right now" without fetching and re-parsing this site.
-See [docs/MCP.md](https://github.com/donjguido/canadian-ai-governance-monitor/blob/main/docs/MCP.md).
+See [docs/MCP.md](https://github.com/donjguido/ai-consultation-deadlines-canada/blob/main/docs/MCP.md).
 
 ## Closing within 7 days
 
@@ -61,5 +61,5 @@ See [docs/MCP.md](https://github.com/donjguido/canadian-ai-governance-monitor/bl
 
 ## Optional
 
-- [Source repository](https://github.com/donjguido/canadian-ai-governance-monitor): pipeline, data model, source inventory.
-- [Retired items](https://donjguido.github.io/canadian-ai-governance-monitor/items.json): past their closing date or withdrawn; kept in items.json with `"status": "retired"` for the record.
+- [Source repository](https://github.com/donjguido/ai-consultation-deadlines-canada): pipeline, data model, source inventory.
+- [Retired items](https://donjguido.github.io/ai-consultation-deadlines-canada/items.json): past their closing date or withdrawn; kept in items.json with `"status": "retired"` for the record.

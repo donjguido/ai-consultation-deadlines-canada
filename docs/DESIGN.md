@@ -1,6 +1,6 @@
 # AI Consultation Deadlines Canada: design plan
 
-Version 0.1, 6 September 2026. Companion document: [SOURCES.md](SOURCES.md) (data-source inventory).
+Version 1.0, 6 September 2026. Companion document: [SOURCES.md](SOURCES.md) (data-source inventory).
 
 ## 1. What it is
 

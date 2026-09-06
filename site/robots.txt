@@ -7,10 +7,10 @@
 # Underlying government content is under the Open Government Licence - Canada.
 #
 # Prefer the structured outputs over scraping the HTML:
-#   https://donjguido.github.io/canadian-ai-governance-monitor/llms.txt        orientation for agents
-#   https://donjguido.github.io/canadian-ai-governance-monitor/llms-full.txt   every item as Markdown
-#   https://donjguido.github.io/canadian-ai-governance-monitor/items.json      full records
-#   https://donjguido.github.io/canadian-ai-governance-monitor/feed.json       JSON Feed 1.1
+#   https://donjguido.github.io/ai-consultation-deadlines-canada/llms.txt        orientation for agents
+#   https://donjguido.github.io/ai-consultation-deadlines-canada/llms-full.txt   every item as Markdown
+#   https://donjguido.github.io/ai-consultation-deadlines-canada/items.json      full records
+#   https://donjguido.github.io/ai-consultation-deadlines-canada/feed.json       JSON Feed 1.1
 
 User-agent: *
 Allow: /
@@ -78,4 +78,4 @@ Allow: /
 User-agent: Kagibot
 Allow: /
 
-Sitemap: https://donjguido.github.io/canadian-ai-governance-monitor/sitemap.xml
+Sitemap: https://donjguido.github.io/ai-consultation-deadlines-canada/sitemap.xml

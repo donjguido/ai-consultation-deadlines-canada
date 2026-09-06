@@ -35,7 +35,7 @@ python -m mcp_server.smoke_test      # offline check against site/items.json
 python -m mcp_server                 # stdio server reading the live site
 ```
 
-By default the server fetches `https://donjguido.github.io/canadian-ai-governance-monitor/items.json` and caches it for ten minutes. To read a local checkout instead:
+By default the server fetches `https://donjguido.github.io/ai-consultation-deadlines-canada/items.json` and caches it for ten minutes. To read a local checkout instead:
 
 ```
 python -m mcp_server --items data/items.json
@@ -58,7 +58,7 @@ claude mcp add ai-governance-monitor -- python -m mcp_server
     "ai-governance-monitor": {
       "command": "python",
       "args": ["-m", "mcp_server"],
-      "cwd": "C:/path/to/canadian-ai-governance-monitor"
+      "cwd": "C:/path/to/ai-consultation-deadlines-canada"
     }
   }
 }

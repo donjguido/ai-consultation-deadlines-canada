@@ -30,7 +30,7 @@ from urllib.parse import quote
 
 from .models import Item
 
-SITE_URL = "https://donjguido.github.io/canadian-ai-governance-monitor"  # GitHub Pages; swap for a custom domain later
+SITE_URL = "https://donjguido.github.io/ai-consultation-deadlines-canada"  # GitHub Pages; swap for a custom domain later
 TEMPLATE = Path(__file__).parent / "template.html"
 
 # The site switches language in the browser; the feed and digest are static files,
@@ -369,7 +369,7 @@ def build_feed(items: list[Item], out: Path, today: date, lang: str = "en") -> N
         f'<atom:link href="{SITE_URL}/{t["feed_file"]}" rel="self" type="application/rss+xml"/>'
         f'<atom:link href="{SITE_URL}/" rel="alternate" type="text/html"/>'
         f"<language>{t['code']}</language><lastBuildDate>{now}</lastBuildDate>"
-        "<generator>canadian-ai-governance-monitor</generator>"
+        "<generator>ai-consultation-deadlines-canada</generator>"
         "<docs>https://www.rssboard.org/rss-specification</docs>"
         "<copyright>CC BY 4.0</copyright><ttl>720</ttl>" + "".join(entries) + "</channel></rss>"
     )
@@ -468,7 +468,7 @@ def ics_event(item: Item, stamp: str, lang: str = "en") -> list[str]:
     title = fr(item, "title") if lang == "fr" else item.title
     lines = [
         "BEGIN:VEVENT",
-        f"UID:{item.id}@canadian-ai-governance-monitor",
+        f"UID:{item.id}@ai-consultation-deadlines-canada",
         f"DTSTAMP:{stamp}",
         f"LAST-MODIFIED:{stamp}",
         f"DTSTART;VALUE=DATE:{closes:%Y%m%d}",
@@ -504,7 +504,7 @@ def build_calendar(items: list[Item], out: Path, today: date, lang: str = "en") 
     lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//AI Consultation Deadlines Canada//v0.1//EN",
+        "PRODID:-//AI Consultation Deadlines Canada//v1.0//EN",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
         f"NAME:{_ics_text(t['cal_name'])}",
@@ -650,7 +650,7 @@ reproduced under the Open Government Licence - Canada.
 An MCP server exposes the same store as tools an agent can call directly -- `list_open`,
 `closing_soon`, `list_new`, `search`, `get_item`, `list_topics`, `monitor_status` -- so an
 assistant can answer "what is open right now" without fetching and re-parsing this site.
-See [docs/MCP.md](https://github.com/donjguido/canadian-ai-governance-monitor/blob/main/docs/MCP.md).
+See [docs/MCP.md](https://github.com/donjguido/ai-consultation-deadlines-canada/blob/main/docs/MCP.md).
 
 ## Closing within 7 days
 
@@ -666,7 +666,7 @@ See [docs/MCP.md](https://github.com/donjguido/canadian-ai-governance-monitor/bl
 
 ## Optional
 
-- [Source repository](https://github.com/donjguido/canadian-ai-governance-monitor): pipeline, data model, source inventory.
+- [Source repository](https://github.com/donjguido/ai-consultation-deadlines-canada): pipeline, data model, source inventory.
 - [Retired items]({SITE_URL}/items.json): past their closing date or withdrawn; kept in items.json with `"status": "retired"` for the record.
 """
     (out / "llms.txt").write_text(text, encoding="utf-8")

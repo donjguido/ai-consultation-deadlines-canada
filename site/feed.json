@@ -1,8 +1,8 @@
 {
   "version": "https://jsonfeed.org/version/1.1",
   "title": "AI Consultation Deadlines Canada",
-  "home_page_url": "https://donjguido.github.io/canadian-ai-governance-monitor/",
-  "feed_url": "https://donjguido.github.io/canadian-ai-governance-monitor/feed.json",
+  "home_page_url": "https://donjguido.github.io/ai-consultation-deadlines-canada/",
+  "feed_url": "https://donjguido.github.io/ai-consultation-deadlines-canada/feed.json",
   "description": "Federal consultations, calls for briefs, and other ways Canadians can shape AI safety.",
   "language": "en-CA",
   "authors": [
@@ -13,7 +13,7 @@
   ],
   "items": [
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-ised-2026-ai-transparency",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-2026-ai-transparency",
       "url": "https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada",
       "external_url": "https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada",
       "title": "Have your say on advancing AI transparency in Canada",
@@ -40,7 +40,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-dgsi-138-clinical-ai",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-dgsi-138-clinical-ai",
       "url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
       "external_url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
       "title": "CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review",
@@ -66,7 +66,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-ised-ai-compute-challenge",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-ai-compute-challenge",
       "url": "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy/ai-compute-challenge",
       "external_url": "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy/ai-compute-challenge",
       "title": "AI Compute Challenge: call for proposals",
@@ -94,7 +94,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-senate-soci-ai-study",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-senate-soci-ai-study",
       "url": "https://sencanada.ca/en/committees/SOCI/45-1",
       "external_url": "https://sencanada.ca/en/committees/SOCI/45-1",
       "title": "Senate SOCI study on the impact of artificial intelligence in Canada",
@@ -121,7 +121,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-senate-ridr-ai-human-rights",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-senate-ridr-ai-human-rights",
       "url": "https://sencanada.ca/en/committees/RIDR/",
       "external_url": "https://sencanada.ca/en/committees/RIDR/",
       "title": "Senate RIDR study on the impact of AI on human rights and economic security",
@@ -149,7 +149,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-senate-trcm-ai-ict",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-senate-trcm-ai-ict",
       "url": "https://sencanada.ca/en/committees/trcm/",
       "external_url": "https://sencanada.ca/en/committees/trcm/",
       "title": "Senate TRCM study on AI in the information and communication technology sector",
@@ -176,7 +176,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-indu-ai-strategic-industries",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-indu-ai-strategic-industries",
       "url": "https://www.ourcommons.ca/committees/en/INDU/StudyActivity?studyActivityId=13310104",
       "external_url": "https://www.ourcommons.ca/committees/en/INDU/StudyActivity?studyActivityId=13310104",
       "title": "INDU study: Opportunities, Risks, and Regulation of AI in Canada's Strategic Industries",
@@ -204,7 +204,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-ethi-ai-regulation",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ethi-ai-regulation",
       "url": "https://www.ourcommons.ca/committees/en/ethics/StudyActivity?studyActivityId=13255402",
       "external_url": "https://www.ourcommons.ca/committees/en/ethics/StudyActivity?studyActivityId=13255402",
       "title": "ETHI study: Challenges Posed by Artificial Intelligence and its Regulation",
@@ -230,7 +230,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-srsr-ai-research",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-srsr-ai-research",
       "url": "https://www.ourcommons.ca/committees/en/SRSR/StudyActivity?studyActivityId=13232926",
       "external_url": "https://www.ourcommons.ca/committees/en/SRSR/StudyActivity?studyActivityId=13232926",
       "title": "SRSR study: Artificial Intelligence in innovation and scientific research",
@@ -256,7 +256,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-bill-c-34-safe-social-media",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-bill-c-34-safe-social-media",
       "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-34",
       "external_url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-34",
       "title": "Bill C-34, Safe Social Media Act: committee study of AI chatbot duties",
@@ -282,7 +282,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-bill-c-36-privacy",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-bill-c-36-privacy",
       "url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-36",
       "external_url": "https://www.parl.ca/legisinfo/en/bill/45-1/c-36",
       "title": "Bill C-36, Protecting Privacy and Consumer Data Act: committee study",
@@ -308,7 +308,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-ircc-citizenship-biometrics",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ircc-citizenship-biometrics",
       "url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/acts-regulations/forward-regulatory-plan/list/amending-citizenship-regulations-biometric-information.html",
       "external_url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/acts-regulations/forward-regulatory-plan/list/amending-citizenship-regulations-biometric-information.html",
       "title": "Citizenship Regulations amendments: mandatory biometrics for citizenship applicants",
@@ -335,7 +335,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-csa-ai-regulatory-guidance",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-csa-ai-regulatory-guidance",
       "url": "https://scc-ccn.ca/standards/notices-of-intent/csa-group/guidance-ai-regulatory-measures-directives-and-policies",
       "external_url": "https://scc-ccn.ca/standards/notices-of-intent/csa-group/guidance-ai-regulatory-measures-directives-and-policies",
       "title": "Notice of intent: Guidance for AI Regulatory Measures, Directives and Policies (CSA Group)",
@@ -361,7 +361,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-petition-e-7550-data-centres",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-petition-e-7550-data-centres",
       "url": "https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7550",
       "external_url": "https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7550",
       "title": "Petition e-7550: end incentives, subsidies and permit acceleration for AI data centres",
@@ -387,7 +387,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-petition-e-7427-alberta-moratorium",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-petition-e-7427-alberta-moratorium",
       "url": "https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7427",
       "external_url": "https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7427",
       "title": "Petition e-7427: federal moratorium on hyperscale AI data centres in Alberta",
@@ -412,7 +412,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-opc-age-assurance-2026",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-opc-age-assurance-2026",
       "url": "https://www.priv.gc.ca/en/opc-news/news-and-announcements/2026/nr-c_260504/",
       "external_url": "https://www.priv.gc.ca/en/opc-news/news-and-announcements/2026/nr-c_260504/",
       "title": "OPC age assurance guidance: call for comments on two draft documents",
@@ -439,7 +439,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-dgsi-137-credential-ai",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-dgsi-137-credential-ai",
       "url": "https://dgc-cgn.org/product/can-dgsi-137/",
       "external_url": "https://dgc-cgn.org/product/can-dgsi-137/",
       "title": "CAN/DGSI 137 Digital Competency and Credit Recognition Framework: public review",
@@ -465,7 +465,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-ised-sovereign-compute-program",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-sovereign-compute-program",
       "url": "https://ised-isde.canada.ca/site/ised/en/ai-sovereign-compute-infrastructure-program",
       "external_url": "https://ised-isde.canada.ca/site/ised/en/ai-sovereign-compute-infrastructure-program",
       "title": "AI Sovereign Compute Infrastructure Program: call for applications",
@@ -491,7 +491,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-petition-e-7055-ai-labelling",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-petition-e-7055-ai-labelling",
       "url": "https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7055",
       "external_url": "https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7055",
       "title": "Petition e-7055: mandatory labelling of AI-generated online content",
@@ -517,7 +517,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-cifar-ai-frontiers-school-2026",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-cifar-ai-frontiers-school-2026",
       "url": "https://cifarportal.smapply.io/prog/cifar_ai_frontiers_school_2026_-_ai_safety_edition/",
       "external_url": "https://cifarportal.smapply.io/prog/cifar_ai_frontiers_school_2026_-_ai_safety_edition/",
       "title": "CIFAR AI Frontiers School 2026, AI Safety Edition: application call",
@@ -544,7 +544,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-tbs-ai-register-mvp",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-tbs-ai-register-mvp",
       "url": "https://open.canada.ca/data/en/dataset/fcbc0200-79ba-4fa4-94a6-00e32facea6b",
       "external_url": "https://open.canada.ca/data/en/dataset/fcbc0200-79ba-4fa4-94a6-00e32facea6b",
       "title": "Government of Canada AI Register (MVP): public feedback",
@@ -570,7 +570,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-opc-guidance-process-2026",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-opc-guidance-process-2026",
       "url": "https://www.priv.gc.ca/en/about-the-opc/what-we-do/consultations/consultation-guidance-process/",
       "external_url": "https://www.priv.gc.ca/en/about-the-opc/what-we-do/consultations/consultation-guidance-process/",
       "title": "Consultation on OPC guidance processes",
@@ -595,7 +595,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-petition-e-7002-deepfakes",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-petition-e-7002-deepfakes",
       "url": "https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7002",
       "external_url": "https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7002",
       "title": "Petition e-7002: protect individuals' likeness and voice from AI deepfakes",
@@ -621,7 +621,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-caisi-catalyst-2025",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-caisi-catalyst-2025",
       "url": "https://cifar.ca/ai/caisi/",
       "external_url": "https://cifar.ca/ai/caisi/",
       "title": "CAISI Research Program at CIFAR: Catalyst call on sociotechnical considerations in AI safety",
@@ -647,7 +647,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-chpc-ai-creative-industries",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-chpc-ai-creative-industries",
       "url": "https://www.ourcommons.ca/documentviewer/en/45-1/CHPC/report-4/page-51",
       "external_url": "https://www.ourcommons.ca/documentviewer/en/45-1/CHPC/report-4/page-51",
       "title": "CHPC study: effects of AI on the creative industries",
@@ -673,7 +673,7 @@
       }
     },
     {
-      "id": "https://donjguido.github.io/canadian-ai-governance-monitor/#item-ised-ai-strategy-2025",
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-ai-strategy-2025",
       "url": "https://ised-isde.canada.ca/site/ised/en/public-consultations/next-chapter-canadas-ai-leadership",
       "external_url": "https://ised-isde.canada.ca/site/ised/en/public-consultations/next-chapter-canadas-ai-leadership",
       "title": "The next chapter of Canada's AI leadership: national AI strategy consultation",

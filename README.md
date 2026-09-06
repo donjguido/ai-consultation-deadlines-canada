@@ -2,7 +2,7 @@
 
 A public tracker of every federal channel through which Canadians can shape how AI is governed: consultations, parliamentary calls for briefs, Canada Gazette comment periods, funding calls, standards reviews, and e-petitions. Each item is labelled new, open, closing soon, or retired, with a plain-language summary and a concrete way to participate.
 
-Status: **prototype, 6 September 2026**. Live at https://donjguido.github.io/canadian-ai-governance-monitor/. Updated every Mondays and Thursdays (no automatic schedule — run the workflow manually, e.g. via `workflow_dispatch` or `gh workflow run`, on that cadence).
+Status: **version 1.0.0, 6 September 2026** (see [CHANGELOG.md](CHANGELOG.md)). Live at https://donjguido.github.io/ai-consultation-deadlines-canada/. Updated every Mondays and Thursdays (no automatic schedule — run the workflow manually, e.g. via `workflow_dispatch` or `gh workflow run`, on that cadence).
 
 ## Documents
 
@@ -60,17 +60,17 @@ Every Monday and Thursday: open the diff of `data/items.json`, check items with 
 
 For people:
 
-- Website: https://donjguido.github.io/canadian-ai-governance-monitor/ (French at https://donjguido.github.io/canadian-ai-governance-monitor/?lang=fr)
-- RSS: https://donjguido.github.io/canadian-ai-governance-monitor/feed.xml (French: `/feed-fr.xml`)
-- Calendar: https://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics (French: `/deadlines-fr.ics`) — every open item whose closing date is still ahead, as an all-day event with reminders a week and a day before. Subscribe to it (`webcal://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics`) and Google, Outlook and Apple Calendar re-read it as deadlines are added, changed, or pass.
-- Weekly digest: https://donjguido.github.io/canadian-ai-governance-monitor/digest.md (French: `/digest-fr.md`)
+- Website: https://donjguido.github.io/ai-consultation-deadlines-canada/ (French at https://donjguido.github.io/ai-consultation-deadlines-canada/?lang=fr)
+- RSS: https://donjguido.github.io/ai-consultation-deadlines-canada/feed.xml (French: `/feed-fr.xml`)
+- Calendar: https://donjguido.github.io/ai-consultation-deadlines-canada/deadlines.ics (French: `/deadlines-fr.ics`) — every open item whose closing date is still ahead, as an all-day event with reminders a week and a day before. Subscribe to it (`webcal://donjguido.github.io/ai-consultation-deadlines-canada/deadlines.ics`) and Google, Outlook and Apple Calendar re-read it as deadlines are added, changed, or pass.
+- Weekly digest: https://donjguido.github.io/ai-consultation-deadlines-canada/digest.md (French: `/digest-fr.md`)
 
 For machines:
 
-- Full records (JSON): https://donjguido.github.io/canadian-ai-governance-monitor/items.json
-- JSON Feed 1.1, with status and deadline per item: https://donjguido.github.io/canadian-ai-governance-monitor/feed.json
-- Orientation for AI agents: https://donjguido.github.io/canadian-ai-governance-monitor/llms.txt
-- Every item as Markdown, in one fetch: https://donjguido.github.io/canadian-ai-governance-monitor/llms-full.txt
+- Full records (JSON): https://donjguido.github.io/ai-consultation-deadlines-canada/items.json
+- JSON Feed 1.1, with status and deadline per item: https://donjguido.github.io/ai-consultation-deadlines-canada/feed.json
+- Orientation for AI agents: https://donjguido.github.io/ai-consultation-deadlines-canada/llms.txt
+- Every item as Markdown, in one fetch: https://donjguido.github.io/ai-consultation-deadlines-canada/llms-full.txt
 - MCP server for live queries: `python -m mcp_server` (see [docs/MCP.md](docs/MCP.md))
 
 The site is built to be read by crawlers, agents and screen readers as well as by browsers:
@@ -94,7 +94,7 @@ Natural next forks in Canada are the provinces and territories, each of which ru
 
 ## Feedback
 
-Spotted a wrong status, a dead link, or a missing consultation? Feedback is welcome via pull request against the [original repo](https://github.com/donjguido/canadian-ai-governance-monitor).
+Spotted a wrong status, a dead link, or a missing consultation? Feedback is welcome via pull request against the [original repo](https://github.com/donjguido/ai-consultation-deadlines-canada).
 
 ## Licence
 

@@ -22,7 +22,7 @@ import yaml
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
-UA = {"User-Agent": "AI-Safety-Participation-Monitor/0.1 (+contact: see repository README)"}
+UA = {"User-Agent": "AI-Consultation-Deadlines-Canada/1.0 (+contact: see repository README)"}
 SOURCES = yaml.safe_load((Path(__file__).parent.parent / "data" / "sources.yaml").read_text(encoding="utf-8"))
 
 # Broad on purpose: false positives are cheap (the classifier rejects them);

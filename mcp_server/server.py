@@ -43,7 +43,7 @@ if str(REPO_ROOT) not in sys.path:
 
 from pipeline.models import CLOSING_SOON_DAYS, NEW_WINDOW_DAYS, Item  # noqa: E402
 
-SITE_URL = "https://donjguido.github.io/canadian-ai-governance-monitor/"
+SITE_URL = "https://donjguido.github.io/ai-consultation-deadlines-canada/"
 DEFAULT_ITEMS_URL = SITE_URL + "items.json"
 CACHE_TTL_SECONDS = 600
 
@@ -70,7 +70,7 @@ class Store:
 
     def _read_raw(self) -> list[dict]:
         if self.is_remote:
-            resp = requests.get(self.location, timeout=20, headers={"User-Agent": "caigm-mcp/0.1"})
+            resp = requests.get(self.location, timeout=20, headers={"User-Agent": "aicdc-mcp/1.0"})
             resp.raise_for_status()
             return resp.json()
         return json.loads(Path(self.location).read_text(encoding="utf-8"))
@@ -404,7 +404,7 @@ def item_resource(id: str) -> str:
 
 def _digest(filename: str) -> str:
     if STORE.is_remote:
-        resp = requests.get(SITE_URL + filename, timeout=20, headers={"User-Agent": "caigm-mcp/0.1"})
+        resp = requests.get(SITE_URL + filename, timeout=20, headers={"User-Agent": "aicdc-mcp/1.0"})
         resp.raise_for_status()
         return resp.text
     local = Path(STORE.location).resolve().parent / filename

@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//AI Consultation Deadlines Canada//v0.1//EN
+PRODID:-//AI Consultation Deadlines Canada//v1.0//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 NAME:Échéances des consultations sur l'IA Canada
@@ -17,9 +17,9 @@ X-WR-CALLANG:fr-ca
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
-UID:ised-2026-ai-transparency@canadian-ai-governance-monitor
-DTSTAMP:20260906T181355Z
-LAST-MODIFIED:20260906T181355Z
+UID:ised-2026-ai-transparency@ai-consultation-deadlines-canada
+DTSTAMP:20260906T182139Z
+LAST-MODIFIED:20260906T182139Z
 DTSTART;VALUE=DATE:20260923
 DTEND;VALUE=DATE:20260924
 SUMMARY:Échéance : Faites-vous entendre sur la transparence de l'IA au Ca
@@ -38,8 +38,8 @@ DESCRIPTION:Innovation\, Sciences et Développement économique Canada\nCon
  écrit par courriel à partir de la page de consultation d'ISDE avant le 2
  3 septembre 2026.\nhttps://ised-isde.canada.ca/site/ised/en/have-your-say-
  advancing-ai-transparency-canada\nSuivi par Échéances des consultations 
- sur l'IA Canada : https://donjguido.github.io/canadian-ai-governance-monit
- or
+ sur l'IA Canada : https://donjguido.github.io/ai-consultation-deadlines-ca
+ nada
 URL:https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-tra
  nsparency-canada
 TRANSP:TRANSPARENT
@@ -58,9 +58,9 @@ TRIGGER;VALUE=DURATION:-P1D
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:dgsi-138-clinical-ai@canadian-ai-governance-monitor
-DTSTAMP:20260906T181355Z
-LAST-MODIFIED:20260906T181355Z
+UID:dgsi-138-clinical-ai@ai-consultation-deadlines-canada
+DTSTAMP:20260906T182139Z
+LAST-MODIFIED:20260906T182139Z
 DTSTART;VALUE=DATE:20261005
 DTEND;VALUE=DATE:20261006
 SUMMARY:Échéance : CAN/DGSI 138 — L'IA responsable et visible pour le p
@@ -77,7 +77,7 @@ DESCRIPTION:Institut de normalisation en gouvernance numérique\nExamen pub
  d'examen public de l'Institut avant le 5 octobre 2026.\nhttps://dgc-cgn.or
  g/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
  \nSuivi par Échéances des consultations sur l'IA Canada : https://donjgu
- ido.github.io/canadian-ai-governance-monitor
+ ido.github.io/ai-consultation-deadlines-canada
 URL:https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clini
  cal-decision-support/
 TRANSP:TRANSPARENT
