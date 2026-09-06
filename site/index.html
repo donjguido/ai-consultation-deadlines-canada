@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Canadian AI Governance Monitor — open federal consultations on AI</title>
 <meta name="description" content="Tracking 26 federal consultations, calls for briefs, Canada Gazette comment periods, funding calls, standards reviews and e-petitions where people in Canada can shape AI governance. 13 open now, 0 closing within 7 days. Each one has a plain-language summary and a concrete way to take part. Bilingual, updated Mondays and Thursdays.">
 <meta name="generator" content="canadian-ai-governance-monitor pipeline">
@@ -62,7 +63,8 @@
   --open:#5DB48C; --open-bg:#173125; --retired:#98A3AD; --retired-bg:#28313A;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;overflow-wrap:break-word}
 a{color:var(--accent)}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 header{border-bottom:1px solid var(--rule);background:var(--panel)}
@@ -88,6 +90,7 @@ h1{font-family:var(--display);font-weight:500;font-size:2rem;line-height:1.1;mar
 .filters select{padding:7px 8px;border:1px solid var(--rule);border-radius:3px;background:var(--panel);color:var(--ink);font:inherit}
 .chip{border:1px solid var(--rule);background:var(--panel);color:var(--ink-2);border-radius:999px;padding:3px 10px;font-size:.8rem;cursor:pointer;font:inherit}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+#topics{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
 
 .list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)}
 .item{display:grid;grid-template-columns:6px 150px 1fr;gap:0 18px;border-bottom:1px solid var(--rule);padding:16px 0 16px 0}
@@ -116,9 +119,31 @@ footer{margin:36px 0 40px;font-size:.85rem;color:var(--ink-3);border-top:1px sol
 footer p{max-width:70ch}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--new);outline-offset:2px}
 @media (max-width:720px){
+  .wrap{padding:0 16px}
+  header .wrap{align-items:flex-start;gap:12px;padding:22px 16px 16px}
+  .meta{text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .lang{margin-left:0}
+  .lang button{padding:6px 12px}
   .stats{grid-template-columns:repeat(2,1fr)} .stat:nth-child(2){border-right:0} .stat:nth-child(-n+2){border-bottom:1px solid var(--rule)}
-  .item{grid-template-columns:6px 1fr} .when{grid-column:2} .main{grid-column:2}
-  header .wrap{align-items:flex-start} .meta{text-align:left}
+  .stat{padding:12px 14px}
+  /* 16px keeps iOS Safari from zooming in when a field takes focus */
+  .filters input[type=search]{flex:1 1 100%;font-size:16px}
+  .filters select{flex:1 1 calc(50% - 5px);min-width:0;font-size:16px}
+  #topics{flex:1 1 100%}
+  .chip{padding:7px 12px;font-size:.82rem}
+  .item{grid-template-columns:6px 1fr;gap:0 12px}
+  .when{grid-column:2;display:flex;flex-wrap:wrap;gap:0 10px;margin-bottom:6px}
+  .when b,.when span{display:inline}
+  .main{grid-column:2;min-width:0}
+  .body{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+  .body .type,.badges{margin-left:0}
+}
+@media (max-width:420px){
+  h1{font-size:1.6rem}
+  .stat{padding:10px 12px}
+  .stat .n{font-size:1.7rem}
+  .stat .h{font-size:.76rem}
+  .item h3{font-size:1.15rem}
 }
 @media (prefers-reduced-motion:no-preference){.stat,.chip{transition:background .15s}}
 /* Section headings that give the page a real outline without changing the look. */
