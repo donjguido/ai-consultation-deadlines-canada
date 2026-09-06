@@ -1,4 +1,4 @@
-# Canadian AI Governance Monitor - full corpus
+# AI Consultation Deadlines Canada - full corpus
 
 Generated 2026-09-06 from https://donjguido.github.io/canadian-ai-governance-monitor/items.json. 26 items.
 CC BY 4.0. Government content under the Open Government Licence - Canada.

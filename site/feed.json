@@ -1,6 +1,6 @@
 {
   "version": "https://jsonfeed.org/version/1.1",
-  "title": "Canadian AI Governance Monitor",
+  "title": "AI Consultation Deadlines Canada",
   "home_page_url": "https://donjguido.github.io/canadian-ai-governance-monitor/",
   "feed_url": "https://donjguido.github.io/canadian-ai-governance-monitor/feed.json",
   "description": "Federal consultations, calls for briefs, and other ways Canadians can shape AI safety.",

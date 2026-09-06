@@ -1,4 +1,4 @@
-# Canadian AI Governance Monitor: design plan
+# AI Consultation Deadlines Canada: design plan
 
 Version 0.1, 6 September 2026. Companion document: [SOURCES.md](SOURCES.md) (data-source inventory).
 

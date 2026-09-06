@@ -39,15 +39,15 @@ STRINGS = {
     "en": {
         "code": "en-ca", "feed_file": "feed.xml", "digest_file": "digest.md",
         "ics_file": "deadlines.ics", "calendar": "Calendar",
-        "cal_name": "Canadian AI Governance Monitor: deadlines",
+        "cal_name": "AI Consultation Deadlines Canada",
         "cal_desc": "Closing dates for federal consultations, calls for briefs, Gazette comment "
                     "periods, funding calls, standards reviews, and petitions where Canadians "
                     "can shape how AI is governed.",
         "deadline_prefix": "Deadline:",
         "cal_unverified": "⚠ This date has not been checked by a human yet. Confirm it on the official page.",
-        "cal_tracked": "Tracked by the Canadian AI Governance Monitor:",
+        "cal_tracked": "Tracked by the AI Consultation Deadlines Canada:",
         "alarm_7": "closes in 7 days", "alarm_1": "closes tomorrow",
-        "site_title": "Canadian AI Governance Monitor",
+        "site_title": "AI Consultation Deadlines Canada",
         "site_desc": "Federal consultations, calls for briefs, and other ways Canadians can shape AI safety.",
         "badge": {"new": "new", "closing_soon": "closing soon", "open": "open", "retired": "retired"},
         "closes": "Closes", "closed": "Closed", "no_deadline": "No stated deadline",
@@ -60,15 +60,15 @@ STRINGS = {
     "fr": {
         "code": "fr-ca", "feed_file": "feed-fr.xml", "digest_file": "digest-fr.md",
         "ics_file": "deadlines-fr.ics", "calendar": "Calendrier",
-        "cal_name": "Moniteur canadien de la gouvernance de l'IA : échéances",
+        "cal_name": "Échéances des consultations sur l'IA Canada",
         "cal_desc": "Dates de clôture des consultations fédérales, appels de mémoires, périodes "
                     "de commentaires de la Gazette, appels de financement, examens de normes et "
                     "pétitions où les Canadiens peuvent influencer la gouvernance de l'IA.",
         "deadline_prefix": "Échéance :",
         "cal_unverified": "⚠ Cette date n'a pas encore été vérifiée par une personne. Confirmez-la sur la page officielle.",
-        "cal_tracked": "Suivi par le Moniteur canadien de la gouvernance de l'IA :",
+        "cal_tracked": "Suivi par Échéances des consultations sur l'IA Canada :",
         "alarm_7": ": clôture dans 7 jours", "alarm_1": ": clôture demain",
-        "site_title": "Moniteur canadien de la gouvernance de l'IA",
+        "site_title": "Échéances des consultations sur l'IA Canada",
         "site_desc": "Consultations fédérales, appels de mémoires et autres façons pour les Canadiens d'influencer la gouvernance de l'IA.",
         "badge": {"new": "nouveau", "closing_soon": "se termine bientôt", "open": "ouvert", "retired": "retiré"},
         "closes": "Clôture", "closed": "Clôturé", "no_deadline": "Aucune échéance annoncée",
@@ -504,7 +504,7 @@ def build_calendar(items: list[Item], out: Path, today: date, lang: str = "en") 
     lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//Canadian AI Governance Monitor//v0.1//EN",
+        "PRODID:-//AI Consultation Deadlines Canada//v0.1//EN",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
         f"NAME:{_ics_text(t['cal_name'])}",
@@ -618,7 +618,7 @@ def build_llms(records: list[dict], out: Path, today: date) -> None:
     soon = [r for r in records if "closing_soon" in r["badges"]]
     fresh = [r for r in records if "new" in r["badges"]]
     retired = [r for r in records if r["status"] == "retired"]
-    text = f"""# Canadian AI Governance Monitor
+    text = f"""# AI Consultation Deadlines Canada
 
 > Every federal channel through which people in Canada can shape how AI is governed --
 > public consultations, parliamentary calls for briefs, Canada Gazette comment periods,
@@ -633,7 +633,7 @@ date or withdrawn. Always confirm a deadline on the official page before submitt
 
 Content is bilingual (English and French); French fields are suffixed `_fr` and fall back
 to English when a translation is not yet written. Data is CC BY 4.0 -- reuse it freely with
-attribution to the Canadian AI Governance Monitor. Underlying government content is
+attribution to the AI Consultation Deadlines Canada. Underlying government content is
 reproduced under the Open Government Licence - Canada.
 
 ## Structured data
@@ -676,7 +676,7 @@ def build_llms_full(records: list[dict], out: Path, today: date) -> None:
     """The entire corpus as Markdown, so an agent can read everything in one request
     instead of crawling the page and re-deriving it from the DOM."""
     parts = [
-        "# Canadian AI Governance Monitor - full corpus",
+        "# AI Consultation Deadlines Canada - full corpus",
         "",
         f"Generated {today.isoformat()} from {SITE_URL}/items.json. {len(records)} items.",
         "CC BY 4.0. Government content under the Open Government Licence - Canada.",
@@ -745,7 +745,7 @@ def build_robots(out: Path) -> None:
     by tools that fetch it directly.
     """
     lines = [
-        "# Canadian AI Governance Monitor",
+        "# AI Consultation Deadlines Canada",
         "# A public register of Canadian federal channels for shaping AI governance.",
         "#",
         "# Crawling, indexing and machine reading are welcome, AI systems included.",

@@ -1,4 +1,4 @@
-"""MCP server for the Canadian AI Governance Monitor.
+"""MCP server for the AI Consultation Deadlines Canada.
 
 A thin, read-only Model Context Protocol server so that AI assistants can
 answer questions like "what AI consultations are open in Canada right now?"
@@ -241,9 +241,9 @@ def _filter(
 # ---------------------------------------------------------------------------
 
 mcp = MCPServer(
-    "Canadian AI Governance Monitor",
+    "AI Consultation Deadlines Canada",
     instructions=(
-        "Read-only access to the Canadian AI Governance Monitor: every federal channel "
+        "Read-only access to the AI Consultation Deadlines Canada: every federal channel "
         "through which Canadians can shape AI governance (consultations, parliamentary "
         "calls for briefs, Canada Gazette comment periods, funding calls, standards "
         "reviews, e-petitions). Start with list_open or closing_soon for what is "

@@ -1,1 +1,1 @@
-"""MCP server package for the Canadian AI Governance Monitor. See server.py."""
+"""MCP server package for the AI Consultation Deadlines Canada. See server.py."""

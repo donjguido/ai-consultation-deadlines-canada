@@ -1,4 +1,4 @@
-# Canadian AI Governance Monitor, week of 2026-09-06
+# AI Consultation Deadlines Canada, week of 2026-09-06
 
 ## Closing within 7 days
 

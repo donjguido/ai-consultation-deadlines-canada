@@ -1,4 +1,4 @@
-# Canadian AI Governance Monitor
+# AI Consultation Deadlines Canada
 # A public register of Canadian federal channels for shaping AI governance.
 #
 # Crawling, indexing and machine reading are welcome, AI systems included.

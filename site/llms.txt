@@ -1,4 +1,4 @@
-# Canadian AI Governance Monitor
+# AI Consultation Deadlines Canada
 
 > Every federal channel through which people in Canada can shape how AI is governed --
 > public consultations, parliamentary calls for briefs, Canada Gazette comment periods,
@@ -13,7 +13,7 @@ date or withdrawn. Always confirm a deadline on the official page before submitt
 
 Content is bilingual (English and French); French fields are suffixed `_fr` and fall back
 to English when a translation is not yet written. Data is CC BY 4.0 -- reuse it freely with
-attribution to the Canadian AI Governance Monitor. Underlying government content is
+attribution to the AI Consultation Deadlines Canada. Underlying government content is
 reproduced under the Open Government Licence - Canada.
 
 ## Structured data

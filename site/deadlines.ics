@@ -1,10 +1,10 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Canadian AI Governance Monitor//v0.1//EN
+PRODID:-//AI Consultation Deadlines Canada//v0.1//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-NAME:Canadian AI Governance Monitor: deadlines
-X-WR-CALNAME:Canadian AI Governance Monitor: deadlines
+NAME:AI Consultation Deadlines Canada
+X-WR-CALNAME:AI Consultation Deadlines Canada
 DESCRIPTION:Closing dates for federal consultations\, calls for briefs\, Ga
  zette comment periods\, funding calls\, standards reviews\, and petitions 
  where Canadians can shape how AI is governed.
@@ -16,8 +16,8 @@ REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
 UID:ised-2026-ai-transparency@canadian-ai-governance-monitor
-DTSTAMP:20260906T173731Z
-LAST-MODIFIED:20260906T173731Z
+DTSTAMP:20260906T181355Z
+LAST-MODIFIED:20260906T181355Z
 DTSTART;VALUE=DATE:20260923
 DTEND;VALUE=DATE:20260924
 SUMMARY:Deadline: Have your say on advancing AI transparency in Canada
@@ -31,8 +31,8 @@ DESCRIPTION:Innovation\, Science and Economic Development Canada\nTwo-month
  gime for frontier models.\nHow to participate: Answer the online questionn
  aire or email a written submission through the ISED consultation page befo
  re 23 September 2026.\nhttps://ised-isde.canada.ca/site/ised/en/have-your-
- say-advancing-ai-transparency-canada\nTracked by the Canadian AI Governanc
- e Monitor: https://donjguido.github.io/canadian-ai-governance-monitor
+ say-advancing-ai-transparency-canada\nTracked by the AI Consultation Deadl
+ ines Canada: https://donjguido.github.io/canadian-ai-governance-monitor
 URL:https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-tra
  nsparency-canada
 TRANSP:TRANSPARENT
@@ -52,8 +52,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:dgsi-138-clinical-ai@canadian-ai-governance-monitor
-DTSTAMP:20260906T173731Z
-LAST-MODIFIED:20260906T173731Z
+DTSTAMP:20260906T181355Z
+LAST-MODIFIED:20260906T181355Z
 DTSTART;VALUE=DATE:20261005
 DTEND;VALUE=DATE:20261006
 SUMMARY:Deadline: CAN/DGSI 138 Patient-Visible and Accountable AI in Clinic
@@ -66,8 +66,8 @@ DESCRIPTION:Digital Governance Standards Institute\n60-day public review of
  nd health are likely to reference.\nHow to participate: Download the draft
   and submit comments through the DGSI public review form before 5 October 
  2026.\nhttps://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-c
- linical-decision-support/\nTracked by the Canadian AI Governance Monitor: 
- https://donjguido.github.io/canadian-ai-governance-monitor
+ linical-decision-support/\nTracked by the AI Consultation Deadlines Canada
+ : https://donjguido.github.io/canadian-ai-governance-monitor
 URL:https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clini
  cal-decision-support/
 TRANSP:TRANSPARENT

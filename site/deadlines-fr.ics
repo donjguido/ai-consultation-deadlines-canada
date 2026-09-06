@@ -1,10 +1,10 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Canadian AI Governance Monitor//v0.1//EN
+PRODID:-//AI Consultation Deadlines Canada//v0.1//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-NAME:Moniteur canadien de la gouvernance de l'IA : échéances
-X-WR-CALNAME:Moniteur canadien de la gouvernance de l'IA : échéances
+NAME:Échéances des consultations sur l'IA Canada
+X-WR-CALNAME:Échéances des consultations sur l'IA Canada
 DESCRIPTION:Dates de clôture des consultations fédérales\, appels de mé
  moires\, périodes de commentaires de la Gazette\, appels de financement\,
   examens de normes et pétitions où les Canadiens peuvent influencer la g
@@ -18,8 +18,8 @@ REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
 BEGIN:VEVENT
 UID:ised-2026-ai-transparency@canadian-ai-governance-monitor
-DTSTAMP:20260906T173731Z
-LAST-MODIFIED:20260906T173731Z
+DTSTAMP:20260906T181355Z
+LAST-MODIFIED:20260906T181355Z
 DTSTART;VALUE=DATE:20260923
 DTEND;VALUE=DATE:20260924
 SUMMARY:Échéance : Faites-vous entendre sur la transparence de l'IA au Ca
@@ -37,9 +37,9 @@ DESCRIPTION:Innovation\, Sciences et Développement économique Canada\nCon
   participer : Répondez au questionnaire en ligne ou envoyez un mémoire 
  écrit par courriel à partir de la page de consultation d'ISDE avant le 2
  3 septembre 2026.\nhttps://ised-isde.canada.ca/site/ised/en/have-your-say-
- advancing-ai-transparency-canada\nSuivi par le Moniteur canadien de la gou
- vernance de l'IA : https://donjguido.github.io/canadian-ai-governance-moni
- tor
+ advancing-ai-transparency-canada\nSuivi par Échéances des consultations 
+ sur l'IA Canada : https://donjguido.github.io/canadian-ai-governance-monit
+ or
 URL:https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-tra
  nsparency-canada
 TRANSP:TRANSPARENT
@@ -59,8 +59,8 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:dgsi-138-clinical-ai@canadian-ai-governance-monitor
-DTSTAMP:20260906T173731Z
-LAST-MODIFIED:20260906T173731Z
+DTSTAMP:20260906T181355Z
+LAST-MODIFIED:20260906T181355Z
 DTSTART;VALUE=DATE:20261005
 DTEND;VALUE=DATE:20261006
 SUMMARY:Échéance : CAN/DGSI 138 — L'IA responsable et visible pour le p
@@ -76,8 +76,8 @@ DESCRIPTION:Institut de normalisation en gouvernance numérique\nExamen pub
  le projet de norme et transmettez vos commentaires au moyen du formulaire 
  d'examen public de l'Institut avant le 5 octobre 2026.\nhttps://dgc-cgn.or
  g/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
- \nSuivi par le Moniteur canadien de la gouvernance de l'IA : https://donjg
- uido.github.io/canadian-ai-governance-monitor
+ \nSuivi par Échéances des consultations sur l'IA Canada : https://donjgu
+ ido.github.io/canadian-ai-governance-monitor
 URL:https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clini
  cal-decision-support/
 TRANSP:TRANSPARENT

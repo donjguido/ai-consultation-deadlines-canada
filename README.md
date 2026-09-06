@@ -1,6 +1,6 @@
-# Canadian AI Governance Monitor
+# AI Consultation Deadlines Canada
 
-A public monitor of every federal channel through which Canadians can shape how AI is governed: consultations, parliamentary calls for briefs, Canada Gazette comment periods, funding calls, standards reviews, and e-petitions. Each item is labelled new, open, closing soon, or retired, with a plain-language summary and a concrete way to participate.
+A public tracker of every federal channel through which Canadians can shape how AI is governed: consultations, parliamentary calls for briefs, Canada Gazette comment periods, funding calls, standards reviews, and e-petitions. Each item is labelled new, open, closing soon, or retired, with a plain-language summary and a concrete way to participate.
 
 Status: **prototype, 6 September 2026**. Live at https://donjguido.github.io/canadian-ai-governance-monitor/. Updated every Mondays and Thursdays (no automatic schedule — run the workflow manually, e.g. via `workflow_dispatch` or `gh workflow run`, on that cadence).
 
@@ -77,6 +77,20 @@ The site is built to be read by crawlers, agents and screen readers as well as b
 the item list is rendered into the HTML rather than only into JavaScript, the head carries
 schema.org JSON-LD describing the dataset and every item, and each build also writes
 `robots.txt` (crawling and AI use explicitly permitted, data CC BY 4.0) and `sitemap.xml`.
+
+## Fork it for your own geography
+
+The federal channels listed here are only one layer of Canadian governance, and Canada is only one country. We would explicitly love for other coders to fork this design and replicate it for their own geographies: a province or territory, a city, another national government, or a regional body like the EU.
+
+The design is built to travel. Everything geography-specific lives in `data/sources.yaml` (which pages to fetch and how) and `data/items.json` (the store). The four-status model, the classifier prompt, the bilingual template, the feeds, the calendar, the digest and the MCP server are all reusable as they stand. To start a fork:
+
+1. Fork the repo and rename the site in `pipeline/build.py` (the `STRINGS` block) and `pipeline/template.html`, keeping the "AI Consultation Deadlines" branding plus your place name if you want the family of sites to be recognisable together.
+2. Replace the sources in `data/sources.yaml` with your jurisdiction's consultation registry, legislature committee pages, official gazette, and petition system. Tier 2 HTML fetchers in `pipeline/fetch.py` are the model for scraping index pages that have no feed.
+3. Clear `data/items.json` to an empty list, run `fetch` and `classify`, then curate: the `verified` flag is a human claim and the pipeline never sets it.
+4. Adjust the `TOPICS` list in `pipeline/classify.py` and the language pair in the template if your jurisdiction needs a different second language, or none.
+5. Run `python -m pytest`; the suite is offline and guards the invariants a fork should keep.
+
+Natural next forks in Canada are the provinces and territories, each of which runs its own consultation portal, legislative committees and gazette. If you build one, open an issue here so we can link to it.
 
 ## Feedback
 
