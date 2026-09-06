@@ -61,7 +61,7 @@ def build_feed(items: list[Item], out: Path, today: date) -> None:
         )
     xml = (
         '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel>'
-        "<title>AI Safety Participation Monitor (Canada)</title>"
+        "<title>Canadian AI Governance Monitor</title>"
         f"<link>{SITE_URL}</link><description>Federal consultations, calls for briefs, and other ways Canadians can shape AI safety.</description>"
         f"<language>en-ca</language><lastBuildDate>{now}</lastBuildDate>" + "".join(entries) + "</channel></rss>"
     )
@@ -85,7 +85,7 @@ def build_digest(items: list[Item], out: Path, today: date) -> None:
         return "\n".join(lines) + "\n\n"
 
     text = (
-        f"# AI Safety Participation Monitor, week of {today.isoformat()}\n\n"
+        f"# Canadian AI Governance Monitor, week of {today.isoformat()}\n\n"
         + block("Closing within 7 days", closing)
         + block("New this fortnight", new)
         + block("Still open", open_)

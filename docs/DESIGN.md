@@ -1,4 +1,4 @@
-# AI Safety Participation Monitor: design plan
+# Canadian AI Governance Monitor: design plan
 
 Version 0.1, 6 September 2026. Companion document: [SOURCES.md](SOURCES.md) (data-source inventory).
 
@@ -70,7 +70,7 @@ sources.yaml ──► fetch.py ──► candidates.json ──► classify.py 
 
 **Build.** One script renders four outputs from the store: the website (a single self-contained HTML file with the data inlined, filterable client-side, EN/FR toggle), the RSS feed, a JSON copy for programmatic use, and a Markdown digest ready to paste or send.
 
-**Schedule.** GitHub Actions runs the pipeline daily at 07:30 Eastern (after the Gazette's Friday 2 pm publication has had time to propagate) and deploys to GitHub Pages. A manual trigger exists for the curator.
+**Schedule.** No automatic cron: the curator triggers the pipeline manually (push to `main` or `workflow_dispatch`) every Monday and Thursday, and it deploys to GitHub Pages.
 
 **Curate.** The human step is a weekly 30- to 60-minute review: open the diff of `items.json`, check unverified items against their source pages, set `verified: true`, add French titles where the source is English-only, retire dead items with a reason, and add anything from the tier-3 watch list (CAISI, TBS, DGSI, LEGISinfo) that the fetchers cannot reach. Edits are plain JSON commits; no admin UI is needed yet.
 
@@ -109,7 +109,7 @@ Design intent: a reference tool that reads like a briefing sheet, not a marketin
 ## 9. Roadmap
 
 1. Harden fetchers: fix petitions, add ourcommons.ca XML and LEGISinfo bill tracking.
-2. Run the classifier daily from GitHub Actions and publish the site, RSS and JSON from GitHub Pages.
+2. Run the classifier from GitHub Actions on a manual Monday/Thursday trigger and publish the site, RSS and JSON from GitHub Pages.
 3. Email digest (weekly plus closing-soon alerts).
 4. French summaries for all open items.
 5. MCP server so assistants can query the store directly.
@@ -121,6 +121,6 @@ Design intent: a reference tool that reads like a briefing sheet, not a marketin
 - `data/items.json` — 26 real items as of 6 September 2026 (13 open, 4 of them new, 13 retired), each with source link, dates, summary, why-it-matters, how-to-participate, topics, and a verified flag.
 - `data/sources.yaml` — source inventory with tiers and known issues.
 - `site/` — generated website, RSS feed, JSON, and weekly digest.
-- `.github/workflows/daily.yml` — daily schedule and deployment.
+- `.github/workflows/daily.yml` — manually-triggered run and deployment (Monday/Thursday cadence, no automatic cron).
 
 Not yet done: live classification run against an API key (the classifier is written and the fetchers return real candidates; the seed store was curated from research rather than a model run), petition and Senate fetchers, email sending, MCP server, French summaries.

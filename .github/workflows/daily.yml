@@ -1,7 +1,5 @@
-name: Daily monitor run
+name: Monitor run
 on:
-  schedule:
-    - cron: "30 11 * * *"   # 07:30 Eastern (11:30 UTC) every day
   push:
     branches: [main]
   workflow_dispatch:
@@ -46,7 +44,7 @@ jobs:
           git config user.name "monitor-bot"
           git config user.email "bot@users.noreply.github.com"
           git add data/items.json site
-          git diff --cached --quiet || git commit -m "Daily update $(date -u +%F)"
+          git diff --cached --quiet || git commit -m "Update $(date -u +%F)"
           git push
       - uses: actions/upload-pages-artifact@v3
         with:
