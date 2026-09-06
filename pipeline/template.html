@@ -75,6 +75,27 @@ h1{font-family:var(--display);font-weight:500;font-size:2rem;line-height:1.1;mar
 .topics{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
 .topic{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;padding:0 6px}
 .unverified{font-size:.72rem;color:var(--soon);font-family:var(--mono)}
+
+/* Add-to-calendar: a per-item menu, and a dialog for the whole set. */
+.cal{position:relative;display:inline-block;margin-top:10px}
+.cal-btn{font:inherit;font-size:.82rem;color:var(--ink-2);background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:4px 10px;cursor:pointer}
+.cal-btn:hover,.cal-btn[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.cal-menu{position:absolute;z-index:20;top:calc(100% + 4px);left:0;min-width:210px;background:var(--panel);border:1px solid var(--rule);border-radius:4px;box-shadow:0 6px 20px rgba(0,0,0,.16);padding:4px;display:flex;flex-direction:column}
+.cal-menu[hidden]{display:none}  /* the class sets display:flex, which would beat the UA [hidden] rule */
+.cal-menu a,.cal-menu button{font:inherit;font-size:.85rem;text-align:left;padding:7px 10px;border:0;border-radius:3px;background:none;color:var(--ink);text-decoration:none;cursor:pointer}
+.cal-menu a:hover,.cal-menu button:hover{background:var(--paper);color:var(--accent)}
+.cal-all{font:inherit;font-size:.88rem;font-weight:600;margin-left:auto;background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);border-radius:3px;padding:7px 12px;cursor:pointer}
+dialog#calbox{border:1px solid var(--rule);border-radius:6px;background:var(--panel);color:var(--ink);max-width:460px;width:calc(100% - 32px);padding:22px 24px 24px;font:inherit}
+dialog#calbox::backdrop{background:rgba(10,16,22,.45)}
+#calbox h2{font-family:var(--display);font-weight:600;font-size:1.2rem;margin:0 0 8px;padding-right:24px}
+#calbox p{margin:0 0 12px;font-size:.9rem;color:var(--ink-2)}
+#calbox p.note{font-size:.82rem;color:var(--ink-3)}
+#calbox hr{border:0;border-top:1px solid var(--rule);margin:18px 0 14px}
+#calbox .x{position:absolute;top:10px;right:12px;background:none;border:0;color:var(--ink-3);font-size:1.4rem;line-height:1;cursor:pointer;padding:2px 6px}
+.calrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.calopt{font:inherit;font-size:.87rem;padding:7px 12px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink);text-decoration:none;cursor:pointer}
+.calopt:hover{border-color:var(--accent);color:var(--accent)}
+
 .empty{padding:40px 0;color:var(--ink-3);text-align:center}
 footer{margin:36px 0 40px;font-size:.85rem;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:16px}
 footer p{max-width:70ch}
@@ -95,8 +116,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   </div>
   <div class="meta">
     <span class="links"
-      data-en="built __BUILT__ · <a href=&quot;feed.xml&quot;>RSS</a> · <a href=&quot;items.json&quot;>JSON</a> · <a href=&quot;digest.md&quot;>weekly digest</a>"
-      data-fr="mis à jour le __BUILT__ · <a href=&quot;feed.xml&quot;>fil RSS</a> · <a href=&quot;items.json&quot;>JSON</a> · <a href=&quot;digest.md&quot;>sommaire hebdomadaire</a>">built __BUILT__ · <a href="feed.xml">RSS</a> · <a href="items.json">JSON</a> · <a href="digest.md">weekly digest</a></span>
+      data-en="built __BUILT__ · <a href=&quot;feed.xml&quot;>RSS</a> · <a href=&quot;deadlines.ics&quot;>calendar</a> · <a href=&quot;items.json&quot;>JSON</a> · <a href=&quot;digest.md&quot;>weekly digest</a>"
+      data-fr="mis à jour le __BUILT__ · <a href=&quot;feed.xml&quot;>fil RSS</a> · <a href=&quot;deadlines.ics&quot;>calendrier</a> · <a href=&quot;items.json&quot;>JSON</a> · <a href=&quot;digest.md&quot;>sommaire hebdomadaire</a>">built __BUILT__ · <a href="feed.xml">RSS</a> · <a href="deadlines.ics">calendar</a> · <a href="items.json">JSON</a> · <a href="digest.md">weekly digest</a></span>
     <span class="lang"><button id="en" aria-pressed="true">EN</button> <button id="fr" aria-pressed="false">FR</button></span>
   </div>
 </div></header>
@@ -108,8 +129,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
     <select id="type" aria-label="Type"><option value="">All types</option></select>
     <select id="body" aria-label="Department"><option value="">All departments</option></select>
     <span id="topics"></span>
+    <button class="cal-all" id="cal-all" aria-haspopup="dialog">Add all deadlines to my calendar</button>
   </div>
   <div class="list" id="list"></div>
+  <dialog id="calbox" aria-labelledby="calbox-title"></dialog>
   <footer>
     <p data-en="Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting."
        data-fr="Prototype. Les étiquettes sont calculées à partir des dates de clôture annoncées : <b>Nouveau</b> = ouvert ou repéré au cours des 14 derniers jours ; <b>Se termine bientôt</b> = clôture dans les 7 jours ; <b>Retiré</b> = date de clôture dépassée ou retiré. Les éléments marqués ⚠ n'ont pas encore été vérifiés par une personne. Vérifiez toujours les échéances sur la page officielle avant de soumettre.">Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting.</p>
@@ -126,12 +149,42 @@ const L = {
       closes:"Closes",opened:"Opened",noDeadline:"No stated deadline",daysLeft:d=>d===0?"closes today":d===1?"1 day left":`${d} days left`,
       why:"Why it matters:",how:"How to participate:",empty:"Nothing matches these filters.",
       unverified:"Not yet checked by a human",
+      addCal:"Add deadline to calendar",icsOne:"Apple Calendar / .ics file",
+      deadlinePrefix:"Deadline:",calUnverified:"This date has not been checked by a human yet. Confirm it on the official page.",
+      calTracked:"Tracked by the Canadian AI Governance Monitor:",calName:"Canadian AI Governance Monitor: deadlines",
+      alarm7:x=>x+" closes in 7 days",alarm1:x=>x+" closes tomorrow",
+      allCal:"Add all deadlines to my calendar",close:"Close",
+      allTitle:"Add every upcoming deadline",
+      allIntro:n=>n===1?"One consultation currently has a stated closing date. Subscribing keeps it in sync as items are added, dates change, and closed items drop off."
+                       :`${n} consultations currently have stated closing dates. Subscribing keeps them in sync as items are added, dates change, and closed items drop off.`,
+      subHead:"Subscribe (stays up to date)",appleSub:"Apple Calendar / other",copyLink:"Copy feed link",copied:"Link copied",
+      subNote:"Google and Outlook check the feed every few hours. In Google, the calendar appears under “Other calendars”.",
+      onceHead:"Or add them once",
+      onceNote:"A one-time import: the events will not update if a deadline moves.",
+      download:n=>`Download .ics (${n} deadline${n===1?"":"s"})`,
+      calFine:"Each event is all-day on the closing date, with reminders 7 days and 1 day before. Always confirm the deadline on the official page.",
+      noDated:"No open item currently has a stated closing date, so there is nothing to add yet. Subscribe anyway and deadlines will appear as they are published.",
       type:{consultation:"Consultation",call_for_briefs:"Call for briefs",gazette_notice:"Gazette notice",funding_call:"Funding call",standards_review:"Standards review",petition:"Petition",other:"Other"}},
   fr:{new:"Nouveau",closing_soon:"Se termine bientôt",open:"Ouvert",retired:"Retiré",
       hint:{new:"ouvert depuis 14 jours ou moins",closing_soon:"échéance dans 7 jours",open:"accepte des contributions",retired:"échéance dépassée ou retiré"},
       closes:"Clôture",opened:"Ouvert le",noDeadline:"Aucune échéance annoncée",daysLeft:d=>d===0?"clôture aujourd'hui":d===1?"1 jour restant":`${d} jours restants`,
       why:"Pourquoi c'est important :",how:"Comment participer :",empty:"Aucun résultat pour ces filtres.",
       unverified:"Pas encore vérifié par une personne",
+      addCal:"Ajouter l'échéance au calendrier",icsOne:"Calendrier Apple / fichier .ics",
+      deadlinePrefix:"Échéance :",calUnverified:"Cette date n'a pas encore été vérifiée par une personne. Confirmez-la sur la page officielle.",
+      calTracked:"Suivi par le Moniteur canadien de la gouvernance de l'IA :",calName:"Moniteur canadien de la gouvernance de l'IA : échéances",
+      alarm7:x=>x+" : clôture dans 7 jours",alarm1:x=>x+" : clôture demain",
+      allCal:"Ajouter toutes les échéances à mon calendrier",close:"Fermer",
+      allTitle:"Ajouter toutes les échéances à venir",
+      allIntro:n=>n===1?"Une consultation a actuellement une date de clôture annoncée. L'abonnement la tient à jour à mesure que des éléments s'ajoutent, que les dates changent et que les éléments clos disparaissent."
+                       :`${n} consultations ont actuellement une date de clôture annoncée. L'abonnement les tient à jour à mesure que des éléments s'ajoutent, que les dates changent et que les éléments clos disparaissent.`,
+      subHead:"S'abonner (mise à jour automatique)",appleSub:"Calendrier Apple / autre",copyLink:"Copier le lien du fil",copied:"Lien copié",
+      subNote:"Google et Outlook consultent le fil toutes les quelques heures. Dans Google, le calendrier apparaît sous « Autres agendas ».",
+      onceHead:"Ou les ajouter une seule fois",
+      onceNote:"Importation unique : les événements ne seront pas mis à jour si une échéance change.",
+      download:n=>`Télécharger le fichier .ics (${n} échéance${n===1?"":"s"})`,
+      calFine:"Chaque événement occupe toute la journée de clôture, avec des rappels 7 jours et 1 jour à l'avance. Confirmez toujours l'échéance sur la page officielle.",
+      noDated:"Aucun élément ouvert n'a de date de clôture annoncée pour le moment ; il n'y a donc rien à ajouter. Abonnez-vous quand même : les échéances apparaîtront dès leur publication.",
       type:{consultation:"Consultation",call_for_briefs:"Appel de mémoires",gazette_notice:"Avis de la Gazette",funding_call:"Appel de financement",standards_review:"Examen de norme",petition:"Pétition",other:"Autre"}}
 };
 // Topic tags come from the closed TOPICS list in pipeline/classify.py; French labels for display only.
@@ -155,6 +208,129 @@ try{ lang = localStorage.getItem("lang")||"en"; }catch(e){}
 const $=s=>document.querySelector(s);
 function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function primary(r){return r.badges.includes("retired")?"retired":r.badges.includes("closing_soon")?"closing_soon":r.badges.includes("new")?"new":"open"}
+
+// ---- add to calendar -------------------------------------------------------
+// Google and Outlook take one event per URL, so single deadlines go through
+// their web templates and anything bulk goes through .ics — either the
+// published feed (subscribe, stays current) or a generated file (import once).
+const SITE="__SITE__", ICS_URL=SITE+"/deadlines.ics", WEBCAL=ICS_URL.replace(/^https?:/,"webcal:");
+const GOOGLE_SUB="https://calendar.google.com/calendar/r?cid="+encodeURIComponent(WEBCAL);
+const OUTLOOK_SUB="https://outlook.live.com/calendar/0/addfromweb?"+
+  "url="+encodeURIComponent(ICS_URL)+"&name="+encodeURIComponent("Canadian AI Governance Monitor");
+const qs=o=>Object.entries(o).map(([k,v])=>encodeURIComponent(k)+"="+encodeURIComponent(v)).join("&");
+const ymd=s=>s.replace(/-/g,"");
+function nextDay(s){const d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+1);return d.toISOString().slice(0,10)}
+function dated(){return DATA.filter(r=>r.closes&&r.status==="open")}
+
+function calText(r){
+  const t=L[lang], parts=[fr(r,"body"),fr(r,"summary"),t.why+" "+fr(r,"why_it_matters")];
+  if(r.how_to_participate)parts.push(t.how+" "+fr(r,"how_to_participate"));
+  if(!r.verified)parts.push("⚠ "+t.calUnverified);
+  parts.push(r.url,t.calTracked+" "+SITE);
+  return {title:L[lang].deadlinePrefix+" "+fr(r,"title"),details:parts.join("\n")};
+}
+function googleUrl(r){
+  const c=calText(r);
+  return "https://calendar.google.com/calendar/render?"+qs({
+    action:"TEMPLATE",text:c.title,details:c.details,
+    dates:ymd(r.closes)+"/"+ymd(nextDay(r.closes))});
+}
+function outlookUrl(r){
+  const c=calText(r);
+  return "https://outlook.live.com/calendar/0/deeplink/compose?"+qs({
+    path:"/calendar/action/compose",rru:"addevent",subject:c.title,body:c.details,
+    startdt:r.closes,enddt:nextDay(r.closes),allday:"true"});
+}
+
+// Mirrors pipeline/build.py so a downloaded file and the published feed agree.
+const icsEsc=s=>String(s).replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\r?\n/g,"\\n");
+function icsFold(line){
+  const enc=new TextEncoder(),out=[];let cur="",used=0,limit=75;
+  for(const ch of line){const n=enc.encode(ch).length;
+    if(used+n>limit){out.push(cur);cur="";used=0;limit=74}
+    cur+=ch;used+=n}
+  out.push(cur);return out.join("\r\n ");
+}
+function icsEvent(r,stamp){
+  const c=calText(r), out=["BEGIN:VEVENT",
+    "UID:"+r.id+"@canadian-ai-governance-monitor","DTSTAMP:"+stamp,"LAST-MODIFIED:"+stamp,
+    "DTSTART;VALUE=DATE:"+ymd(r.closes),"DTEND;VALUE=DATE:"+ymd(nextDay(r.closes)),
+    "SUMMARY:"+icsEsc(c.title),"DESCRIPTION:"+icsEsc(c.details),"URL:"+icsEsc(r.url),"TRANSP:TRANSPARENT"];
+  if(r.topics.length)out.push("CATEGORIES:"+r.topics.map(icsEsc).join(","));
+  [["-P7D",L[lang].alarm7],["-P1D",L[lang].alarm1]].forEach(([trg,label])=>out.push(
+    "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsEsc(label(fr(r,"title"))),
+    "TRIGGER;VALUE=DURATION:"+trg,"END:VALARM"));
+  out.push("END:VEVENT");return out;
+}
+function icsFile(rows){
+  const stamp=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+/,"");
+  let out=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Canadian AI Governance Monitor//v0.1//EN",
+    "CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:"+icsEsc(L[lang].calName)];
+  rows.forEach(r=>{out=out.concat(icsEvent(r,stamp))});
+  out.push("END:VCALENDAR");
+  return out.map(icsFold).join("\r\n")+"\r\n";
+}
+function downloadIcs(name,rows){
+  const url=URL.createObjectURL(new Blob([icsFile(rows)],{type:"text/calendar;charset=utf-8"}));
+  const a=document.createElement("a");a.href=url;a.download=name;
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
+
+function closeMenus(){document.querySelectorAll(".cal-menu").forEach(m=>m.hidden=true);
+  document.querySelectorAll(".cal-btn").forEach(b=>b.setAttribute("aria-expanded","false"))}
+function calMenu(r){
+  const t=L[lang];
+  return `<div class="cal">
+    <button class="cal-btn" data-cal="${esc(r.id)}" aria-expanded="false" aria-haspopup="true">📅 ${t.addCal}</button>
+    <div class="cal-menu" role="menu" hidden>
+      <a role="menuitem" href="${esc(googleUrl(r))}" target="_blank" rel="noopener">Google Calendar</a>
+      <a role="menuitem" href="${esc(outlookUrl(r))}" target="_blank" rel="noopener">Outlook</a>
+      <button role="menuitem" data-ics="${esc(r.id)}">${t.icsOne}</button>
+    </div></div>`;
+}
+function wireItemMenus(){
+  document.querySelectorAll(".cal-btn").forEach(b=>b.onclick=e=>{
+    e.stopPropagation();
+    const menu=b.nextElementSibling, open=menu.hidden;
+    closeMenus();menu.hidden=!open;b.setAttribute("aria-expanded",String(open));
+  });
+  document.querySelectorAll(".cal-menu").forEach(m=>m.addEventListener("click",e=>e.stopPropagation()));
+  document.querySelectorAll("[data-ics]").forEach(b=>b.onclick=()=>{
+    const r=DATA.find(x=>x.id===b.dataset.ics);
+    downloadIcs(r.id+".ics",[r]);closeMenus();
+  });
+}
+
+function renderCalBox(){
+  const t=L[lang], rows=dated(), n=rows.length;
+  $("#calbox").innerHTML=`<button class="x" id="calbox-x" aria-label="${esc(t.close)}">&times;</button>
+    <h2 id="calbox-title">${esc(t.allTitle)}</h2>
+    <p>${esc(n?t.allIntro(n):t.noDated)}</p>
+    <p class="note"><b>${esc(t.subHead)}</b></p>
+    <div class="calrow">
+      <a class="calopt" href="${esc(GOOGLE_SUB)}" target="_blank" rel="noopener">Google Calendar</a>
+      <a class="calopt" href="${esc(OUTLOOK_SUB)}" target="_blank" rel="noopener">Outlook</a>
+      <a class="calopt" href="${esc(WEBCAL)}">${esc(t.appleSub)}</a>
+      <button class="calopt" id="calcopy">${esc(t.copyLink)}</button>
+    </div>
+    <p class="note">${t.subNote}</p>
+    ${n?`<hr><p class="note"><b>${esc(t.onceHead)}</b></p>
+    <div class="calrow"><button class="calopt" id="caldl">${esc(t.download(n))}</button></div>
+    <p class="note">${esc(t.onceNote)}</p>`:""}
+    <hr><p class="note">${esc(t.calFine)}</p>`;
+  $("#calbox-x").onclick=()=>$("#calbox").close();
+  $("#calcopy").onclick=async e=>{
+    try{await navigator.clipboard.writeText(ICS_URL)}
+    catch(err){const ta=document.createElement("textarea");ta.value=ICS_URL;document.body.appendChild(ta);
+      ta.select();try{document.execCommand("copy")}catch(e2){}ta.remove()}
+    e.target.textContent=t.copied;setTimeout(()=>{e.target.textContent=t.copyLink},1800);
+  };
+  if(n)$("#caldl").onclick=()=>downloadIcs("canadian-ai-governance-deadlines.ics",rows);
+}
+document.addEventListener("click",closeMenus);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenus()});
+$("#cal-all").onclick=()=>{renderCalBox();$("#calbox").showModal()};
 
 function renderStats(){
   const t=L[lang];
@@ -201,7 +377,9 @@ function renderList(){
         <p class="why"><em>${t.why}</em> ${esc(fr(r,"why_it_matters"))}</p>
         ${r.how_to_participate?`<p class="how"><strong>${t.how}</strong> ${esc(fr(r,"how_to_participate"))}</p>`:""}
         <div class="topics">${r.topics.map(x=>`<span class="topic">${esc(topicLabel(x))}</span>`).join("")}</div>
+        ${r.closes&&r.status==="open"?calMenu(r):""}
       </div></article>`;}).join("");
+  wireItemMenus();
 }
 function applyLang(){
   document.documentElement.lang=lang==="fr"?"fr-CA":"en-CA";
@@ -209,8 +387,9 @@ function applyLang(){
   document.querySelectorAll("[data-en]").forEach(el=>el.innerHTML=el.dataset[lang]);
   $("#en").setAttribute("aria-pressed",lang==="en");$("#fr").setAttribute("aria-pressed",lang==="fr");
   $("#q").placeholder=lang==="fr"?"Rechercher titres, ministères, sujets…":"Search titles, departments, topics…";
+  $("#cal-all").textContent="📅 "+L[lang].allCal;
 }
-function render(){applyLang();renderStats();renderFilters();renderList()}
+function render(){applyLang();renderStats();renderFilters();renderList();if($("#calbox").open)renderCalBox()}
 ["#q","#type","#body"].forEach(s=>$(s).addEventListener("input",renderList));
 $("#en").onclick=()=>{lang="en";try{localStorage.setItem("lang","en")}catch(e){}render()};
 $("#fr").onclick=()=>{lang="fr";try{localStorage.setItem("lang","fr")}catch(e){}render()};

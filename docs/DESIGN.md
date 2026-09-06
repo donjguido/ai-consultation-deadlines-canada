@@ -56,10 +56,10 @@ sources.yaml ──► fetch.py ──► candidates.json ──► classify.py 
                  (CSV, RSS,     (keyword           (Claude,           (canonical
                   HTML index)    pre-filter)        structured out)    store, in git)
                                                                           │
-                                       ┌──────────────────────────────────┤
-                                       ▼              ▼            ▼      ▼
-                                  index.html      feed.xml    items.json  digest.md
-                                  (site)          (RSS)       (JSON API)  (email)
+                              ┌────────┬──────────┬──────────┬────────────┤
+                              ▼        ▼          ▼          ▼            ▼
+                         index.html feed.xml deadlines.ics items.json digest.md
+                         (site)     (RSS)    (calendar)    (JSON API) (email)
 ```
 
 **Fetch.** Each source in `data/sources.yaml` maps to one of three fetchers: the Consulting with Canadians open-data CSV (tier 1, structured, bilingual, has dates), RSS (Canada Gazette Part I, tier 1), and HTML index scraping (committee pages, ISED and OPC consultation lists, tier 2). A broad bilingual keyword filter drops obviously irrelevant records before any model call.
@@ -68,7 +68,7 @@ sources.yaml ──► fetch.py ──► candidates.json ──► classify.py 
 
 **Store.** `data/items.json` is the single canonical file, committed to git on every run. Git history is the audit trail: anyone can see when an item appeared, when its date changed, and who verified it. No database is needed at this scale (hundreds of items).
 
-**Build.** One script renders four outputs from the store: the website (a single self-contained HTML file with the data inlined, filterable client-side, EN/FR toggle), the RSS feed, a JSON copy for programmatic use, and a Markdown digest ready to paste or send.
+**Build.** One script renders five outputs from the store: the website (a single self-contained HTML file with the data inlined, filterable client-side, EN/FR toggle), the RSS feed, an iCalendar feed of closing dates, a JSON copy for programmatic use, and a Markdown digest ready to paste or send.
 
 **Schedule.** No automatic cron: the curator triggers the pipeline manually (push to `main` or `workflow_dispatch`) every Monday and Thursday, and it deploys to GitHub Pages.
 
@@ -83,7 +83,8 @@ Design intent: a reference tool that reads like a briefing sheet, not a marketin
 - **Filters that reflect the data.** Type and department dropdowns, the eight most-used topic tags as chips, and free-text search. Filters are built from the data, so they never list empty categories.
 - **Bilingual from day one.** UI strings and item titles carry EN and FR; the toggle persists per browser. Item summaries are English-only in v0.1; French summaries are on the roadmap.
 - **Colour carries state.** The accent is the green of the Commons chamber. New is blue, Closing soon is amber, Retired is grey; these are semantic and separate from the accent. Light and dark themes are both designed.
-- **Honesty markers.** A warning glyph on unverified items and a footer that explains exactly how badges are computed and tells people to confirm deadlines on the official page.
+- **The deadline is the deliverable, so it goes in the calendar.** Every open item with a stated closing date carries an *Add deadline to calendar* menu (Google, Outlook, or an `.ics` download for Apple Calendar and Outlook desktop), and a single *Add all deadlines* button covers the whole set. Knowing a consultation closes on the 23rd is worthless if the user forgets on the 22nd; this is the shortest path from reading the page to acting on it.
+- **Honesty markers.** A warning glyph on unverified items and a footer that explains exactly how badges are computed and tells people to confirm deadlines on the official page. The same honesty carries into the calendar: an unverified item's event body says the date has not been checked, rather than being silently dropped from the feed.
 
 ## 7. Distribution channels
 
@@ -91,6 +92,7 @@ Design intent: a reference tool that reads like a briefing sheet, not a marketin
 |---|---|---|
 | Website | v0.1 built | GitHub Pages, custom `.ca` domain |
 | RSS | v0.1 built | One feed; per-topic feeds are a small addition |
+| Calendar | v0.1 built | `deadlines.ics`: every open item with a stated closing date, as an all-day event with 7-day and 1-day reminders. Subscribable by `webcal://`, so Google, Outlook and Apple Calendar re-read it as deadlines are added, changed or pass. Per-item buttons use the Google and Outlook web templates, which take one event per URL; anything bulk goes through the `.ics` |
 | JSON | v0.1 built | Same records as the site; lets others build on it |
 | Email digest | Text generated; sending not wired | Weekly Monday digest plus an instant alert when an item enters Closing soon. Buttondown or a self-hosted Listmonk instance; both read the RSS feed or accept the digest by API |
 | MCP server | Designed, not built | A thin read-only server exposing `list_open`, `closing_soon`, `search(topic)`, and `get(id)` over `items.json`. About a day of work; lets assistants answer "what AI consultations are open in Canada?" from the canonical data |
@@ -120,7 +122,7 @@ Design intent: a reference tool that reads like a briefing sheet, not a marketin
 - `pipeline/` — fetch, classify, and build scripts; data model with the status logic; site template.
 - `data/items.json` — 26 real items as of 6 September 2026 (13 open, 4 of them new, 13 retired), each with source link, dates, summary, why-it-matters, how-to-participate, topics, and a verified flag.
 - `data/sources.yaml` — source inventory with tiers and known issues.
-- `site/` — generated website, RSS feed, JSON, and weekly digest.
+- `site/` — generated website, RSS feed, iCalendar feed, JSON, and weekly digest. Only two of the thirteen open items currently state a closing date, so `deadlines.ics` holds two events; the rest are rolling committee briefs with no announced deadline.
 - `.github/workflows/daily.yml` — manually-triggered run and deployment (Monday/Thursday cadence, no automatic cron).
 
 Not yet done: live classification run against an API key (the classifier is written and the fetchers return real candidates; the seed store was curated from research rather than a model run), petition and Senate fetchers, email sending, MCP server, French summaries.

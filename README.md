@@ -17,7 +17,7 @@ data/sources.yaml      source inventory and fetcher config
 pipeline/models.py     data model and status rules (new = 14 days, closing soon = 7 days)
 pipeline/fetch.py      fetchers: Consulting with Canadians CSV, RSS, HTML index pages
 pipeline/classify.py   Claude structured-output classifier
-pipeline/build.py      renders site/, feed.xml, items.json, digest.md
+pipeline/build.py      renders site/, feed.xml, deadlines.ics, items.json, digest.md
 pipeline/template.html website template (bilingual, light and dark)
 site/                  generated output (open index.html in a browser)
 funding/               local only, not committed
@@ -44,6 +44,7 @@ Every Monday and Thursday: open the diff of `data/items.json`, check items with 
 
 - Website: https://donjguido.github.io/canadian-ai-governance-monitor/
 - RSS: https://donjguido.github.io/canadian-ai-governance-monitor/feed.xml
+- Calendar: https://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics — every open item with a stated closing date, as an all-day event with 7-day and 1-day reminders. Subscribe to it (`webcal://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics`) and Google, Outlook and Apple Calendar re-read it as deadlines are added, changed, or pass.
 - JSON: https://donjguido.github.io/canadian-ai-governance-monitor/items.json
 - Weekly digest: https://donjguido.github.io/canadian-ai-governance-monitor/digest.md
 

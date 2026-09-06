@@ -36,7 +36,7 @@ jobs:
           else
             python -m pipeline.classify data/candidates.json data/items.json
           fi
-      - name: Build site, feed, and digest
+      - name: Build site, feed, calendar, and digest
         run: python -m pipeline.build data/items.json site
       - name: Commit updated data
         if: github.event_name != 'push'
