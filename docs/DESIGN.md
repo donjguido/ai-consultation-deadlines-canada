@@ -58,13 +58,13 @@ sources.yaml ──► fetch.py ──► candidates.json ──► classify.py 
                                                                           │
                                        ┌──────────────────────────────────┤
                                        ▼              ▼            ▼      ▼
-                                  index.html      feed.xml    items.json  digest.md
-                                  (site)          (RSS)       (JSON API)  (email)
+                                  index.html    feed(-fr).xml items.json digest(-fr).md
+                                  (site, EN/FR)   (RSS, EN/FR) (JSON API)  (email, EN/FR)
 ```
 
 **Fetch.** Each source in `data/sources.yaml` maps to one of three fetchers: the Consulting with Canadians open-data CSV (tier 1, structured, bilingual, has dates), RSS (Canada Gazette Part I, tier 1), and HTML index scraping (committee pages, ISED and OPC consultation lists, tier 2). A broad bilingual keyword filter drops obviously irrelevant records before any model call.
 
-**Classify.** Each new candidate goes once to Claude with a structured-output schema: relevant or not, confidence, type, plain-language summary, why it matters for AI safety, how to participate, topic tags from a controlled vocabulary, and the closing date if stated in the page text. Items already in the store are never re-classified; only their closing date and retired flag are refreshed. This keeps model cost proportional to new items, not to the size of the archive.
+**Classify.** Each new candidate goes once to Claude with a structured-output schema: relevant or not, confidence, type, plain-language summary, why it matters for AI safety, how to participate, topic tags from a controlled vocabulary, and the closing date if stated in the page text. The same call returns the French of every prose field, so an item arrives in the store bilingual rather than waiting on a translation pass. Items already in the store are never re-classified; only their closing date and retired flag are refreshed. This keeps model cost proportional to new items, not to the size of the archive.
 
 **Store.** `data/items.json` is the single canonical file, committed to git on every run. Git history is the audit trail: anyone can see when an item appeared, when its date changed, and who verified it. No database is needed at this scale (hundreds of items).
 
@@ -81,9 +81,11 @@ Design intent: a reference tool that reads like a briefing sheet, not a marketin
 - **Summary strip first.** Four counts (New, Open, Closing soon, Retired) that double as filters. The Closing-soon count is the number a returning visitor wants.
 - **List, not cards.** Each item is a row with a coloured status stripe, a monospace date column (closing date, days left, opened date), then the title, body, type, summary, "why it matters", and a bolded "how to participate" line. Rows are sorted soonest-closing first, undated open items next, retired items last.
 - **Filters that reflect the data.** Type and department dropdowns, the eight most-used topic tags as chips, and free-text search. Filters are built from the data, so they never list empty categories.
-- **Bilingual from day one.** UI strings and item titles carry EN and FR; the toggle persists per browser. Item summaries are English-only in v0.1; French summaries are on the roadmap.
+- **Bilingual from day one.** Every item carries both languages — title, body, summary, why-it-matters and how-to-participate — alongside the UI strings, topic labels and date formats; the toggle persists per browser. A missing French field falls back to English rather than rendering blank.
 - **Colour carries state.** The accent is the green of the Commons chamber. New is blue, Closing soon is amber, Retired is grey; these are semantic and separate from the accent. Light and dark themes are both designed.
 - **Honesty markers.** A warning glyph on unverified items and a footer that explains exactly how badges are computed and tells people to confirm deadlines on the official page.
+- **Readable without JavaScript.** `build.py` renders the item list into the HTML itself, not only into the script that powers filtering; the page a crawler, a screen reader, or a text-mode agent gets is the page a browser shows. The client skips its first render in English so the two are byte-identical. Filters and the language toggle are the only JavaScript-only parts, and they hide themselves when scripting is off.
+- **Structured for machines as well as people.** schema.org JSON-LD in the head describes the monitor as a `Dataset` and every entry as a `CreativeWork` with its status, deadline, department and topics, so a search engine or agent can read the state of a consultation without parsing prose. Proper document landmarks, a heading outline, labelled controls, a skip link, `<time>` elements on every date, and a per-item anchor (`#item-<id>`) make the same structure available to assistive technology.
 
 ## 7. Distribution channels
 
@@ -93,8 +95,20 @@ Design intent: a reference tool that reads like a briefing sheet, not a marketin
 | RSS | v0.1 built | One feed; per-topic feeds are a small addition |
 | JSON | v0.1 built | Same records as the site; lets others build on it |
 | Email digest | Text generated; sending not wired | Weekly Monday digest plus an instant alert when an item enters Closing soon. Buttondown or a self-hosted Listmonk instance; both read the RSS feed or accept the digest by API |
-| MCP server | Designed, not built | A thin read-only server exposing `list_open`, `closing_soon`, `search(topic)`, and `get(id)` over `items.json`. About a day of work; lets assistants answer "what AI consultations are open in Canada?" from the canonical data |
+| MCP server | Built (`mcp_server/`, see [MCP.md](MCP.md)) | A thin read-only server exposing `list_open`, `closing_soon`, `list_new`, `search`, `get_item`, `list_topics` and `monitor_status` over the published `items.json`, plus `monitor://` resources. Stdio by default (free to run); streamable HTTP available if a host is ever funded |
 | Social | Not planned yet | The RSS feed can drive a Bluesky or Mastodon bot for free if wanted |
+
+### Machine readability
+
+Agents and crawlers are a first-class audience, not an afterthought: a lot of the people this monitor is meant to reach will meet it through an assistant rather than by visiting the site. Every build therefore also publishes
+
+- `llms.txt` — an orientation page in the llmstxt.org shape: what this is, how status is derived, what the licence allows, and where the structured data lives.
+- `llms-full.txt` — the entire corpus as Markdown, so an agent can read everything in one fetch instead of crawling and re-deriving it.
+- `feed.json` — JSON Feed 1.1, with a namespaced `_monitor` object per item carrying status, deadline, days left and the verified flag.
+- `robots.txt` — crawling and AI training explicitly permitted, with the licence terms and a pointer to the structured outputs stated in the file itself, plus named `Allow` groups for the AI crawlers that back off when no rule mentions them.
+- `sitemap.xml`, a canonical URL, `hreflang` alternates for both official languages (French is addressable at `?lang=fr`), and Open Graph metadata.
+
+One caveat worth recording: on a `github.io` **project** page the `robots.txt` crawlers actually read is the one at the domain root, which this repo does not own. The file published here is correct and becomes authoritative as soon as the monitor moves to the custom `.ca` domain; until then it documents intent and is still read by tools that fetch it directly.
 
 ## 8. Quality, ethics, and failure modes
 
@@ -111,16 +125,15 @@ Design intent: a reference tool that reads like a briefing sheet, not a marketin
 1. Harden fetchers: fix petitions, add ourcommons.ca XML and LEGISinfo bill tracking.
 2. Run the classifier from GitHub Actions on a manual Monday/Thursday trigger and publish the site, RSS and JSON from GitHub Pages.
 3. Email digest (weekly plus closing-soon alerts).
-4. French summaries for all open items.
-5. MCP server so assistants can query the store directly.
-6. Provincial coverage once the federal spine is reliable.
+4. ~~MCP server so assistants can query the store directly.~~ Done: `mcp_server/`, see [MCP.md](MCP.md).
+5. Provincial coverage once the federal spine is reliable.
 
 ## 10. What is in the prototype today
 
 - `pipeline/` — fetch, classify, and build scripts; data model with the status logic; site template.
-- `data/items.json` — 26 real items as of 6 September 2026 (13 open, 4 of them new, 13 retired), each with source link, dates, summary, why-it-matters, how-to-participate, topics, and a verified flag.
+- `data/items.json` — 26 real items as of 6 September 2026 (13 open, 4 of them new, 13 retired), each with source link, dates, summary, why-it-matters, how-to-participate, topics, a verified flag, and French for every prose field.
 - `data/sources.yaml` — source inventory with tiers and known issues.
-- `site/` — generated website, RSS feed, JSON, and weekly digest.
+- `site/` — generated website, RSS feed, JSON, and weekly digest, the feed and digest in both official languages.
 - `.github/workflows/daily.yml` — manually-triggered run and deployment (Monday/Thursday cadence, no automatic cron).
 
-Not yet done: live classification run against an API key (the classifier is written and the fetchers return real candidates; the seed store was curated from research rather than a model run), petition and Senate fetchers, email sending, MCP server, French summaries.
+Not yet done: live classification run against an API key (the classifier is written and the fetchers return real candidates; the seed store was curated from research rather than a model run), petition and Senate fetchers, email sending.

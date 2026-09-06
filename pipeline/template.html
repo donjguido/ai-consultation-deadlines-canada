@@ -1,14 +1,50 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
 <meta charset="utf-8">
-<title>Canadian AI Governance Monitor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canadian AI Governance Monitor — open federal consultations on AI</title>
+<meta name="description" content="__DESC__">
+<meta name="generator" content="canadian-ai-governance-monitor pipeline">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="theme-color" content="#F4F6F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121A20" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="__SITE_URL__/">
+<link rel="alternate" hreflang="en-ca" href="__SITE_URL__/">
+<link rel="alternate" hreflang="fr-ca" href="__SITE_URL__/?lang=fr">
+<link rel="alternate" hreflang="x-default" href="__SITE_URL__/">
+<link rel="alternate" type="application/rss+xml" title="Canadian AI Governance Monitor — RSS (English)" href="feed.xml">
+<link rel="alternate" type="application/rss+xml" hreflang="fr-ca" title="Moniteur canadien de la gouvernance de l'IA — fil RSS" href="feed-fr.xml">
+<link rel="alternate" type="application/feed+json" title="Canadian AI Governance Monitor — JSON Feed" href="feed.json">
+<link rel="alternate" type="application/json" title="Canadian AI Governance Monitor — full records" href="items.json">
+<link rel="alternate" type="text/markdown" title="Canadian AI Governance Monitor — every item as Markdown" href="llms-full.txt">
+<link rel="sitemap" type="application/xml" href="sitemap.xml">
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%231F5F45'/%3E%3Cg%20fill='%23fff'%3E%3Crect%20x='7'%20y='18'%20width='4'%20height='8'%20rx='1'/%3E%3Crect%20x='14'%20y='12'%20width='4'%20height='14'%20rx='1'/%3E%3Crect%20x='21'%20y='6'%20width='4'%20height='20'%20rx='1'/%3E%3C/g%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Canadian AI Governance Monitor">
+<meta property="og:title" content="Canadian AI Governance Monitor">
+<meta property="og:description" content="__DESC__">
+<meta property="og:url" content="__SITE_URL__/">
+<meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="fr_CA">
+<meta property="og:updated_time" content="__BUILT__">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Canadian AI Governance Monitor">
+<meta name="twitter:description" content="__DESC__">
+<meta name="dcterms.modified" content="__BUILT__">
+<meta name="dcterms.spatial" content="Canada">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --paper:#F4F6F8; --panel:#FFFFFF; --ink:#16212B; --ink-2:#4A5763; --ink-3:#7A8791; --rule:#D6DDE3;
+  --paper:#F4F6F8; --panel:#FFFFFF; --ink:#16212B; --ink-2:#4A5763; --ink-3:#5E6B76; --rule:#D6DDE3;
   --accent:#1F5F45; --accent-ink:#FFFFFF;
   --new:#1D6FA5; --new-bg:#E4EFF7;
-  --soon:#B8600F; --soon-bg:#FBEEDD;
+  --soon:#9A4F08; --soon-bg:#FBEEDD;
   --open:#1F5F45; --open-bg:#E3F0E9;
-  --retired:#6B7480; --retired-bg:#E9ECEF;
+  --retired:#5A636E; --retired-bg:#E9ECEF;
   --display:"Newsreader",Georgia,"Times New Roman",serif;
   --body:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
   --mono:"JetBrains Mono",Consolas,"Courier New",monospace;
@@ -56,14 +92,14 @@ h1{font-family:var(--display);font-weight:500;font-size:2rem;line-height:1.1;mar
 .list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)}
 .item{display:grid;grid-template-columns:6px 150px 1fr;gap:0 18px;border-bottom:1px solid var(--rule);padding:16px 0 16px 0}
 .item .stripe{background:var(--c);border-radius:2px;margin:2px 0}
-.item.retired{opacity:.72}
+.item.retired{opacity:.85}
 .when{font-family:var(--mono);font-size:.8rem;color:var(--ink-2);line-height:1.6}
 .when b,.when span{display:block}
 .when b{color:var(--c);font-weight:500}
 .when .d{color:var(--ink-3)}
-.item h2{font-family:var(--display);font-weight:600;font-size:1.25rem;line-height:1.25;margin:0 0 4px;text-wrap:balance}
-.item h2 a{color:var(--ink);text-decoration:none}
-.item h2 a:hover,.item h2 a:focus{text-decoration:underline;text-decoration-color:var(--accent)}
+.item h3{font-family:var(--display);font-weight:600;font-size:1.25rem;line-height:1.25;margin:0 0 4px;text-wrap:balance}
+.item h3 a{color:var(--ink);text-decoration:none}
+.item h3 a:hover,.item h3 a:focus{text-decoration:underline;text-decoration-color:var(--accent)}
 .body{font-size:.85rem;color:var(--ink-2);margin-bottom:6px}
 .body .type{text-transform:uppercase;letter-spacing:.06em;font-size:.7rem;color:var(--ink-3);margin-left:8px}
 .badges{display:inline-flex;gap:6px;margin-left:8px;vertical-align:middle}
@@ -85,7 +121,19 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   header .wrap{align-items:flex-start} .meta{text-align:left}
 }
 @media (prefers-reduced-motion:no-preference){.stat,.chip{transition:background .15s}}
+/* Section headings that give the page a real outline without changing the look. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{left:8px;top:8px;z-index:10;background:var(--accent);color:var(--accent-ink);padding:8px 14px;border-radius:3px;text-decoration:none}
+.count{font-family:var(--mono);font-size:.75rem;color:var(--ink-3);margin:0 0 6px}
 </style>
+<!-- Without JavaScript the filter bar and language toggle are inert, so hide them.
+     The list itself is rendered into the HTML by build.py and stays fully readable. -->
+<noscript><style>#filters,.lang{display:none!important}.stat{cursor:default}</style></noscript>
+<!--__JSONLD__-->
+</head>
+<body>
+<a class="skip" href="#items" data-en="Skip to the list of consultations" data-fr="Aller à la liste des consultations">Skip to the list of consultations</a>
 
 <header><div class="wrap">
   <div>
@@ -95,41 +143,57 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   </div>
   <div class="meta">
     <span class="links"
-      data-en="built __BUILT__ · <a href=&quot;feed.xml&quot;>RSS</a> · <a href=&quot;items.json&quot;>JSON</a> · <a href=&quot;digest.md&quot;>weekly digest</a>"
-      data-fr="mis à jour le __BUILT__ · <a href=&quot;feed.xml&quot;>fil RSS</a> · <a href=&quot;items.json&quot;>JSON</a> · <a href=&quot;digest.md&quot;>sommaire hebdomadaire</a>">built __BUILT__ · <a href="feed.xml">RSS</a> · <a href="items.json">JSON</a> · <a href="digest.md">weekly digest</a></span>
-    <span class="lang"><button id="en" aria-pressed="true">EN</button> <button id="fr" aria-pressed="false">FR</button></span>
+      data-en="built __BUILT__ · &lt;a href=&quot;feed.xml&quot;&gt;RSS&lt;/a&gt; · &lt;a href=&quot;items.json&quot;&gt;JSON&lt;/a&gt; · &lt;a href=&quot;digest.md&quot;&gt;weekly digest&lt;/a&gt; · &lt;a href=&quot;llms.txt&quot;&gt;llms.txt&lt;/a&gt;"
+      data-fr="mis à jour le __BUILT__ · &lt;a href=&quot;feed-fr.xml&quot;&gt;fil RSS&lt;/a&gt; · &lt;a href=&quot;items.json&quot;&gt;JSON&lt;/a&gt; · &lt;a href=&quot;digest-fr.md&quot;&gt;sommaire hebdomadaire&lt;/a&gt; · &lt;a href=&quot;llms.txt&quot;&gt;llms.txt&lt;/a&gt;">built __BUILT__ · <a href="feed.xml">RSS</a> · <a href="items.json">JSON</a> · <a href="digest.md">weekly digest</a> · <a href="llms.txt">llms.txt</a></span>
+    <span class="lang" role="group" aria-label="Language / Langue"><button id="en" type="button" aria-pressed="true" lang="en">EN<span class="sr-only"> — English</span></button> <button id="fr" type="button" aria-pressed="false" lang="fr">FR<span class="sr-only"> — Français</span></button></span>
   </div>
 </div></header>
 
-<main class="wrap">
-  <div class="stats" id="stats"></div>
-  <div class="filters">
-    <input type="search" id="q" placeholder="Search titles, departments, topics…" aria-label="Search">
-    <select id="type" aria-label="Type"><option value="">All types</option></select>
-    <select id="body" aria-label="Department"><option value="">All departments</option></select>
-    <span id="topics"></span>
-  </div>
-  <div class="list" id="list"></div>
-  <footer>
-    <p data-en="Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting."
-       data-fr="Prototype. Les étiquettes sont calculées à partir des dates de clôture annoncées : <b>Nouveau</b> = ouvert ou repéré au cours des 14 derniers jours ; <b>Se termine bientôt</b> = clôture dans les 7 jours ; <b>Retiré</b> = date de clôture dépassée ou retiré. Les éléments marqués ⚠ n'ont pas encore été vérifiés par une personne. Vérifiez toujours les échéances sur la page officielle avant de soumettre.">Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting.</p>
-    <p data-en="© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href=&quot;https://github.com/donjguido/canadian-ai-governance-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>original repo</a>."
-       data-fr="© 2026 Julian Guidote. Code sous licence MIT, données sous CC BY 4.0. Une erreur ou une suggestion ? Ouvrez une demande de tirage (pull request) sur le <a href=&quot;https://github.com/donjguido/canadian-ai-governance-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>dépôt d'origine</a>.">© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href="https://github.com/donjguido/canadian-ai-governance-monitor" target="_blank" rel="noopener">original repo</a>.</p>
-  </footer>
+<main class="wrap" id="main">
+  <section aria-labelledby="glance-h">
+    <h2 id="glance-h" class="sr-only" data-en="At a glance" data-fr="Aperçu">At a glance</h2>
+    <div class="stats" id="stats"><!--__STATS__--></div>
+  </section>
+
+  <section aria-labelledby="filters-h">
+    <h2 id="filters-h" class="sr-only" data-en="Search and filter" data-fr="Rechercher et filtrer">Search and filter</h2>
+    <div class="filters" id="filters" role="search">
+      <label class="sr-only" for="q" data-en="Search titles, departments, topics" data-fr="Rechercher titres, ministères, sujets">Search titles, departments, topics</label>
+      <input type="search" id="q" placeholder="Search titles, departments, topics…">
+      <label class="sr-only" for="type" data-en="Filter by type" data-fr="Filtrer par type">Filter by type</label>
+      <select id="type"><option value="">All types</option></select>
+      <label class="sr-only" for="body" data-en="Filter by department" data-fr="Filtrer par ministère">Filter by department</label>
+      <select id="body"><option value="">All departments</option></select>
+      <span id="topics" role="group" aria-label="Topics"></span>
+    </div>
+  </section>
+
+  <section aria-labelledby="items-h" id="items">
+    <h2 id="items-h" class="sr-only" data-en="Monitored items" data-fr="Éléments suivis">Monitored items</h2>
+    <p class="count" id="count" role="status" aria-live="polite">__COUNT__</p>
+    <div class="list" id="list"><!--__ITEMS__--></div>
+  </section>
 </main>
+
+<footer class="wrap">
+    <p data-en="Prototype. Status badges are computed from stated closing dates: &lt;b&gt;New&lt;/b&gt; = opened or first seen in the last 14 days; &lt;b&gt;Closing soon&lt;/b&gt; = closes within 7 days; &lt;b&gt;Retired&lt;/b&gt; = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting."
+       data-fr="Prototype. Les étiquettes sont calculées à partir des dates de clôture annoncées : &lt;b&gt;Nouveau&lt;/b&gt; = ouvert ou repéré au cours des 14 derniers jours ; &lt;b&gt;Se termine bientôt&lt;/b&gt; = clôture dans les 7 jours ; &lt;b&gt;Retiré&lt;/b&gt; = date de clôture dépassée ou retiré. Les éléments marqués ⚠ n'ont pas encore été vérifiés par une personne. Vérifiez toujours les échéances sur la page officielle avant de soumettre.">Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting.</p>
+    <p data-en="© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the &lt;a href=&quot;https://github.com/donjguido/canadian-ai-governance-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;original repo&lt;/a&gt;."
+       data-fr="© 2026 Julian Guidote. Code sous licence MIT, données sous CC BY 4.0. Une erreur ou une suggestion ? Ouvrez une demande de tirage (pull request) sur le &lt;a href=&quot;https://github.com/donjguido/canadian-ai-governance-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;dépôt d'origine&lt;/a&gt;.">© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href="https://github.com/donjguido/canadian-ai-governance-monitor" target="_blank" rel="noopener">original repo</a>.</p>
+</footer>
 
 <script>
 const DATA = /*__DATA__*/[];
 const L = {
   en:{new:"New",closing_soon:"Closing soon",open:"Open",retired:"Retired",
       hint:{new:"opened in last 14 days",closing_soon:"deadline within 7 days",open:"accepting input now",retired:"past deadline or withdrawn"},
-      closes:"Closes",opened:"Opened",noDeadline:"No stated deadline",daysLeft:d=>d===0?"closes today":d===1?"1 day left":`${d} days left`,
+      closes:"Closes",closed:"Closed",opened:"Opened",noDeadline:"No stated deadline",daysLeft:d=>d===0?"closes today":d===1?"1 day left":`${d} days left`,
       why:"Why it matters:",how:"How to participate:",empty:"Nothing matches these filters.",
       unverified:"Not yet checked by a human",
       type:{consultation:"Consultation",call_for_briefs:"Call for briefs",gazette_notice:"Gazette notice",funding_call:"Funding call",standards_review:"Standards review",petition:"Petition",other:"Other"}},
   fr:{new:"Nouveau",closing_soon:"Se termine bientôt",open:"Ouvert",retired:"Retiré",
       hint:{new:"ouvert depuis 14 jours ou moins",closing_soon:"échéance dans 7 jours",open:"accepte des contributions",retired:"échéance dépassée ou retiré"},
-      closes:"Clôture",opened:"Ouvert le",noDeadline:"Aucune échéance annoncée",daysLeft:d=>d===0?"clôture aujourd'hui":d===1?"1 jour restant":`${d} jours restants`,
+      closes:"Clôture",closed:"Clôturé",opened:"Ouvert le",noDeadline:"Aucune échéance annoncée",daysLeft:d=>d===0?"clôture aujourd'hui":d===1?"1 jour restant":`${d} jours restants`,
       why:"Pourquoi c'est important :",how:"Comment participer :",empty:"Aucun résultat pour ces filtres.",
       unverified:"Pas encore vérifié par une personne",
       type:{consultation:"Consultation",call_for_briefs:"Appel de mémoires",gazette_notice:"Avis de la Gazette",funding_call:"Appel de financement",standards_review:"Examen de norme",petition:"Pétition",other:"Autre"}}
@@ -145,12 +209,18 @@ const TOPIC_FR={
   "critical-infrastructure":"infrastructures essentielles"
 };
 const topicLabel=x=>lang==="fr"?(TOPIC_FR[x]||x):x;
+const MOIS=["janv.","févr.","mars","avr.","mai","juin","juill.","août","sept.","oct.","nov.","déc."];
+// ISO dates read as-is in English; French readers get the conventional long form.
+const fmtDate=iso=>{if(lang!=="fr")return iso;const[y,m,d]=iso.split("-").map(Number);return `${d===1?"1er":d} ${MOIS[m-1]} ${y}`};
 // French text falls back to English so a not-yet-translated item is still readable.
 const fr=(r,f)=>(lang==="fr"&&r[f+"_fr"])?r[f+"_fr"]:r[f];
 const COLOR={new:"var(--new)",closing_soon:"var(--soon)",open:"var(--open)",retired:"var(--retired)"};
 const BG={new:"var(--new-bg)",closing_soon:"var(--soon-bg)",open:"var(--open-bg)",retired:"var(--retired-bg)"};
-let lang="en", statusFilter="", topicFilter="";
-try{ lang = localStorage.getItem("lang")||"en"; }catch(e){}
+let statusFilter="", topicFilter="";
+// ?lang=fr wins over the stored choice, so a French URL is shareable and crawlable.
+let lang=new URLSearchParams(location.search).get("lang");
+if(lang!=="fr"&&lang!=="en"){lang=null;try{lang=localStorage.getItem("lang")}catch(e){}}
+lang=lang==="fr"?"fr":"en";
 
 const $=s=>document.querySelector(s);
 function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
@@ -182,20 +252,21 @@ function renderList(){
     (!statusFilter||r.badges.includes(statusFilter)) && (!topicFilter||r.topics.includes(topicFilter)) &&
     (!ty||r.type===ty) && (!bo||r.body===bo) &&
     (!q||[r.title,r.title_fr,r.body,r.body_fr,r.summary,r.summary_fr,r.topics.join(" "),r.topics.map(topicLabel).join(" ")].join(" ").toLowerCase().includes(q)));
+  setCount(rows.length,DATA.length);
   if(!rows.length){$("#list").innerHTML=`<div class="empty">${t.empty}</div>`;return}
   $("#list").innerHTML=rows.map(r=>{
     const p=primary(r);
     const title=fr(r,"title");
     const when = r.closes
-      ? `<b>${t.closes} ${r.closes}</b>${r.days_left!=null?`<span>${t.daysLeft(r.days_left)}</span>`:""}`
+      ? `<b>${p==="retired"?t.closed:t.closes} <time datetime="${esc(r.closes)}">${fmtDate(r.closes)}</time></b>${r.days_left!=null?`<span>${t.daysLeft(r.days_left)}</span>`:""}`
       : `<b>${t.noDeadline}</b>`;
-    const opened = r.opened?`<span class="d">${t.opened} ${r.opened}</span>`:"";
+    const opened = r.opened?`<span class="d">${t.opened} <time datetime="${esc(r.opened)}">${fmtDate(r.opened)}</time></span>`:"";
     const badges=r.badges.filter(b=>b!=="open"||r.badges.length===1).map(b=>`<span class="badge" style="--c:${COLOR[b]};--bg:${BG[b]}">${t[b]}</span>`).join("");
-    return `<article class="item ${p}" style="--c:${COLOR[p]}">
-      <div class="stripe"></div>
+    return `<article class="item ${p}" id="item-${esc(r.id)}" style="--c:${COLOR[p]}">
+      <div class="stripe" aria-hidden="true"></div>
       <div class="when">${when}${opened}</div>
       <div class="main">
-        <h2><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(title)}</a></h2>
+        <h3><a href="${esc(r.url)}" rel="noopener external">${esc(title)}</a></h3>
         <div class="body">${esc(fr(r,"body"))}<span class="type">${t.type[r.type]||r.type}</span><span class="badges">${badges}</span>${r.verified?"":` <span class="unverified" title="${t.unverified}">⚠</span>`}</div>
         <p>${esc(fr(r,"summary"))}</p>
         <p class="why"><em>${t.why}</em> ${esc(fr(r,"why_it_matters"))}</p>
@@ -203,16 +274,35 @@ function renderList(){
         <div class="topics">${r.topics.map(x=>`<span class="topic">${esc(topicLabel(x))}</span>`).join("")}</div>
       </div></article>`;}).join("");
 }
+function setCount(n,total){
+  $("#count").textContent = lang==="fr"
+    ? `${n} élément${n===1?"":"s"} affiché${n===1?"":"s"} sur ${total}`
+    : `Showing ${n} of ${total} items`;
+}
 function applyLang(){
   document.documentElement.lang=lang==="fr"?"fr-CA":"en-CA";
-  document.title=lang==="fr"?"Moniteur canadien de la gouvernance de l'IA":"Canadian AI Governance Monitor";
+  document.title=lang==="fr"
+    ?"Moniteur canadien de la gouvernance de l'IA — consultations fédérales ouvertes"
+    :"Canadian AI Governance Monitor — open federal consultations on AI";
   document.querySelectorAll("[data-en]").forEach(el=>el.innerHTML=el.dataset[lang]);
   $("#en").setAttribute("aria-pressed",lang==="en");$("#fr").setAttribute("aria-pressed",lang==="fr");
   $("#q").placeholder=lang==="fr"?"Rechercher titres, ministères, sujets…":"Search titles, departments, topics…";
 }
-function render(){applyLang();renderStats();renderFilters();renderList()}
+function render(skipList){applyLang();renderStats();renderFilters();if(skipList)setCount(DATA.length,DATA.length);else renderList()}
 ["#q","#type","#body"].forEach(s=>$(s).addEventListener("input",renderList));
-$("#en").onclick=()=>{lang="en";try{localStorage.setItem("lang","en")}catch(e){}render()};
-$("#fr").onclick=()=>{lang="fr";try{localStorage.setItem("lang","fr")}catch(e){}render()};
-render();
+function setLang(x){
+  lang=x;
+  try{localStorage.setItem("lang",x)}catch(e){}
+  const u=new URL(location.href);
+  if(x==="fr")u.searchParams.set("lang","fr"); else u.searchParams.delete("lang");
+  try{history.replaceState(null,"",u.pathname+u.search+u.hash)}catch(e){}
+  render();
+}
+$("#en").onclick=()=>setLang("en");
+$("#fr").onclick=()=>setLang("fr");
+// build.py already wrote the English, unfiltered list into #list, so the first paint
+// needs no client render: crawlers and browsers end up with identical markup.
+render(lang==="en");
 </script>
+</body>
+</html>
