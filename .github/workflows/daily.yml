@@ -1,0 +1,52 @@
+name: Daily monitor run
+on:
+  schedule:
+    - cron: "30 11 * * *"   # 07:30 Eastern (11:30 UTC) every day
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r pipeline/requirements.txt
+      - name: Fetch candidates from all sources
+        run: python -m pipeline.fetch data/candidates.json
+      - name: Classify new candidates with Claude
+        env: { ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }} }
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ANTHROPIC_API_KEY secret not set; skipping classification (site rebuilds from the curated store)."
+          else
+            python -m pipeline.classify data/candidates.json data/items.json
+          fi
+      - name: Build site, feed, and digest
+        run: python -m pipeline.build data/items.json site
+      - name: Commit updated data
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "monitor-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/items.json site
+          git diff --cached --quiet || git commit -m "Daily update $(date -u +%F)"
+          git push
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: site }
+      - id: deploy
+        uses: actions/deploy-pages@v4

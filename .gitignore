@@ -1,0 +1,5 @@
+__pycache__/
+data/candidates.json
+.playwright-mcp/
+*.png
+funding/

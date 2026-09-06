@@ -1,0 +1,78 @@
+# Federal intake channels monitored. `kind` selects the fetcher in pipeline/fetch.py.
+# Tier 1 = machine-readable, cheap, high yield. Tier 2 = HTML scraping, brittle.
+# Tier 3 = manual watch list reviewed weekly by the human curator.
+
+sources:
+  # ---- Tier 1: machine-readable -------------------------------------------
+  - key: consulting_with_canadians
+    kind: consulting_with_canadians
+    tier: 1
+    body: "Consulting with Canadians (Privy Council Office)"
+    portal: https://www.canada.ca/en/government/system/consultations/consultingcanadians.html
+    dataset: https://open.canada.ca/data/en/dataset/7c03f039-3753-4093-af60-74b0f7b2385d
+    # "last two years" CSV, ~900 rows; status O=open, P=planned, C=completed
+    csv: https://open.canada.ca/static/current_consultations_open.csv
+    notes: Bilingual, has start/end dates and profile links. Coverage is only what departments register; committees, petitions and standards bodies are absent.
+
+  - key: gazette_part1
+    kind: rss
+    tier: 1
+    body: "Canada Gazette, Part I"
+    url: https://www.gazette.gc.ca/rss/p1-eng.xml
+    fetch_pages: true
+    notes: Published Fridays 2 pm ET. Proposed regulations carry a 30- or 75-day comment period stated in the notice text; the classifier extracts it.
+
+  # ---- Tier 2: HTML index pages ------------------------------------------
+  - key: commons_briefs
+    kind: html_index
+    tier: 2
+    body: "House of Commons committees"
+    url: https://www.ourcommons.ca/Committees/en/Home
+    selector: "a[href*='StudyActivity']"
+    notes: Committee study pages list briefs and witnesses. ourcommons.ca also exposes XML (append /xml to most URLs); switch to that once the study IDs are known.
+
+  - key: senate_studies
+    kind: html_index
+    tier: 2
+    body: "Senate of Canada committees"
+    url: https://sencanada.ca/en/committees/
+    selector: "a[href*='/committees/']"
+
+  - key: petitions
+    kind: html_index
+    tier: 2
+    body: "House of Commons e-petitions"
+    url: https://www.ourcommons.ca/petitions/en/Home/Search?output=1&keyword=artificial+intelligence
+    selector: "a[href*='Petition/Details']"
+    enabled: false
+    notes: Search URL returned 404 on 2026-09-06; the petitions site is JS-driven. Use the e-petitions RSS/CSV export once located, or curate manually.
+
+  - key: ised_consultations
+    kind: html_index
+    tier: 2
+    body: "Innovation, Science and Economic Development Canada"
+    url: https://ised-isde.canada.ca/site/ised/en/public-consultations
+    selector: "main a"
+
+  - key: opc_consultations
+    kind: html_index
+    tier: 2
+    body: "Office of the Privacy Commissioner of Canada"
+    url: https://www.priv.gc.ca/en/about-the-opc/what-we-do/consultations/
+    selector: "main a"
+
+  - key: scc_notices
+    kind: html_index
+    tier: 2
+    body: "Standards Council of Canada"
+    url: https://scc-ccn.ca/standards/notices-of-intent
+    selector: "main a"
+    enabled: false
+    notes: Returned HTTP 403 to automated fetches on 2026-09-06; needs a browser-like fetch or manual watch.
+
+  # ---- Tier 3: manual watch list (no fetcher) -----------------------------
+  # - Treasury Board Secretariat: Directive on Automated Decision-Making reviews, GC AI Register
+  # - CAISI / CIFAR research program calls (cifar.ca blocks bots)
+  # - Digital Governance Standards Institute public reviews (dgc-cgn.org)
+  # - LEGISinfo bills with AI content (C-34, C-36) for committee referral
+  # - Elections Canada, Competition Bureau, OSFI, Health Canada AI guidance

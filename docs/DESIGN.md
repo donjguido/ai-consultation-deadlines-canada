@@ -1,0 +1,126 @@
+# AI Safety Participation Monitor: design plan
+
+Version 0.1, 6 September 2026. Companion document: [SOURCES.md](SOURCES.md) (data-source inventory).
+
+## 1. What it is
+
+A public monitor that tells Canadians, in plain language, every federal channel through which they can currently shape how AI is governed: public consultations, parliamentary calls for briefs, Canada Gazette comment periods, funding and research calls, national-standard public reviews, and e-petitions. Each item is labelled **new**, **open**, **closing soon** (within seven days), or **retired**, and says concretely how to participate.
+
+The gap it fills: the federal government publishes the raw data (the Consulting with Canadians open dataset, Gazette RSS feeds, committee pages) but offers no topic-based alerting, no cross-source view, and nothing that covers Parliament, standards bodies and petitions together. The only Canadian product that does this, Gnowit's Consultations Tracker, is sold to lobbyists at roughly $500 to $1,000 per month. Volunteer civic-tech cousins (openparliament.ca alerts, Tabs Toronto) cover Hansard and municipal agendas, not federal AI consultations.
+
+## 2. Who it is for, and the one job
+
+Primary audience: Canadians who care about AI safety but are not professional lobbyists. Researchers, students, civil-society staff, and engaged members of the public. Secondary: journalists and MPs' staff who want a single dated list.
+
+The page has one job: within ten seconds, show what is open and what is about to close, and give a next step. Everything else (archives, feeds, API) supports that.
+
+## 3. Scope
+
+**In scope (federal only, v0.1):**
+
+| Channel | Example | Why it counts |
+|---|---|---|
+| Departmental consultations | ISED's 2026 AI transparency consultation | Direct input into policy design |
+| Parliamentary studies with calls for briefs | INDU, ETHI, SRSR, Senate SOCI/RIDR/TRCM AI studies | Briefs become the evidentiary record for legislation |
+| Canada Gazette Part I comment periods | Proposed regulations on biometrics, medical AI | Legally mandated comment windows |
+| Funding and research calls | CAISI Catalyst grants, Sovereign Compute program | Shapes what safety work gets resourced |
+| National-standard public reviews | CAN/DGSI 138 clinical AI | Standards become de facto rules |
+| E-petitions | e-7550 on AI data centres | Low-cost mass participation, forces a government response |
+| Bills on the committee path | C-34 (chatbot duties), C-36 (privacy) | Briefs window opens on referral; worth watching before it opens |
+
+**Out of scope for v0.1:** provincial and municipal channels, private-sector or university consultations, events and webinars, and news. These are natural extensions once the federal spine is reliable.
+
+**Relevance rule:** an item is included when a member of the public could plausibly influence how AI systems are governed, regulated, procured, funded, or made safe in Canada. That includes items not labelled "AI" (a privacy bill, a deepfake election-integrity study). It excludes items where AI is incidental.
+
+## 4. Status model
+
+Status is computed from dates, not typed by hand, so it never goes stale.
+
+| Badge | Rule | Rationale |
+|---|---|---|
+| **New** | Opened, or first observed by the monitor, within the last 14 days, and still open | Long enough to survive a weekly digest cycle |
+| **Open** | No closing date, or closing date in the future, and not withdrawn | Default state |
+| **Closing soon** | Closes within 7 days | Matches the user's request; also the realistic minimum time to draft a short brief |
+| **Retired** | Closing date has passed, or curator marked withdrawn or superseded | Kept visible for six months so people can see what they missed and what the follow-up is |
+
+An item can be both New and Closing soon (a short Gazette comment window). Items with no stated deadline (rolling committee briefs) stay Open until the study reports; the curator retires them with a reason. A fifth state, **Upcoming** (bill introduced but not yet referred to committee), is a likely v0.2 addition; in v0.1 these are shown as Open with "not yet open" in the how-to-participate field.
+
+Every item carries a **verified** flag. Unverified items (dates taken from a search snippet or classifier extraction) show a warning mark on the site until a human checks the source page. This is the main quality control.
+
+## 5. Architecture
+
+Static-first. Nothing runs on a server; a scheduled job regenerates flat files once a day.
+
+```
+sources.yaml ──► fetch.py ──► candidates.json ──► classify.py ──► items.json
+                 (CSV, RSS,     (keyword           (Claude,           (canonical
+                  HTML index)    pre-filter)        structured out)    store, in git)
+                                                                          │
+                                       ┌──────────────────────────────────┤
+                                       ▼              ▼            ▼      ▼
+                                  index.html      feed.xml    items.json  digest.md
+                                  (site)          (RSS)       (JSON API)  (email)
+```
+
+**Fetch.** Each source in `data/sources.yaml` maps to one of three fetchers: the Consulting with Canadians open-data CSV (tier 1, structured, bilingual, has dates), RSS (Canada Gazette Part I, tier 1), and HTML index scraping (committee pages, ISED and OPC consultation lists, tier 2). A broad bilingual keyword filter drops obviously irrelevant records before any model call.
+
+**Classify.** Each new candidate goes once to Claude with a structured-output schema: relevant or not, confidence, type, plain-language summary, why it matters for AI safety, how to participate, topic tags from a controlled vocabulary, and the closing date if stated in the page text. Items already in the store are never re-classified; only their closing date and retired flag are refreshed. This keeps model cost proportional to new items, not to the size of the archive.
+
+**Store.** `data/items.json` is the single canonical file, committed to git on every run. Git history is the audit trail: anyone can see when an item appeared, when its date changed, and who verified it. No database is needed at this scale (hundreds of items).
+
+**Build.** One script renders four outputs from the store: the website (a single self-contained HTML file with the data inlined, filterable client-side, EN/FR toggle), the RSS feed, a JSON copy for programmatic use, and a Markdown digest ready to paste or send.
+
+**Schedule.** GitHub Actions runs the pipeline daily at 07:30 Eastern (after the Gazette's Friday 2 pm publication has had time to propagate) and deploys to GitHub Pages. A manual trigger exists for the curator.
+
+**Curate.** The human step is a weekly 30- to 60-minute review: open the diff of `items.json`, check unverified items against their source pages, set `verified: true`, add French titles where the source is English-only, retire dead items with a reason, and add anything from the tier-3 watch list (CAISI, TBS, DGSI, LEGISinfo) that the fetchers cannot reach. Edits are plain JSON commits; no admin UI is needed yet.
+
+## 6. The website
+
+Design intent: a reference tool that reads like a briefing sheet, not a marketing page. Choices made in the prototype:
+
+- **Summary strip first.** Four counts (New, Open, Closing soon, Retired) that double as filters. The Closing-soon count is the number a returning visitor wants.
+- **List, not cards.** Each item is a row with a coloured status stripe, a monospace date column (closing date, days left, opened date), then the title, body, type, summary, "why it matters", and a bolded "how to participate" line. Rows are sorted soonest-closing first, undated open items next, retired items last.
+- **Filters that reflect the data.** Type and department dropdowns, the eight most-used topic tags as chips, and free-text search. Filters are built from the data, so they never list empty categories.
+- **Bilingual from day one.** UI strings and item titles carry EN and FR; the toggle persists per browser. Item summaries are English-only in v0.1; French summaries are on the roadmap.
+- **Colour carries state.** The accent is the green of the Commons chamber. New is blue, Closing soon is amber, Retired is grey; these are semantic and separate from the accent. Light and dark themes are both designed.
+- **Honesty markers.** A warning glyph on unverified items and a footer that explains exactly how badges are computed and tells people to confirm deadlines on the official page.
+
+## 7. Distribution channels
+
+| Channel | Status | Notes |
+|---|---|---|
+| Website | v0.1 built | GitHub Pages, custom `.ca` domain |
+| RSS | v0.1 built | One feed; per-topic feeds are a small addition |
+| JSON | v0.1 built | Same records as the site; lets others build on it |
+| Email digest | Text generated; sending not wired | Weekly Monday digest plus an instant alert when an item enters Closing soon. Buttondown or a self-hosted Listmonk instance; both read the RSS feed or accept the digest by API |
+| MCP server | Designed, not built | A thin read-only server exposing `list_open`, `closing_soon`, `search(topic)`, and `get(id)` over `items.json`. About a day of work; lets assistants answer "what AI consultations are open in Canada?" from the canonical data |
+| Social | Not planned yet | The RSS feed can drive a Bluesky or Mastodon bot for free if wanted |
+
+## 8. Quality, ethics, and failure modes
+
+- **Missed items are invisible.** Mitigation: broad keyword filter, weekly human sweep of the tier-3 watch list, and a public "report a missing consultation" link that files a GitHub issue.
+- **Wrong deadlines are worse than none.** Mitigation: the verified flag, dates shown alongside the source link, and the footer instruction to confirm on the official page. Closing-soon alerts are only sent for verified items.
+- **Classifier drift.** Mitigation: log every classification with its confidence; sample ten per week for review; keep a small labelled set (the 26 seed items) as a regression test.
+- **Source changes.** Government sites restructure without notice. Mitigation: each fetcher fails independently and loudly in the Actions log; a fetcher returning zero candidates for seven days triggers a review.
+- **Neutrality.** The monitor describes channels; it does not tell people what to say. The "why it matters" line is limited to why the channel bears on AI safety, not to a position.
+- **Privacy.** No accounts, no analytics beyond aggregate page counts, subscriber emails held only by the newsletter provider.
+- **Licensing.** Government content is used under the Open Government Licence – Canada and the parliamentary reproduction terms; the monitor's own code is MIT and its data CC BY 4.0.
+
+## 9. Roadmap
+
+1. Harden fetchers: fix petitions, add ourcommons.ca XML and LEGISinfo bill tracking.
+2. Run the classifier daily from GitHub Actions and publish the site, RSS and JSON from GitHub Pages.
+3. Email digest (weekly plus closing-soon alerts).
+4. French summaries for all open items.
+5. MCP server so assistants can query the store directly.
+6. Provincial coverage once the federal spine is reliable.
+
+## 10. What is in the prototype today
+
+- `pipeline/` — fetch, classify, and build scripts; data model with the status logic; site template.
+- `data/items.json` — 26 real items as of 6 September 2026 (13 open, 4 of them new, 13 retired), each with source link, dates, summary, why-it-matters, how-to-participate, topics, and a verified flag.
+- `data/sources.yaml` — source inventory with tiers and known issues.
+- `site/` — generated website, RSS feed, JSON, and weekly digest.
+- `.github/workflows/daily.yml` — daily schedule and deployment.
+
+Not yet done: live classification run against an API key (the classifier is written and the fetchers return real candidates; the seed store was curated from research rather than a model run), petition and Senate fetchers, email sending, MCP server, French summaries.
