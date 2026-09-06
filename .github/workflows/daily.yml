@@ -24,12 +24,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: "3.12" }
+        with:
+          python-version: "3.12"
       - run: pip install -r pipeline/requirements.txt
       - name: Fetch candidates from all sources
         run: python -m pipeline.fetch data/candidates.json
       - name: Classify new candidates with Claude
-        env: { ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }} }
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           if [ -z "$ANTHROPIC_API_KEY" ]; then
             echo "ANTHROPIC_API_KEY secret not set; skipping classification (site rebuilds from the curated store)."
@@ -47,6 +49,7 @@ jobs:
           git diff --cached --quiet || git commit -m "Daily update $(date -u +%F)"
           git push
       - uses: actions/upload-pages-artifact@v3
-        with: { path: site }
+        with:
+          path: site
       - id: deploy
         uses: actions/deploy-pages@v4
