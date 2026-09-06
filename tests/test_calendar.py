@@ -80,6 +80,25 @@ def test_only_open_items_with_a_stated_deadline_appear(cal, sample_items):
     assert "expired" not in uids and "retired-flag" not in uids
 
 
+def test_a_past_deadline_is_never_offered(tmp_path):
+    """Nobody wants last month's closing dates in their calendar, in bulk or singly."""
+    past = make_item(id="past", closes=TODAY - timedelta(days=1))
+    future = make_item(id="future", closes=TODAY + timedelta(days=1))
+    assert not build.has_upcoming_deadline(past, TODAY)
+    assert build.has_upcoming_deadline(future, TODAY)
+    lines = unfold(_write([past, future], tmp_path / "site"))
+    assert not any(l.startswith("UID:past@") for l in lines)
+    assert any(l.startswith("UID:future@") for l in lines)
+
+
+def test_a_deadline_falling_today_still_counts(tmp_path):
+    """The last day to respond is not a past deadline."""
+    item = make_item(id="closes-today", closes=TODAY)
+    assert build.has_upcoming_deadline(item, TODAY)
+    lines = unfold(_write([item], tmp_path / "site"))
+    assert any(l.startswith("UID:closes-today@") for l in lines)
+
+
 def test_event_is_all_day_and_ends_the_following_day(cal, sample_items):
     """DTEND is exclusive for a DATE value, so a one-day event ends on the next date."""
     lines = unfold(cal)
@@ -93,6 +112,14 @@ def test_each_event_has_both_reminders(cal):
     events = lines.count("BEGIN:VEVENT")
     assert lines.count("TRIGGER;VALUE=DURATION:-P7D") == events
     assert lines.count("TRIGGER;VALUE=DURATION:-P1D") == events
+
+
+def test_the_week_before_is_the_first_reminder_on_every_event(cal):
+    """A week is enough notice to actually write something, so it leads."""
+    triggers = [l for l in unfold(cal) if l.startswith("TRIGGER;")]
+    assert triggers, "no reminders at all"
+    assert triggers[::2] == ["TRIGGER;VALUE=DURATION:-P7D"] * (len(triggers) // 2)
+    assert triggers[1::2] == ["TRIGGER;VALUE=DURATION:-P1D"] * (len(triggers) // 2)
 
 
 def test_events_are_ordered_by_closing_date(cal):
@@ -203,7 +230,7 @@ def test_link_body_matches_the_ics_description(tmp_path):
 def test_menu_is_rendered_only_for_items_that_have_a_deadline(sample_items):
     """build.py renders the English list, so the buttons must be in the HTML itself."""
     records = build.sorted_records(sample_items, TODAY)
-    html = build.render_items_html(records, {i.id: i for i in sample_items})
+    html = build.render_items_html(records, {i.id: i for i in sample_items}, TODAY)
     for item in sample_items:
         expected = item.status(TODAY) == "open" and item.closes is not None
         assert (f'data-cal="{item.id}"' in html) is expected, f"{item.id}: menu presence is wrong"
@@ -211,7 +238,7 @@ def test_menu_is_rendered_only_for_items_that_have_a_deadline(sample_items):
 
 def test_menu_offers_all_three_destinations(sample_items):
     records = build.sorted_records(sample_items, TODAY)
-    html = build.render_items_html(records, {i.id: i for i in sample_items})
+    html = build.render_items_html(records, {i.id: i for i in sample_items}, TODAY)
     assert "calendar.google.com" in html
     assert "outlook.live.com" in html
     assert 'data-ics="closing-soon"' in html
@@ -221,7 +248,7 @@ def test_menu_offers_all_three_destinations(sample_items):
 def test_menu_urls_are_html_escaped(sample_items):
     """Query strings are full of ampersands; unescaped they break the attribute."""
     records = build.sorted_records(sample_items, TODAY)
-    html = build.render_items_html(records, {i.id: i for i in sample_items})
+    html = build.render_items_html(records, {i.id: i for i in sample_items}, TODAY)
     hrefs = re.findall(r'<a role="menuitem" href="([^"]*)"', html)
     assert hrefs
     for h in hrefs:

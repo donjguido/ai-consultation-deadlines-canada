@@ -157,6 +157,13 @@ def render_stats_html(records: list[dict]) -> str:
     )
 
 
+def has_upcoming_deadline(item: Item, today: date) -> bool:
+    """Whether the item is worth putting in a calendar: still open, and the date
+    is still ahead. Mirrors upcoming() in template.html, which re-checks against
+    the reader's own date because the baked-in status ages between builds."""
+    return item.closes is not None and item.closes >= today and item.status(today) == "open"
+
+
 def render_cal_menu(item: Item) -> str:
     """Server-side twin of calMenu() in template.html, whitespace included."""
     return (
@@ -171,7 +178,7 @@ def render_cal_menu(item: Item) -> str:
     )
 
 
-def render_items_html(records: list[dict], by_id: dict[str, Item]) -> str:
+def render_items_html(records: list[dict], by_id: dict[str, Item], today: date) -> str:
     out = []
     for r in records:
         p = primary(r)
@@ -192,7 +199,7 @@ def render_items_html(records: list[dict], by_id: dict[str, Item]) -> str:
         how = (f'<p class="how"><strong>How to participate:</strong> {esc(r["how_to_participate"])}</p>'
                if r["how_to_participate"] else "")
         topics = "".join(f'<span class="topic">{esc(t)}</span>' for t in r["topics"])
-        cal = render_cal_menu(by_id[r["id"]]) if r["closes"] and r["status"] == "open" else ""
+        cal = render_cal_menu(by_id[r["id"]]) if has_upcoming_deadline(by_id[r["id"]], today) else ""
         out.append(
             f'<article class="item {p}" id="item-{esc(r["id"])}" style="--c:{COLOR[p]}">\n'
             f'      <div class="stripe" aria-hidden="true"></div>\n'
@@ -317,7 +324,7 @@ def build_site(items: list[Item], out: Path, today: date) -> list[dict]:
     html = html.replace("__BUILT__", today.isoformat())
     # Generated content goes in last so nothing inside it is scanned for placeholders.
     html = html.replace("<!--__STATS__-->", render_stats_html(records))
-    html = html.replace("<!--__ITEMS__-->", render_items_html(records, {i.id: i for i in items}))
+    html = html.replace("<!--__ITEMS__-->", render_items_html(records, {i.id: i for i in items}, today))
     html = html.replace("<!--__JSONLD__-->", render_jsonld(records, today))
     html = html.replace("/*__DATA__*/[]", js_json(records))
     (out / "index.html").write_text(html, encoding="utf-8")
@@ -487,11 +494,11 @@ def ics_event(item: Item, stamp: str, lang: str = "en") -> list[str]:
 
 
 def build_calendar(items: list[Item], out: Path, today: date, lang: str = "en") -> None:
-    """Publish deadlines.ics: every open item that has a stated closing date."""
+    """Publish deadlines.ics: every open item whose stated closing date is still ahead."""
     t = STRINGS[lang]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     upcoming = sorted(
-        (i for i in items if i.status(today) == "open" and i.closes),
+        (i for i in items if has_upcoming_deadline(i, today)),
         key=lambda i: (i.closes, i.id),
     )
     lines = [

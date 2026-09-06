@@ -62,3 +62,11 @@ def test_calendar_hooks_present():
         "the .cal-menu display:flex rule outranks the UA [hidden] rule, so this "
         "override is what keeps closed menus closed"
     )
+
+
+def test_client_rechecks_deadlines_against_the_readers_own_date():
+    """Statuses are baked in at build time and the site is rebuilt twice a week,
+    so between builds only the browser knows a deadline has passed."""
+    html = _html()
+    assert "todayISO" in html and "r.closes>=todayISO()" in html
+    assert "DATA.filter(upcoming)" in html, "the bulk download must use the same filter"

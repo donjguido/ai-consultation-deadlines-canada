@@ -62,7 +62,7 @@ For people:
 
 - Website: https://donjguido.github.io/canadian-ai-governance-monitor/ (French at https://donjguido.github.io/canadian-ai-governance-monitor/?lang=fr)
 - RSS: https://donjguido.github.io/canadian-ai-governance-monitor/feed.xml (French: `/feed-fr.xml`)
-- Calendar: https://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics (French: `/deadlines-fr.ics`) — every open item with a stated closing date, as an all-day event with 7-day and 1-day reminders. Subscribe to it (`webcal://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics`) and Google, Outlook and Apple Calendar re-read it as deadlines are added, changed, or pass.
+- Calendar: https://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics (French: `/deadlines-fr.ics`) — every open item whose closing date is still ahead, as an all-day event with reminders a week and a day before. Subscribe to it (`webcal://donjguido.github.io/canadian-ai-governance-monitor/deadlines.ics`) and Google, Outlook and Apple Calendar re-read it as deadlines are added, changed, or pass.
 - Weekly digest: https://donjguido.github.io/canadian-ai-governance-monitor/digest.md (French: `/digest-fr.md`)
 
 For machines:

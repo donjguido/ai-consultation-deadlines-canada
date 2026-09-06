@@ -597,7 +597,12 @@ const outlookSub=()=>"https://outlook.live.com/calendar/0/addfromweb?"+
 const qs=o=>Object.entries(o).map(([k,v])=>encodeURIComponent(k)+"="+encodeURIComponent(v)).join("&");
 const ymd=s=>s.replace(/-/g,"");
 function nextDay(s){const d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+1);return d.toISOString().slice(0,10)}
-function dated(){return DATA.filter(r=>r.closes&&r.status==="open")}
+// r.status is frozen at build time and the site is rebuilt twice a week, so a
+// deadline can pass between builds. Re-check against the reader's own calendar
+// date: a closed deadline is not worth adding, least of all in a bulk download.
+const todayISO=()=>{const d=new Date();return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+const upcoming=r=>!!r.closes&&r.status==="open"&&r.closes>=todayISO();
+function dated(){return DATA.filter(upcoming)}
 
 function calText(r){
   const t=L[lang], parts=[fr(r,"body"),fr(r,"summary"),t.why+" "+fr(r,"why_it_matters")];
@@ -756,7 +761,7 @@ function renderList(){
         <p class="why"><em>${t.why}</em> ${esc(fr(r,"why_it_matters"))}</p>
         ${r.how_to_participate?`<p class="how"><strong>${t.how}</strong> ${esc(fr(r,"how_to_participate"))}</p>`:""}
         <div class="topics">${r.topics.map(x=>`<span class="topic">${esc(topicLabel(x))}</span>`).join("")}</div>
-        ${r.closes&&r.status==="open"?calMenu(r):""}
+        ${upcoming(r)?calMenu(r):""}
       </div></article>`;}).join("");
   wireItemMenus();
 }
