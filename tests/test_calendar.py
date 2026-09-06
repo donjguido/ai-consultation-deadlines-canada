@@ -10,14 +10,17 @@ from datetime import timedelta
 import pytest
 
 from pipeline import build
-from tests.conftest import TODAY, make_item
+from tests.conftest import (
+    LANG2, LANGS, PRIMARY, TODAY, make_item, needs_second_language, output_name, translated, untranslated,
+)
 
-ICS_FILES = ["deadlines.ics", "deadlines-fr.ics"]
+ICS_FILES = [output_name("deadlines", ".ics", x) for x in LANGS]
+PRIMARY_ICS = ICS_FILES[0]
 
 
 def _write(items, out):
     out.mkdir(parents=True, exist_ok=True)
-    for lang in ("en", "fr"):
+    for lang in LANGS:
         build.build_calendar(items, out, TODAY, lang)
     return out
 
@@ -27,11 +30,11 @@ def cal(tmp_path, sample_items):
     return _write(sample_items, tmp_path / "site")
 
 
-def _raw(out, name="deadlines.ics") -> bytes:
+def _raw(out, name=PRIMARY_ICS) -> bytes:
     return (out / name).read_bytes()
 
 
-def unfold(out, name="deadlines.ics") -> list[str]:
+def unfold(out, name=PRIMARY_ICS) -> list[str]:
     """Content lines with RFC 5545 folding undone."""
     return _raw(out, name).decode("utf-8").replace("\r\n ", "").rstrip("\r\n").split("\r\n")
 
@@ -78,6 +81,11 @@ def test_only_open_items_with_a_stated_deadline_appear(cal, sample_items):
     assert uids == expected
     assert "no-deadline" not in uids, "an item with no closing date has nothing to put in a calendar"
     assert "expired" not in uids and "retired-flag" not in uids
+
+
+def test_uids_are_scoped_to_the_site_slug(cal):
+    uids = [l for l in unfold(cal) if l.startswith("UID:")]
+    assert uids and all(l.endswith("@" + build.SLUG) for l in uids)
 
 
 def test_a_past_deadline_is_never_offered(tmp_path):
@@ -150,33 +158,37 @@ def test_unverified_dates_are_flagged_rather_than_dropped(tmp_path):
     lines = unfold(out)
     uids = {l.split(":", 1)[1].split("@")[0] for l in lines if l.startswith("UID:")}
     assert uids == {"unchecked", "checked"}, "an unverified item must still reach the calendar"
-    warnings = [l for l in lines if "not been checked by a human" in l]
+    marker = build.strings(PRIMARY)["cal_unverified"]
+    warnings = [l for l in lines if build._ics_text(marker) in l]
     assert len(warnings) == 1, "exactly the unverified event should carry the warning"
 
 
-# ---- bilingual -------------------------------------------------------------
+# ---- multilingual ----------------------------------------------------------
 
-def test_french_feed_uses_french_prose(cal):
-    fr = "\n".join(unfold(cal, "deadlines-fr.ics"))
-    en = "\n".join(unfold(cal, "deadlines.ics"))
-    assert "Échéance :" in fr and "Deadline:" not in fr
-    assert "Deadline:" in en
-    assert "Consultation de test" in fr
-    assert "clôture dans 7 jours" in fr
+@needs_second_language
+def test_translated_feed_uses_translated_prose(cal):
+    t2, t1 = build.strings(LANG2), build.strings(PRIMARY)
+    fr = "\n".join(unfold(cal, output_name("deadlines", ".ics", LANG2)))
+    en = "\n".join(unfold(cal, PRIMARY_ICS))
+    assert t2["deadline_prefix"] in fr and t1["deadline_prefix"] not in fr
+    assert t1["deadline_prefix"] in en
+    assert translated("title") in fr
+    assert build._ics_text(t2["alarm_7"].format(x=translated("title"))) in fr
 
 
-def test_untranslated_items_fall_back_to_english(tmp_path):
-    item = make_item(id="untranslated", title_fr=None, summary_fr=None, why_it_matters_fr=None,
-                     how_to_participate_fr=None, body_fr=None, closes=TODAY + timedelta(days=5))
+@needs_second_language
+def test_untranslated_items_fall_back_to_the_primary_language(tmp_path):
+    item = untranslated(id="untranslated", closes=TODAY + timedelta(days=5))
     out = _write([item], tmp_path / "site")
-    fr = "\n".join(unfold(out, "deadlines-fr.ics"))
-    assert "Test consultation" in fr, "a missing French title should fall back, not render blank"
+    fr = "\n".join(unfold(out, output_name("deadlines", ".ics", LANG2)))
+    assert "Test consultation" in fr, "a missing translated title should fall back, not render blank"
 
 
-def test_the_two_feeds_describe_the_same_events(cal):
+def test_the_feeds_describe_the_same_events(cal):
     def uids(name):
         return [l for l in unfold(cal, name) if l.startswith("UID:")]
-    assert uids("deadlines.ics") == uids("deadlines-fr.ics")
+    for name in ICS_FILES[1:]:
+        assert uids(PRIMARY_ICS) == uids(name)
 
 
 # ---- the per-item links ----------------------------------------------------
@@ -214,7 +226,7 @@ def test_link_body_matches_the_ics_description(tmp_path):
     """One helper feeds the .ics, the Google link and the Outlook link."""
     item = make_item(id="shared-text", closes=TODAY + timedelta(days=5))
     title, details = build.cal_text(item)
-    assert title.startswith("Deadline:")
+    assert title.startswith(build.strings(PRIMARY)["deadline_prefix"])
     assert item.url in details
     assert build.SITE_URL in details
     out = _write([item], tmp_path / "shared")
@@ -228,7 +240,7 @@ def test_link_body_matches_the_ics_description(tmp_path):
 # ---- the server-rendered menu ---------------------------------------------
 
 def test_menu_is_rendered_only_for_items_that_have_a_deadline(sample_items):
-    """build.py renders the English list, so the buttons must be in the HTML itself."""
+    """build.py renders the primary-language list, so the buttons must be in the HTML itself."""
     records = build.sorted_records(sample_items, TODAY)
     html = build.render_items_html(records, {i.id: i for i in sample_items}, TODAY)
     for item in sample_items:

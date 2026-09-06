@@ -1,0 +1,109 @@
+# English UI strings. Shared by the site (template.html), the feeds, the calendar and
+# the digest. Nothing here names a place; site-specific prose is in data/site.yaml.
+#
+# Plural forms: keys with zero/one/other are chosen by count and formatted with {n}.
+# `date_style` is iso (2026-09-23 as written) or long (formatted for the locale).
+
+language_name: English          # shown on the toggle
+language_name_en: English       # used in English prose and the classifier prompt
+date_style: iso
+sep: ": "                      # between a label and its value in generated text
+
+badge:
+  new: New
+  closing_soon: Closing soon
+  open: Open
+  retired: Retired
+badge_hint:
+  new: opened in last 14 days
+  closing_soon: deadline within 7 days
+  open: accepting input now
+  retired: past deadline or withdrawn
+type:
+  consultation: Consultation
+  call_for_briefs: Call for briefs
+  gazette_notice: Gazette notice
+  funding_call: Funding call
+  standards_review: Standards review
+  petition: Petition
+  other: Other
+topic: {}                      # labels for topic slugs; a missing key shows the slug itself
+
+closes: Closes
+closed: Closed
+opened: Opened
+no_deadline: No stated deadline
+days_left:
+  zero: closes today
+  one: 1 day left
+  other: "{n} days left"
+why: "Why it matters:"
+how: "How to participate:"
+empty: Nothing matches these filters.
+unverified: Not yet checked by a human
+count:
+  one: "Showing {n} of {total} items"
+  other: "Showing {n} of {total} items"
+
+# page furniture
+skip: Skip to the list of consultations
+at_a_glance: At a glance
+search_and_filter: Search and filter
+search_label: Search titles, departments, topics
+search_placeholder: Search titles, departments, topics…
+filter_type: Filter by type
+all_types: All types
+filter_body: Filter by department
+all_bodies: All departments
+topics_label: Topics
+monitored_items: Monitored items
+built: built
+rss: RSS
+calendar: calendar
+json: JSON
+digest: weekly digest
+sister_sites: "Sister sites:"
+footer_status: >-
+  Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first
+  seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its
+  closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm
+  deadlines on the official page before submitting.
+footer_credit: >-
+  © {year} {author}. Code {code_licence}, data {data_licence}. Spotted an error or have feedback?
+  Open a pull request on the <a href="{repo}" target="_blank" rel="noopener">original repo</a>.
+
+# add-to-calendar
+add_cal: Add deadline to calendar
+ics_one: Apple Calendar / .ics file
+deadline_prefix: "Deadline:"
+cal_unverified: This date has not been checked by a human yet. Confirm it on the official page.
+cal_tracked: "Tracked by {site}:"
+alarm_7: "{x} closes in 7 days"
+alarm_1: "{x} closes tomorrow"
+all_cal: Add all deadlines to my calendar
+close: Close
+all_title: Add every upcoming deadline
+all_intro:
+  one: One consultation currently has a stated closing date. Subscribing keeps it in sync as items are added, dates change, and closed items drop off.
+  other: "{n} consultations currently have stated closing dates. Subscribing keeps them in sync as items are added, dates change, and closed items drop off."
+sub_head: Subscribe (stays up to date)
+apple_sub: Apple Calendar / other
+copy_link: Copy feed link
+copied: Link copied
+sub_note: Google and Outlook check the feed every few hours. In Google, the calendar appears under “Other calendars”.
+once_head: Or add them once
+once_note: "A one-time import: the events will not update if a deadline moves."
+download:
+  one: Download .ics (1 deadline)
+  other: "Download .ics ({n} deadlines)"
+cal_fine: Each event is all-day on the closing date, with reminders 7 days and 1 day before. Always confirm the deadline on the official page.
+no_dated: No open item currently has a stated closing date, so there is nothing to add yet. Subscribe anyway and deadlines will appear as they are published.
+
+# digest
+week_of: week of
+nothing: Nothing this week.
+sec_closing: Closing within 7 days
+sec_new: New this fortnight
+sec_open: Still open
+sec_retired: Recently closed
+full_list: Full list

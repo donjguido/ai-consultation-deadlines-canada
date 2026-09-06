@@ -1,20 +1,17 @@
 # AI Consultation Deadlines Canada
 
-> Every federal channel through which people in Canada can shape how AI is governed --
-> public consultations, parliamentary calls for briefs, Canada Gazette comment periods,
-> funding calls, standards reviews and e-petitions -- each with a plain-language summary,
+> Every channel through which people in Canada can shape how AI is governed --
+> federal consultations, calls for briefs, Canada Gazette comment periods, funding calls, standards reviews and e-petitions -- each with a plain-language summary,
 > why it matters for AI safety, and a concrete way to take part.
 
-Built 2026-09-06. 26 items tracked: 13 open, 0 closing within 7 days, 13 retired. Curated by hand every Monday and Thursday; every record carries a `verified` flag saying whether a person has checked its dates and links against the source page.
+Built 2026-09-06. 26 items tracked: 13 open, 0 closing within 7 days, 13 retired. Curated by hand Mondays and Thursdays; every record carries a `verified` flag saying whether a person has checked its dates and links against the source page.
 
 Status is derived, not asserted: `new` means opened or first seen within 14 days,
 `closing soon` means the stated closing date is within 7 days, `retired` means past that
 date or withdrawn. Always confirm a deadline on the official page before submitting.
 
-Content is bilingual (English and French); French fields are suffixed `_fr` and fall back
-to English when a translation is not yet written. Data is CC BY 4.0 -- reuse it freely with
-attribution to the AI Consultation Deadlines Canada. Underlying government content is
-reproduced under the Open Government Licence - Canada.
+Content is multilingual (English and French); translated fields are suffixed `_fr` and fall back to English when a translation is not yet written. Data is CC BY 4.0 -- reuse it freely with
+attribution to AI Consultation Deadlines Canada. Underlying government content is reproduced under the Open Government Licence - Canada.
 
 ## Structured data
 
@@ -23,7 +20,8 @@ reproduced under the Open Government Licence - Canada.
 - [llms-full.txt](https://donjguido.github.io/ai-consultation-deadlines-canada/llms-full.txt): every item as Markdown, the whole corpus in one fetch.
 - [feed.xml](https://donjguido.github.io/ai-consultation-deadlines-canada/feed.xml): RSS 2.0, English.
 - [feed-fr.xml](https://donjguido.github.io/ai-consultation-deadlines-canada/feed-fr.xml): RSS 2.0, French.
-- [digest.md](https://donjguido.github.io/ai-consultation-deadlines-canada/digest.md): this week's digest, English. [digest-fr.md](https://donjguido.github.io/ai-consultation-deadlines-canada/digest-fr.md) for French.
+- [digest.md](https://donjguido.github.io/ai-consultation-deadlines-canada/digest.md): this week's digest. [digest-fr.md](https://donjguido.github.io/ai-consultation-deadlines-canada/digest-fr.md) in French.
+- [forks.json](https://donjguido.github.io/ai-consultation-deadlines-canada/forks.json): this site and its sister sites for other geographies.
 
 ## Live query
 

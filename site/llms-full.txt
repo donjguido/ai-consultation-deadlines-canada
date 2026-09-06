@@ -28,9 +28,9 @@ Why it matters: It is the first federal vehicle for incident reporting and agent
 
 How to participate: Answer the online questionnaire or email a written submission through the ISED consultation page before 23 September 2026.
 
-Titre (fr): Faites-vous entendre sur la transparence de l'IA au Canada
+Title (fr): Faites-vous entendre sur la transparence de l'IA au Canada
 
-Resume (fr): Consultation de deux mois, menée dans le cadre de la stratégie « L'IA pour tous », sur cinq mécanismes de transparence : la détection des contenus générés par l'IA, la divulgation des interactions avec un système d'IA, une information normalisée sur les systèmes d'IA, le signalement des incidents graves liés à l'IA et le suivi des activités des agents d'IA.
+Summary (fr): Consultation de deux mois, menée dans le cadre de la stratégie « L'IA pour tous », sur cinq mécanismes de transparence : la détection des contenus générés par l'IA, la divulgation des interactions avec un système d'IA, une information normalisée sur les systèmes d'IA, le signalement des incidents graves liés à l'IA et le suivi des activités des agents d'IA.
 
 ### CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review
 
@@ -52,9 +52,9 @@ Why it matters: Sets concrete human-oversight and post-deployment monitoring dut
 
 How to participate: Download the draft and submit comments through the DGSI public review form before 5 October 2026.
 
-Titre (fr): CAN/DGSI 138 — L'IA responsable et visible pour le patient dans l'aide à la décision clinique : examen public
+Title (fr): CAN/DGSI 138 — L'IA responsable et visible pour le patient dans l'aide à la décision clinique : examen public
 
-Resume (fr): Examen public de 60 jours d'un projet de Norme nationale du Canada fixant des exigences de gouvernance, de transparence, de supervision humaine et de surveillance du cycle de vie pour l'IA d'aide à la décision clinique.
+Summary (fr): Examen public de 60 jours d'un projet de Norme nationale du Canada fixant des exigences de gouvernance, de transparence, de supervision humaine et de surveillance du cycle de vie pour l'IA d'aide à la décision clinique.
 
 ### AI Compute Challenge: call for proposals
 
@@ -76,9 +76,9 @@ Why it matters: Determines who controls Canada's frontier-scale compute and what
 
 How to participate: Eligible organizations apply through the Strategic Response Fund intake on the ISED program page. Rolling intake, no stated deadline.
 
-Titre (fr): Défi de la capacité de calcul en IA : appel de propositions
+Title (fr): Défi de la capacité de calcul en IA : appel de propositions
 
-Resume (fr): Jusqu'à 700 M$ pour des propositions d'entreprises ou de consortiums visant à bâtir une capacité canadienne de centres de données pour l'IA, avec une priorité aux projets qui gardent les données sensibles au Canada. Les demandes sont reçues en continu.
+Summary (fr): Jusqu'à 700 M$ pour des propositions d'entreprises ou de consortiums visant à bâtir une capacité canadienne de centres de données pour l'IA, avec une priorité aux projets qui gardent les données sensibles au Canada. Les demandes sont reçues en continu.
 
 ### Senate SOCI study on the impact of artificial intelligence in Canada
 
@@ -100,9 +100,9 @@ Why it matters: Broadest parliamentary AI-safety study now running, with an expl
 
 How to participate: Email a written brief (any length, EN or FR) to the committee clerk at the address on the SOCI page. No fixed deadline, but earlier briefs are more likely to be cited.
 
-Titre (fr): Étude du Comité sénatorial SOCI sur les répercussions de l'intelligence artificielle au Canada
+Title (fr): Étude du Comité sénatorial SOCI sur les répercussions de l'intelligence artificielle au Canada
 
-Resume (fr): Ordre de renvoi visant à examiner la gouvernance et la souveraineté des données, l'éthique, la vie privée et la sécurité, ainsi que les risques, les avantages et les effets sociaux de l'IA. Un rapport provisoire sur une approche centrée sur l'humain a été publié ; le rapport final est attendu d'ici le 31 décembre 2026.
+Summary (fr): Ordre de renvoi visant à examiner la gouvernance et la souveraineté des données, l'éthique, la vie privée et la sécurité, ainsi que les risques, les avantages et les effets sociaux de l'IA. Un rapport provisoire sur une approche centrée sur l'humain a été publié ; le rapport final est attendu d'ici le 31 décembre 2026.
 
 ### Senate RIDR study on the impact of AI on human rights and economic security
 
@@ -124,9 +124,9 @@ Why it matters: Frames AI harms in human-rights terms, the main legal lever Cana
 
 How to participate: Email a written brief to the RIDR clerk. Rolling intake.
 
-Titre (fr): Étude du Comité sénatorial RIDR sur les effets de l'IA sur les droits de la personne et la sécurité économique
+Title (fr): Étude du Comité sénatorial RIDR sur les effets de l'IA sur les droits de la personne et la sécurité économique
 
-Resume (fr): Le comité examine les effets de l'IA sur les droits de la personne et la sécurité économique, en particulier pour les groupes vulnérables et le droit au travail. Les audiences du printemps 2026 ont porté sur la discrimination algorithmique, les pertes d'emploi et les enfants.
+Summary (fr): Le comité examine les effets de l'IA sur les droits de la personne et la sécurité économique, en particulier pour les groupes vulnérables et le droit au travail. Les audiences du printemps 2026 ont porté sur la discrimination algorithmique, les pertes d'emploi et les enfants.
 
 ### Senate TRCM study on AI in the information and communication technology sector
 
@@ -148,9 +148,9 @@ Why it matters: Only Senate study explicitly scoped to deepfakes and synthetic-m
 
 How to participate: Email a written brief to the TRCM clerk. The formal call has passed but late briefs are accepted while the study is active.
 
-Titre (fr): Étude du Comité sénatorial TRCM sur l'IA dans le secteur des technologies de l'information et des communications
+Title (fr): Étude du Comité sénatorial TRCM sur l'IA dans le secteur des technologies de l'information et des communications
 
-Resume (fr): L'étude porte sur l'IA dans la création et la diffusion de contenu, sur les conséquences pour le droit d'auteur et la propriété intellectuelle, et sur la désinformation et les hypertrucages produits par l'IA. Les mémoires étaient demandés pour le 1er mai 2026, mais le comité en accepte toujours ; le rapport est attendu d'ici le 31 décembre 2027.
+Summary (fr): L'étude porte sur l'IA dans la création et la diffusion de contenu, sur les conséquences pour le droit d'auteur et la propriété intellectuelle, et sur la désinformation et les hypertrucages produits par l'IA. Les mémoires étaient demandés pour le 1er mai 2026, mais le comité en accepte toujours ; le rapport est attendu d'ici le 31 décembre 2027.
 
 ### INDU study: Opportunities, Risks, and Regulation of AI in Canada's Strategic Industries
 
@@ -172,9 +172,9 @@ Why it matters: INDU is the committee that would receive any successor to AIDA, 
 
 How to participate: Submit a brief (max 2,000 words for translation) through the committee's 'Submit a brief' page on ourcommons.ca.
 
-Titre (fr): Étude du Comité INDU : possibilités, risques et réglementation de l'IA dans les industries stratégiques du Canada
+Title (fr): Étude du Comité INDU : possibilités, risques et réglementation de l'IA dans les industries stratégiques du Canada
 
-Resume (fr): Étude du comité de l'industrie de la Chambre sur les risques liés à l'IA et sa réglementation dans les secteurs stratégiques. À ce jour, 46 témoins ont été entendus et 23 mémoires reçus ; aucun rapport n'a encore été déposé. Dernière réunion le 16 juin 2026.
+Summary (fr): Étude du comité de l'industrie de la Chambre sur les risques liés à l'IA et sa réglementation dans les secteurs stratégiques. À ce jour, 46 témoins ont été entendus et 23 mémoires reçus ; aucun rapport n'a encore été déposé. Dernière réunion le 16 juin 2026.
 
 ### ETHI study: Challenges Posed by Artificial Intelligence and its Regulation
 
@@ -196,9 +196,9 @@ Why it matters: Links AI regulation to privacy-law modernization and could resum
 
 How to participate: Briefs can still be submitted through the committee page while the study remains open.
 
-Titre (fr): Étude du Comité ETHI : les défis posés par l'intelligence artificielle et sa réglementation
+Title (fr): Étude du Comité ETHI : les défis posés par l'intelligence artificielle et sa réglementation
 
-Resume (fr): Sept réunions tenues de novembre 2025 à février 2026, dont une avec le commissaire à la protection de la vie privée. Vingt témoins entendus et dix mémoires reçus ; aucun rapport déposé et aucune réunion depuis le 26 février 2026.
+Summary (fr): Sept réunions tenues de novembre 2025 à février 2026, dont une avec le commissaire à la protection de la vie privée. Vingt témoins entendus et dix mémoires reçus ; aucun rapport déposé et aucune réunion depuis le 26 février 2026.
 
 ### SRSR study: Artificial Intelligence in innovation and scientific research
 
@@ -220,9 +220,9 @@ Why it matters: Directly addresses federal funding for responsible and safety-or
 
 How to participate: Submit a brief through the committee page on ourcommons.ca.
 
-Titre (fr): Étude du Comité SRSR : l'intelligence artificielle dans l'innovation et la recherche scientifique
+Title (fr): Étude du Comité SRSR : l'intelligence artificielle dans l'innovation et la recherche scientifique
 
-Resume (fr): Étude sur les avancées de la recherche en IA, les besoins des établissements de recherche, le rôle fédéral dans un écosystème de recherche responsable en IA et la protection des découvertes canadiennes. Dix-neuf mémoires reçus ; dernière réunion le 12 février 2026.
+Summary (fr): Étude sur les avancées de la recherche en IA, les besoins des établissements de recherche, le rôle fédéral dans un écosystème de recherche responsable en IA et la protection des découvertes canadiennes. Dix-neuf mémoires reçus ; dernière réunion le 12 février 2026.
 
 ### Bill C-34, Safe Social Media Act: committee study of AI chatbot duties
 
@@ -244,9 +244,9 @@ Why it matters: First Canadian bill to regulate AI chatbots and companions direc
 
 How to participate: Not yet open. Briefs will be accepted once the bill is referred to committee; contact the sponsoring MP or Canadian Heritage now if you want to be a witness.
 
-Titre (fr): Projet de loi C-34, Loi sur la sécurité des médias sociaux : étude en comité des obligations visant les agents conversationnels
+Title (fr): Projet de loi C-34, Loi sur la sécurité des médias sociaux : étude en comité des obligations visant les agents conversationnels
 
-Resume (fr): Déposé le 10 juin 2026, le projet de loi imposerait des obligations de sécurité et de divulgation aux services de médias sociaux et aux agents conversationnels d'IA, en particulier à l'égard des enfants, sous la surveillance d'une nouvelle Commission de la sécurité numérique. L'étude en comité et une période de dépôt de mémoires sont attendues à la session d'automne.
+Summary (fr): Déposé le 10 juin 2026, le projet de loi imposerait des obligations de sécurité et de divulgation aux services de médias sociaux et aux agents conversationnels d'IA, en particulier à l'égard des enfants, sous la surveillance d'une nouvelle Commission de la sécurité numérique. L'étude en comité et une période de dépôt de mémoires sont attendues à la session d'automne.
 
 ### Bill C-36, Protecting Privacy and Consumer Data Act: committee study
 
@@ -268,9 +268,9 @@ Why it matters: Its automated-decision provisions will be the only binding feder
 
 How to participate: Not yet open. Briefs will be accepted once the bill is referred to committee (likely INDU or ETHI).
 
-Titre (fr): Projet de loi C-36, Loi sur la protection de la vie privée et des données des consommateurs : étude en comité
+Title (fr): Projet de loi C-36, Loi sur la protection de la vie privée et des données des consommateurs : étude en comité
 
-Resume (fr): Déposé le 15 juin 2026 pour remplacer la LPRPDE. Selon des sources secondaires, il ne traite pas de l'IA comme telle, mais prévoit des obligations visant la prise de décision automatisée dans certaines circonstances.
+Summary (fr): Déposé le 15 juin 2026 pour remplacer la LPRPDE. Selon des sources secondaires, il ne traite pas de l'IA comme telle, mais prévoit des obligations visant la prise de décision automatisée dans certaines circonstances.
 
 ### Citizenship Regulations amendments: mandatory biometrics for citizenship applicants
 
@@ -292,9 +292,9 @@ Why it matters: Would expand federal facial-recognition data collection, a core 
 
 How to participate: Not yet published. Once it appears in Gazette Part I, comment through the Gazette's online consultation system.
 
-Titre (fr): Modifications au Règlement sur la citoyenneté : biométrie obligatoire pour les demandeurs de citoyenneté
+Title (fr): Modifications au Règlement sur la citoyenneté : biométrie obligatoire pour les demandeurs de citoyenneté
 
-Resume (fr): Projet de règlement exigeant les empreintes digitales et une photo du visage de tous les demandeurs de citoyenneté. Le plan prospectif de réglementation d'IRCC prévoit une publication préalable dans la Partie I de la Gazette du Canada en 2026, assortie d'une période de commentaires d'environ 30 jours.
+Summary (fr): Projet de règlement exigeant les empreintes digitales et une photo du visage de tous les demandeurs de citoyenneté. Le plan prospectif de réglementation d'IRCC prévoit une publication préalable dans la Partie I de la Gazette du Canada en 2026, assortie d'une période de commentaires d'environ 30 jours.
 
 ### Notice of intent: Guidance for AI Regulatory Measures, Directives and Policies (CSA Group)
 
@@ -316,9 +316,9 @@ Why it matters: Would become the reference framework federal regulators use to w
 
 How to participate: Watch the SCC notice page; CSA public reviews run about 60 days once opened.
 
-Titre (fr): Avis d'intention : orientations sur les mesures, directives et politiques de réglementation de l'IA (Groupe CSA)
+Title (fr): Avis d'intention : orientations sur les mesures, directives et politiques de réglementation de l'IA (Groupe CSA)
 
-Resume (fr): Norme CSA en préparation visant à guider les organismes de réglementation et les ministères canadiens dans l'élaboration de politiques d'IA cohérentes, éthiques et transparentes, arrimées aux normes ISO/IEC 42001 et 23894. La date de l'examen public n'est pas encore annoncée.
+Summary (fr): Norme CSA en préparation visant à guider les organismes de réglementation et les ministères canadiens dans l'élaboration de politiques d'IA cohérentes, éthiques et transparentes, arrimées aux normes ISO/IEC 42001 et 23894. La date de l'examen public n'est pas encore annoncée.
 
 ## Retired (13)
 
@@ -342,9 +342,9 @@ Why it matters: Largest AI-related petition of 2026 and a signal that compute bu
 
 How to participate: If signing is reopened, sign online on the petition page; otherwise watch for the government response, due within 45 days of presentation.
 
-Titre (fr): Pétition e-7550 : mettre fin aux incitatifs, aux subventions et à l'accélération des permis pour les centres de données d'IA
+Title (fr): Pétition e-7550 : mettre fin aux incitatifs, aux subventions et à l'accélération des permis pour les centres de données d'IA
 
-Resume (fr): La pétition demande à Ottawa de mettre fin aux incitatifs visant les centres de données d'IA, de révoquer les permis délivrés sans examen par les collectivités et d'encadrer la sécurité, la transparence et l'efficacité dans l'usage des ressources. Elle compte 29 991 signatures validées. La page indique actuellement « Fermée à la signature », alors que la période annoncée court jusqu'au 24 septembre 2026.
+Summary (fr): La pétition demande à Ottawa de mettre fin aux incitatifs visant les centres de données d'IA, de révoquer les permis délivrés sans examen par les collectivités et d'encadrer la sécurité, la transparence et l'efficacité dans l'usage des ressources. Elle compte 29 991 signatures validées. La page indique actuellement « Fermée à la signature », alors que la période annoncée court jusqu'au 24 septembre 2026.
 
 ### Petition e-7427: federal moratorium on hyperscale AI data centres in Alberta
 
@@ -366,9 +366,9 @@ Why it matters: Tests whether federal environmental assessment becomes a de fact
 
 How to participate: Watch the petition page for presentation in the House and the government response.
 
-Titre (fr): Pétition e-7427 : moratoire fédéral sur les centres de données d'IA à très grande échelle en Alberta
+Title (fr): Pétition e-7427 : moratoire fédéral sur les centres de données d'IA à très grande échelle en Alberta
 
-Resume (fr): La pétition réclame un moratoire sur des projets comme Wonder Valley et Synapse Olds, l'interdiction du soutien fédéral aux installations alimentées par des combustibles fossiles ou fortes consommatrices d'eau, et une évaluation environnementale fédérale obligatoire assortie d'une consultation des peuples autochtones. Elle compte 27 472 signatures validées. La page indique « Fermée à la signature » malgré une période se terminant le 17 septembre 2026.
+Summary (fr): La pétition réclame un moratoire sur des projets comme Wonder Valley et Synapse Olds, l'interdiction du soutien fédéral aux installations alimentées par des combustibles fossiles ou fortes consommatrices d'eau, et une évaluation environnementale fédérale obligatoire assortie d'une consultation des peuples autochtones. Elle compte 27 472 signatures validées. La page indique « Fermée à la signature » malgré une période se terminant le 17 septembre 2026.
 
 ### OPC age assurance guidance: call for comments on two draft documents
 
@@ -390,9 +390,9 @@ Why it matters: Age estimation is an AI and biometric system deployed at populat
 
 How to participate: Closed. Final guidance expected late 2026.
 
-Titre (fr): Orientations du CPVP sur la vérification de l'âge : appel de commentaires sur deux documents provisoires
+Title (fr): Orientations du CPVP sur la vérification de l'âge : appel de commentaires sur deux documents provisoires
 
-Resume (fr): Orientations destinées aux services en ligne sur l'opportunité et les modalités du recours à la vérification de l'âge, et aux développeurs sur une conception respectueuse de la vie privée, y compris l'estimation de l'âge par IA.
+Summary (fr): Orientations destinées aux services en ligne sur l'opportunité et les modalités du recours à la vérification de l'âge, et aux développeurs sur une conception respectueuse de la vie privée, y compris l'estimation de l'âge par IA.
 
 ### CAN/DGSI 137 Digital Competency and Credit Recognition Framework: public review
 
@@ -414,9 +414,9 @@ Why it matters: Embeds human-oversight duties for AI used in employment-relevant
 
 How to participate: Closed.
 
-Titre (fr): CAN/DGSI 137 — Cadre de reconnaissance des compétences et des acquis numériques : examen public
+Title (fr): CAN/DGSI 137 — Cadre de reconnaissance des compétences et des acquis numériques : examen public
 
-Resume (fr): Examen de 60 jours d'un projet de norme nationale fixant des exigences de gouvernance, de transparence, de supervision humaine et d'IA responsable pour les systèmes d'évaluation des compétences et de reconnaissance des acquis.
+Summary (fr): Examen de 60 jours d'un projet de norme nationale fixant des exigences de gouvernance, de transparence, de supervision humaine et d'IA responsable pour les systèmes d'évaluation des compétences et de reconnaissance des acquis.
 
 ### AI Sovereign Compute Infrastructure Program: call for applications
 
@@ -438,9 +438,9 @@ Why it matters: Public compute for safety research and evaluation depends on thi
 
 How to participate: Closed 1 June 2026.
 
-Titre (fr): Programme d'infrastructure souveraine de calcul en IA : appel de demandes
+Title (fr): Programme d'infrastructure souveraine de calcul en IA : appel de demandes
 
-Resume (fr): Environ 890 M$ sur sept ans pour un système public de superinformatique en IA établi et gouverné au Canada, ouvert aux organismes sans but lucratif, aux établissements postsecondaires et aux consortiums.
+Summary (fr): Environ 890 M$ sur sept ans pour un système public de superinformatique en IA établi et gouverné au Canada, ouvert aux organismes sans but lucratif, aux établissements postsecondaires et aux consortiums.
 
 ### Petition e-7055: mandatory labelling of AI-generated online content
 
@@ -462,9 +462,9 @@ Why it matters: Public demand signal for the content-provenance mechanisms now u
 
 How to participate: Closed.
 
-Titre (fr): Pétition e-7055 : étiquetage obligatoire des contenus en ligne générés par l'IA
+Title (fr): Pétition e-7055 : étiquetage obligatoire des contenus en ligne générés par l'IA
 
-Resume (fr): La pétition réclame une loi obligeant à étiqueter, avant leur publication, tous les contenus en ligne créés en tout ou en partie par une IA, en invoquant la fraude et la désinformation qui visent les aînés et les jeunes. Elle compte 407 signatures.
+Summary (fr): La pétition réclame une loi obligeant à étiqueter, avant leur publication, tous les contenus en ligne créés en tout ou en partie par une IA, en invoquant la fraude et la désinformation qui visent les aînés et les jeunes. Elle compte 407 signatures.
 
 ### CIFAR AI Frontiers School 2026, AI Safety Edition: application call
 
@@ -486,9 +486,9 @@ Why it matters: CAISI's main talent pipeline for evaluation and red-teaming capa
 
 How to participate: Closed. Expect a 2027 call around April.
 
-Titre (fr): École CIFAR sur les frontières de l'IA 2026, édition sécurité de l'IA : appel de candidatures
+Title (fr): École CIFAR sur les frontières de l'IA 2026, édition sécurité de l'IA : appel de candidatures
 
-Resume (fr): Programme de formation contingenté destiné aux doctorants en début de parcours et aux étudiants de maîtrise avancés, portant sur les fondements de la sécurité de l'IA et les risques des systèmes avancés, et se terminant par un exercice d'équipe rouge.
+Summary (fr): Programme de formation contingenté destiné aux doctorants en début de parcours et aux étudiants de maîtrise avancés, portant sur les fondements de la sécurité de l'IA et les risques des systèmes avancés, et se terminant par un exercice d'équipe rouge.
 
 ### Government of Canada AI Register (MVP): public feedback
 
@@ -510,9 +510,9 @@ Why it matters: The register is Canada's main transparency instrument for govern
 
 How to participate: Closed. Watch for the 2026-27 engagement round.
 
-Titre (fr): Registre de l'IA du gouvernement du Canada (version minimale) : commentaires du public
+Title (fr): Registre de l'IA du gouvernement du Canada (version minimale) : commentaires du public
 
-Resume (fr): Commentaires sur la conception et le contenu du premier registre fédéral de l'IA (409 inscriptions provenant de 42 institutions). Le Secrétariat s'est engagé à poursuivre la mobilisation en 2026-2027 avant qu'une version enrichie ne remplace la version minimale.
+Summary (fr): Commentaires sur la conception et le contenu du premier registre fédéral de l'IA (409 inscriptions provenant de 42 institutions). Le Secrétariat s'est engagé à poursuivre la mobilisation en 2026-2027 avant qu'une version enrichie ne remplace la version minimale.
 
 ### Consultation on OPC guidance processes
 
@@ -534,9 +534,9 @@ Why it matters: Sets the process by which future OPC guidance on generative AI, 
 
 How to participate: Closed.
 
-Titre (fr): Consultation sur les processus d'élaboration des orientations du CPVP
+Title (fr): Consultation sur les processus d'élaboration des orientations du CPVP
 
-Resume (fr): La consultation portait sur la façon dont le Commissariat choisit, élabore, met en consultation et présente ses orientations relatives à la LPRPDE, y compris le calendrier et les méthodes de mobilisation.
+Summary (fr): La consultation portait sur la façon dont le Commissariat choisit, élabore, met en consultation et présente ses orientations relatives à la LPRPDE, y compris le calendrier et les méthodes de mobilisation.
 
 ### Petition e-7002: protect individuals' likeness and voice from AI deepfakes
 
@@ -558,9 +558,9 @@ Why it matters: The response is the clearest official statement of how Ottawa in
 
 How to participate: Closed; government response published.
 
-Titre (fr): Pétition e-7002 : protéger l'image et la voix des personnes contre les hypertrucages
+Title (fr): Pétition e-7002 : protéger l'image et la voix des personnes contre les hypertrucages
 
-Resume (fr): La pétition demandait au ministre de l'IA de renforcer la Loi sur le droit d'auteur afin qu'elle vise l'image et la voix. La réponse du gouvernement, déposée le 27 avril 2026, invoque la réforme de la LPRPDE, le projet de loi C-16 sur les hypertrucages sexuels, le projet de loi C-25 sur les hypertrucages électoraux et les travaux de l'ICSIA sur les contenus synthétiques.
+Summary (fr): La pétition demandait au ministre de l'IA de renforcer la Loi sur le droit d'auteur afin qu'elle vise l'image et la voix. La réponse du gouvernement, déposée le 27 avril 2026, invoque la réforme de la LPRPDE, le projet de loi C-16 sur les hypertrucages sexuels, le projet de loi C-25 sur les hypertrucages électoraux et les travaux de l'ICSIA sur les contenus synthétiques.
 
 ### CAISI Research Program at CIFAR: Catalyst call on sociotechnical considerations in AI safety
 
@@ -582,9 +582,9 @@ Why it matters: CAISI's only open-competition research funding line; a next cycl
 
 How to participate: Closed. Watch for an autumn 2026 call.
 
-Titre (fr): Programme de recherche de l'ICSIA au CIFAR : appel Catalyseur sur les dimensions sociotechniques de la sécurité de l'IA
+Title (fr): Programme de recherche de l'ICSIA au CIFAR : appel Catalyseur sur les dimensions sociotechniques de la sécurité de l'IA
 
-Resume (fr): Jusqu'à 70 000 $ par année pendant deux ans pour un maximum de six projets dirigés par les sciences sociales et les humanités, portant sur les contenus synthétiques, l'alignement, la conception de systèmes plus sûrs et la gouvernance du risque.
+Summary (fr): Jusqu'à 70 000 $ par année pendant deux ans pour un maximum de six projets dirigés par les sciences sociales et les humanités, portant sur les contenus synthétiques, l'alignement, la conception de systèmes plus sûrs et la gouvernance du risque.
 
 ### CHPC study: effects of AI on the creative industries
 
@@ -606,9 +606,9 @@ Why it matters: Its training-data consent recommendation would directly constrai
 
 How to participate: Closed. Government response to the report is the next intervention point.
 
-Titre (fr): Étude du Comité CHPC : les effets de l'IA sur les industries culturelles
+Title (fr): Étude du Comité CHPC : les effets de l'IA sur les industries culturelles
 
-Resume (fr): Sept réunions, 43 témoins et huit mémoires sur l'IA et les créateurs. Le rapport d'avril 2026 recommande d'exiger un consentement explicite pour l'utilisation d'œuvres protégées par le droit d'auteur dans l'entraînement des systèmes d'IA.
+Summary (fr): Sept réunions, 43 témoins et huit mémoires sur l'IA et les créateurs. Le rapport d'avril 2026 recommande d'exiger un consentement explicite pour l'utilisation d'œuvres protégées par le droit d'auteur dans l'entraînement des systèmes d'IA.
 
 ### The next chapter of Canada's AI leadership: national AI strategy consultation
 
@@ -630,7 +630,7 @@ Why it matters: Produced the strategy whose safety pillar now drives the transpa
 
 How to participate: Closed; summary report published February 2026.
 
-Titre (fr): Le prochain chapitre du leadership canadien en IA : consultation sur la stratégie nationale en matière d'IA
+Title (fr): Le prochain chapitre du leadership canadien en IA : consultation sur la stratégie nationale en matière d'IA
 
-Resume (fr): Sondage en ligne de 30 jours doublé d'un groupe de travail de 28 membres ; plus de 11 300 réponses sur l'adoption sécuritaire, l'infrastructure souveraine, la confiance et la sécurité. La consultation a donné lieu à la stratégie « L'IA pour tous », lancée le 4 juin 2026.
+Summary (fr): Sondage en ligne de 30 jours doublé d'un groupe de travail de 28 membres ; plus de 11 300 réponses sur l'adoption sécuritaire, l'infrastructure souveraine, la confiance et la sécurité. La consultation a donné lieu à la stratégie « L'IA pour tous », lancée le 4 juin 2026.
 

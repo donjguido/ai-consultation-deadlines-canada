@@ -1,0 +1,124 @@
+# Chaînes d'interface en français. Voir en.yaml pour la structure ; les textes propres
+# au site (nom, slogan, territoire) sont dans data/site.yaml.
+
+language_name: Français
+language_name_en: French
+date_style: long
+sep: " : "
+
+badge:
+  new: Nouveau
+  closing_soon: Se termine bientôt
+  open: Ouvert
+  retired: Retiré
+badge_hint:
+  new: ouvert depuis 14 jours ou moins
+  closing_soon: échéance dans 7 jours
+  open: accepte des contributions
+  retired: échéance dépassée ou retiré
+type:
+  consultation: Consultation
+  call_for_briefs: Appel de mémoires
+  gazette_notice: Avis de la Gazette
+  funding_call: Appel de financement
+  standards_review: Examen de norme
+  petition: Pétition
+  other: Autre
+topic:
+  frontier-models: modèles de pointe
+  privacy: vie privée
+  copyright: droit d'auteur
+  procurement: approvisionnement
+  deepfakes: hypertrucages
+  biometrics: biométrie
+  defence: défense
+  health: santé
+  children: enfance
+  elections: élections
+  competition: concurrence
+  standards: normalisation
+  public-service: fonction publique
+  research-funding: financement de la recherche
+  international: international
+  safety-institute: institut de la sécurité de l'IA
+  employment: emploi
+  finance: finance
+  critical-infrastructure: infrastructures essentielles
+
+closes: Clôture
+closed: Clôturé
+opened: Ouvert le
+no_deadline: Aucune échéance annoncée
+days_left:
+  zero: clôture aujourd'hui
+  one: 1 jour restant
+  other: "{n} jours restants"
+why: "Pourquoi c'est important :"
+how: "Comment participer :"
+empty: Aucun résultat pour ces filtres.
+unverified: Pas encore vérifié par une personne
+count:
+  one: "{n} élément affiché sur {total}"
+  other: "{n} éléments affichés sur {total}"
+
+skip: Aller à la liste des consultations
+at_a_glance: Aperçu
+search_and_filter: Rechercher et filtrer
+search_label: Rechercher titres, ministères, sujets
+search_placeholder: Rechercher titres, ministères, sujets…
+filter_type: Filtrer par type
+all_types: Tous les types
+filter_body: Filtrer par ministère
+all_bodies: Tous les ministères
+topics_label: Sujets
+monitored_items: Éléments suivis
+built: mis à jour le
+rss: fil RSS
+calendar: calendrier
+json: JSON
+digest: sommaire hebdomadaire
+sister_sites: "Sites frères :"
+footer_status: >-
+  Prototype. Les étiquettes sont calculées à partir des dates de clôture annoncées :
+  <b>Nouveau</b> = ouvert ou repéré au cours des 14 derniers jours ; <b>Se termine bientôt</b>
+  = clôture dans les 7 jours ; <b>Retiré</b> = date de clôture dépassée ou retiré. Les éléments
+  marqués ⚠ n'ont pas encore été vérifiés par une personne. Vérifiez toujours les échéances sur
+  la page officielle avant de soumettre.
+footer_credit: >-
+  © {year} {author}. Code sous licence {code_licence}, données sous {data_licence}. Une erreur ou
+  une suggestion ? Ouvrez une demande de tirage (pull request) sur le
+  <a href="{repo}" target="_blank" rel="noopener">dépôt d'origine</a>.
+
+add_cal: Ajouter l'échéance au calendrier
+ics_one: Calendrier Apple / fichier .ics
+deadline_prefix: "Échéance :"
+cal_unverified: Cette date n'a pas encore été vérifiée par une personne. Confirmez-la sur la page officielle.
+cal_tracked: "Suivi par {site} :"
+alarm_7: "{x} : clôture dans 7 jours"
+alarm_1: "{x} : clôture demain"
+all_cal: Ajouter toutes les échéances à mon calendrier
+close: Fermer
+all_title: Ajouter toutes les échéances à venir
+all_intro:
+  one: Une consultation a actuellement une date de clôture annoncée. L'abonnement la tient à jour à mesure que des éléments s'ajoutent, que les dates changent et que les éléments clos disparaissent.
+  other: "{n} consultations ont actuellement une date de clôture annoncée. L'abonnement les tient à jour à mesure que des éléments s'ajoutent, que les dates changent et que les éléments clos disparaissent."
+sub_head: S'abonner (mise à jour automatique)
+apple_sub: Calendrier Apple / autre
+copy_link: Copier le lien du fil
+copied: Lien copié
+sub_note: Google et Outlook consultent le fil toutes les quelques heures. Dans Google, le calendrier apparaît sous « Autres agendas ».
+once_head: Ou les ajouter une seule fois
+once_note: "Importation unique : les événements ne seront pas mis à jour si une échéance change."
+download:
+  one: Télécharger le fichier .ics (1 échéance)
+  other: "Télécharger le fichier .ics ({n} échéances)"
+cal_fine: Chaque événement occupe toute la journée de clôture, avec des rappels 7 jours et 1 jour à l'avance. Confirmez toujours l'échéance sur la page officielle.
+no_dated: "Aucun élément ouvert n'a de date de clôture annoncée pour le moment ; il n'y a donc rien à ajouter. Abonnez-vous quand même : les échéances apparaîtront dès leur publication."
+
+week_of: semaine du
+nothing: Rien cette semaine.
+sec_closing: Clôture dans les 7 jours
+sec_new: Nouveautés des 14 derniers jours
+sec_open: Toujours ouvert
+sec_retired: Récemment clôturé
+full_list: Liste complète

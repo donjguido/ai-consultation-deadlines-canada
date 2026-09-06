@@ -1,0 +1,16 @@
+{
+  "generated": "2026-09-06",
+  "self": {
+    "name": "AI Consultation Deadlines Canada",
+    "jurisdiction": "Canada",
+    "url": "https://donjguido.github.io/ai-consultation-deadlines-canada",
+    "repo": "https://github.com/donjguido/ai-consultation-deadlines-canada",
+    "languages": [
+      "en",
+      "fr"
+    ]
+  },
+  "forks": [],
+  "template": "https://github.com/donjguido/ai-consultation-deadlines-canada",
+  "note": "Sites built from the same template for other geographies. Add yours by pull request to data/forks.yaml in the template repo."
+}

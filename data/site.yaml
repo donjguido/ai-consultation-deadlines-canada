@@ -1,0 +1,144 @@
+# Site identity. Everything geography-specific that is not a source (data/sources.yaml)
+# or an item (data/items.json) lives here. A fork edits this file, or runs
+# `python -m pipeline.fork` to rewrite it, and touches no Python.
+#
+# UI strings that are the same for every site in a language (badge names, button
+# labels) live in pipeline/strings/<lang>.yaml; the `text:` block below holds the
+# prose that names this site and its jurisdiction.
+
+name: AI Consultation Deadlines Canada
+slug: ai-consultation-deadlines-canada        # feed generator, calendar UIDs, user agent
+url: https://donjguido.github.io/ai-consultation-deadlines-canada
+repo: https://github.com/donjguido/ai-consultation-deadlines-canada
+version: "1.1"
+author:
+  name: Julian Guidote
+  url: https://github.com/donjguido
+copyright_year: 2026
+
+jurisdiction:
+  name: Canada
+  level: federal            # adjective used in generated prose: federal, provincial, municipal, EU
+  schema_type: Country      # schema.org type for spatialCoverage: Country, State, City, AdministrativeArea
+
+languages:
+  primary: en               # the language the HTML is rendered in before any JavaScript runs
+  secondary: [fr]           # [] for a monolingual site; each code needs pipeline/strings/<code>.yaml
+locales:                    # BCP 47 tags for <html lang>, hreflang, feeds and date formatting
+  en: en-CA
+  fr: fr-CA
+
+licence:
+  code: MIT
+  data: CC BY 4.0
+  data_url: https://creativecommons.org/licenses/by/4.0/
+
+# Site-specific prose, one block per language. Every key in the primary block must
+# exist in every secondary block; the build falls back to the primary language if not.
+text:
+  en:
+    title: AI Consultation Deadlines Canada
+    page_title: AI Consultation Deadlines Canada — open federal consultations on AI
+    tagline: >-
+      Every federal consultation, call for briefs, Gazette notice, and funding call where
+      Canadians can shape how AI is governed. Updated every Monday and Thursday.
+    description: Federal consultations, calls for briefs, and other ways Canadians can shape AI safety.
+    channels: >-
+      federal consultations, calls for briefs, Canada Gazette comment periods, funding calls,
+      standards reviews and e-petitions
+    audience: people in Canada
+    cadence: Mondays and Thursdays
+    calendar_description: >-
+      Closing dates for federal consultations, calls for briefs, Gazette comment periods,
+      funding calls, standards reviews, and petitions where Canadians can shape how AI is governed.
+    dataset_name: Canadian federal AI-governance participation channels
+    government_licence: Open Government Licence - Canada
+  fr:
+    title: Échéances des consultations sur l'IA Canada
+    page_title: Échéances des consultations sur l'IA Canada — consultations fédérales ouvertes
+    tagline: >-
+      Chaque consultation fédérale, appel de mémoires, avis de la Gazette et appel de financement
+      où les Canadiens peuvent influencer la gouvernance de l'IA. Mis à jour tous les lundis et jeudis.
+    description: Consultations fédérales, appels de mémoires et autres façons pour les Canadiens d'influencer la gouvernance de l'IA.
+    channels: >-
+      consultations fédérales, appels de mémoires, périodes de commentaires de la Gazette du Canada,
+      appels de financement, examens de normes et pétitions électroniques
+    audience: les personnes au Canada
+    cadence: les lundis et jeudis
+    calendar_description: >-
+      Dates de clôture des consultations fédérales, appels de mémoires, périodes de commentaires
+      de la Gazette, appels de financement, examens de normes et pétitions où les Canadiens
+      peuvent influencer la gouvernance de l'IA.
+    dataset_name: Canaux fédéraux canadiens de participation à la gouvernance de l'IA
+    government_licence: Licence du gouvernement ouvert - Canada
+
+keywords:                   # schema.org Dataset keywords
+  - AI governance
+  - AI safety
+  - Canada
+  - public consultation
+  - regulation
+  - civic participation
+  - Canada Gazette
+  - e-petition
+
+# The classifier prompt in pipeline/classify.py is jurisdiction-neutral; this block is
+# the part that names the place. `scope` describes the channels being screened,
+# `place` is used in "in <place>", and `official_names` tells the model which
+# language conventions to follow for body and programme names. `style` is one
+# paragraph per secondary language on how to write it well.
+classifier:
+  scope: >-
+    Canadian federal government intake channels (public consultations, parliamentary calls
+    for briefs, Canada Gazette notices, funding calls, standards reviews, petitions)
+  place: Canada
+  official_names: >-
+    use the official French name of a department, committee or programme when one exists
+    (e.g. "Innovation, Sciences et Développement économique Canada", "Comité permanent de
+    l'industrie et de la technologie de la Chambre des communes")
+  style:
+    fr: >-
+      Write Canadian French of the same quality as the English — idiomatic prose a francophone
+      civil servant would recognise, not a word-for-word calque. Write dates in French style
+      (23 septembre 2026) and use French typography (« » for quotes, a space before : ; ! ?).
+
+# Regex fragments joined with | into the keyword pre-filter in pipeline/fetch.py. Broad on
+# purpose: false positives are cheap (the classifier rejects them), false negatives are
+# invisible. Include every language your sources publish in.
+prefilter_keywords:
+  - artificial intelligence
+  - intelligence artificielle
+  - \bAI\b
+  - \bIA\b
+  - machine learning
+  - apprentissage automatique
+  - algorithm
+  - algorithme
+  - automated decision
+  - d[ée]cision automatis
+  - deepfake
+  - hypertrucage
+  - synthetic (media|content)
+  - biometric
+  - biom[ée]tri
+  - facial recognition
+  - reconnaissance faciale
+  - large language
+  - mod[èe]le de langage
+  - chatbot
+  - agent(ic)?\b
+  - compute
+  - data cent(er|re)
+  - privacy
+  - vie priv[ée]e
+  - digital safety
+  - s[ée]curit[ée] num[ée]rique
+  - online harm
+  - frontier model
+  - AI safety
+  - s[ûu]ret[ée] de l'IA
+  - robot
+  - autonomous
+  - autonome
+  - generative
+  - g[ée]n[ée]rative

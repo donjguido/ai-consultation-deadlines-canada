@@ -1,17 +1,33 @@
-# Federal intake channels monitored. `kind` selects the fetcher in pipeline/fetch.py.
+# Federal intake channels monitored. `kind` selects the fetcher in pipeline/fetch.py:
+# csv, json_api, rss, sitemap (generic, configured entirely here) or html_index (a
+# CSS selector over an index page). See docs/FORKING.md for the fields each kind takes.
 # Tier 1 = machine-readable, cheap, high yield. Tier 2 = HTML scraping, brittle.
 # Tier 3 = manual watch list reviewed weekly by the human curator.
+#
+# The keyword pre-filter every fetcher applies lives in data/site.yaml (prefilter_keywords).
 
 sources:
   # ---- Tier 1: machine-readable -------------------------------------------
   - key: consulting_with_canadians
-    kind: consulting_with_canadians
+    kind: csv
     tier: 1
     body: "Consulting with Canadians (Privy Council Office)"
     portal: https://www.canada.ca/en/government/system/consultations/consultingcanadians.html
     dataset: https://open.canada.ca/data/en/dataset/7c03f039-3753-4093-af60-74b0f7b2385d
     # "last two years" CSV, ~900 rows; status O=open, P=planned, C=completed
     csv: https://open.canada.ca/static/current_consultations_open.csv
+    id_prefix: cwc-
+    open_statuses: [O, P]
+    columns:
+      id: registration_number
+      title: title_en
+      title_fr: title_fr
+      url: profile_page_en
+      opened: start_date
+      closes: end_date
+      status: status
+      body: owner_org_title
+      text: [title_en, title_fr, description_en, description_fr, subjects]
     notes: Bilingual, has start/end dates and profile links. Coverage is only what departments register; committees, petitions and standards bodies are absent.
 
   - key: gazette_part1

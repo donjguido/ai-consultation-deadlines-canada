@@ -1,0 +1,12 @@
+# Sister sites built from this template for other geographies. Every build publishes
+# this list as forks.json, links it from llms.txt and lists it in the site footer, so
+# the family of sites can find each other and an agent can discover them all from one
+# llms.txt. Built one? Open a pull request adding it here.
+#
+# Only one entry is required per site. `languages` is informational.
+forks: []
+#  - name: AI Consultation Deadlines Ontario
+#    jurisdiction: Ontario, Canada
+#    url: https://example.github.io/ai-consultation-deadlines-ontario
+#    repo: https://github.com/example/ai-consultation-deadlines-ontario
+#    languages: [en, fr]

@@ -7,6 +7,11 @@ opened?, closes?}. The classifier decides whether it belongs on the monitor,
 writes the plain-language fields, and merges the result into items.json.
 Items already present are not re-classified (saves cost); only their
 closing date and retired flag are refreshed.
+
+The prompt is jurisdiction-neutral. The part that names the place, the channels
+being screened and the language conventions comes from the `classifier:` and
+`languages:` blocks of data/site.yaml, so a fork changes the prompt by editing
+that file rather than this one.
 """
 from __future__ import annotations
 
@@ -14,9 +19,11 @@ import json
 import sys
 from datetime import date
 from pathlib import Path
+from typing import Any
 
 import anthropic
 
+from .config import PRIMARY, SECONDARY, SITE, TRANSLATED_FIELDS, field as lang_field, strings
 from .models import Classification, Item
 
 TOPICS = [
@@ -26,35 +33,60 @@ TOPICS = [
     "safety-institute", "employment", "finance", "critical-infrastructure",
 ]
 
-SYSTEM = f"""You screen Canadian federal government intake channels (public consultations,
-parliamentary calls for briefs, Canada Gazette notices, funding calls, standards reviews,
-petitions) for a public monitor that helps Canadians get involved in shaping AI safety
-and AI governance.
+MODEL = "claude-opus-5"
+
+
+def _lang_name(lang: str) -> str:
+    return strings(lang).get("language_name_en") or strings(lang).get("language_name") or lang
+
+
+def build_system_prompt(site: dict = SITE, topics: list[str] = TOPICS) -> str:
+    cfg = site.get("classifier", {})
+    place = cfg.get("place") or site["jurisdiction"]["name"]
+    scope = cfg.get("scope") or f"{site['jurisdiction']['level']} government intake channels in {place}"
+    primary_name = _lang_name(PRIMARY)
+
+    parts = [
+        f"""You screen {scope} for a public monitor that helps people in {place} get involved in
+shaping AI safety and AI governance.
 
 Mark an item relevant if a member of the public, researcher, or civil-society group could
 plausibly influence how AI systems are governed, regulated, procured, funded, or made safe in
-Canada by participating. Include items that are not labelled "AI" but clearly bear on it
+{place} by participating. Include items that are not labelled "AI" but clearly bear on it
 (e.g. a privacy bill consultation, a deepfake election-integrity study, a medical-device
 software rule). Exclude items where AI is only incidental.
 
-Write for a general audience. Be concrete about how to participate: name the form, email
-address, or portal if the text gives one. Use only these topic tags: {", ".join(TOPICS)}.
-If a closing date is stated, return it as ISO 8601; otherwise leave it null.
+Write for a general audience, in {primary_name}. Be concrete about how to participate: name the
+form, email address, or portal if the text gives one. Use only these topic tags: {", ".join(topics)}.
+If a closing date is stated, return it as ISO 8601; otherwise leave it null."""
+    ]
 
-The monitor is bilingual, so every item ships in both official languages. Write the English
-fields first, then write summary_fr, why_it_matters_fr and how_to_participate_fr as Canadian
-French of the same quality — idiomatic prose a francophone civil servant would recognise, not
-a word-for-word calque. Keep proper nouns, programme names, portal names, email addresses and
-dates accurate; use the official French name of a department, committee or programme when one
-exists (e.g. "Innovation, Sciences et Développement économique Canada", "Comité permanent de
-l'industrie et de la technologie de la Chambre des communes"). Write dates in French style
-(23 septembre 2026) and use French typography (« » for quotes, a space before : ; ! ?).
+    if SECONDARY:
+        names = ", ".join(_lang_name(x) for x in SECONDARY)
+        parts.append(
+            f"The monitor is multilingual, so every item ships in {primary_name} and {names}. "
+            f"Write the {primary_name} fields first, then the translated fields for each other language."
+        )
+        official = cfg.get("official_names")
+        for lang in SECONDARY:
+            name = _lang_name(lang)
+            style = (cfg.get("style") or {}).get(lang) or (
+                f"Write idiomatic {name} of the same quality as the {primary_name}, not a word-for-word calque."
+            )
+            parts.append(
+                f"For the {name} fields ({', '.join(lang_field(b, lang) for b in ('summary', 'why_it_matters', 'how_to_participate'))}): "
+                f"{style.strip()} Keep proper nouns, programme names, portal names, email addresses and dates accurate"
+                + (f"; {official.strip()}" if official else "") + "."
+            )
+            parts.append(
+                f"For {lang_field('title', lang)} and {lang_field('body', lang)}: use the official {name} title and body "
+                f"name if the page text supplies one; otherwise give a faithful {name} rendering. Leave "
+                f"{lang_field('title', lang)} null only for a title that has no sensible {name} form."
+            )
+    return "\n\n".join(parts)
 
-For title_fr and body_fr: use the official French title and body name if the page text supplies
-one; otherwise give a faithful French rendering. Leave title_fr null only for a title that has
-no sensible French form."""
 
-MODEL = "claude-opus-5"
+SYSTEM = build_system_prompt()
 
 
 def classify_one(client: anthropic.Anthropic, cand: dict) -> Classification:
@@ -74,7 +106,24 @@ def classify_one(client: anthropic.Anthropic, cand: dict) -> Classification:
         }],
         output_format=Classification,
     )
+    assert resp.parsed_output is not None, "model returned no structured output"
     return resp.parsed_output
+
+
+def to_item(cand: dict, c: Classification, today: date) -> Item:
+    """Merge a fetcher candidate and its classification into a store record."""
+    data: dict[str, Any] = dict(
+        id=cand["id"], title=cand["title"], body=cand.get("body", ""), type=c.type, url=cand["url"],
+        opened=cand.get("opened"), closes=cand.get("closes") or c.closes, first_seen=today,
+        summary=c.summary, why_it_matters=c.why_it_matters, how_to_participate=c.how_to_participate,
+        topics=c.topics, relevance=c.relevance, source=cand["source"],
+    )
+    for lang in SECONDARY:
+        for base in TRANSLATED_FIELDS:
+            f = lang_field(base, lang)
+            # A fetcher may already carry an official translation (a bilingual CSV); prefer it.
+            data[f] = cand.get(f) or getattr(c, f, None)
+    return Item(**data)
 
 
 def main(candidates_path: str, items_path: str, threshold: float = 0.5) -> None:
@@ -95,16 +144,7 @@ def main(candidates_path: str, items_path: str, threshold: float = 0.5) -> None:
         c = classify_one(client, cand)
         if not c.relevant or c.relevance < threshold:
             continue
-        item = Item(
-            id=cid, title=cand["title"], title_fr=cand.get("title_fr") or c.title_fr,
-            body=cand.get("body", ""), body_fr=c.body_fr, type=c.type, url=cand["url"],
-            opened=cand.get("opened"), closes=cand.get("closes") or c.closes, first_seen=today,
-            summary=c.summary, summary_fr=c.summary_fr,
-            why_it_matters=c.why_it_matters, why_it_matters_fr=c.why_it_matters_fr,
-            how_to_participate=c.how_to_participate, how_to_participate_fr=c.how_to_participate_fr,
-            topics=c.topics, relevance=c.relevance, source=cand["source"],
-        )
-        existing[cid] = json.loads(item.model_dump_json())
+        existing[cid] = json.loads(to_item(cand, c, today).model_dump_json())
         added += 1
 
     items_file.write_text(json.dumps(list(existing.values()), indent=2, ensure_ascii=False), encoding="utf-8")

@@ -1,9 +1,9 @@
 # AI Consultation Deadlines Canada
-# A public register of Canadian federal channels for shaping AI governance.
+# A public register of federal channels in Canada for shaping AI governance.
 #
 # Crawling, indexing and machine reading are welcome, AI systems included.
-# Data is CC BY 4.0: reuse it with attribution to the Canadian AI Governance
-# Monitor, and link to each item's official source page rather than replacing it.
+# Data is CC BY 4.0: reuse it with attribution to AI Consultation Deadlines Canada,
+# and link to each item's official source page rather than replacing it.
 # Underlying government content is under the Open Government Licence - Canada.
 #
 # Prefer the structured outputs over scraping the HTML:

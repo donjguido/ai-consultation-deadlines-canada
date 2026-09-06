@@ -16,7 +16,7 @@ It reads the same `items.json` the website publishes, recomputes each item's sta
 | `list_topics()` | Topic tags in use, with open and total counts |
 | `monitor_status()` | Counts by status, data source, fetch date, status rules |
 
-`lang` is `en` (default) or `fr`. French fields are returned when the store has them; otherwise English falls through.
+`lang` is any language code configured in `data/site.yaml` (`en` and `fr` here; the primary is the default). Translated fields are returned when the store has them; otherwise the primary language falls through. An unconfigured code is an error.
 
 ## Resources
 
@@ -25,7 +25,7 @@ It reads the same `items.json` the website publishes, recomputes each item's sta
 | `monitor://items` | All items as JSON, status recomputed for today |
 | `monitor://items/{id}` | One item as JSON |
 | `monitor://digest` | The latest weekly digest (Markdown, English) |
-| `monitor://digest-fr` | The same digest in French |
+| `monitor://digest-<lang>` | The same digest in each secondary language (`monitor://digest-fr` here) |
 
 ## Install
 

@@ -1,6 +1,6 @@
 # Data-source inventory
 
-Verified 6 September 2026 unless noted. Tiers: 1 = machine-readable, cheap, high yield; 2 = HTML scraping, brittle; 3 = manual weekly watch. The machine-readable config lives in `data/sources.yaml`.
+Verified 6 September 2026 unless noted. Fetcher kinds (`csv`, `json_api`, `rss`, `sitemap`, `html_index`) and their YAML fields are documented in [FORKING.md](FORKING.md). Tiers: 1 = machine-readable, cheap, high yield; 2 = HTML scraping, brittle; 3 = manual weekly watch. The machine-readable config lives in `data/sources.yaml`.
 
 | Source | Tier | Format | Fields | Cadence | Languages | Status in prototype | Notes |
 |---|---|---|---|---|---|---|---|

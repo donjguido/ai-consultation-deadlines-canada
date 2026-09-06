@@ -10,7 +10,7 @@ from mcp import Client  # noqa: E402
 
 from mcp_server import server  # noqa: E402
 from pipeline import build  # noqa: E402
-from tests.conftest import TODAY  # noqa: E402
+from tests.conftest import LANG2, PRIMARY, SECONDARY, TODAY, translated  # noqa: E402
 
 TOOLS = {"list_open", "closing_soon", "search", "get_item", "list_topics", "monitor_status"}
 
@@ -41,6 +41,7 @@ def test_server_serves_the_store(site_items):
             # facts are asserted: the flagged item is retired, the far-future one is open.
             assert status["counts"]["retired"] >= 1
             assert status["counts"]["open"] >= 1
+            assert status["site"] == build.SITE_URL + "/"
 
             open_items = (await client.call_tool("list_open", {"limit": 50})).structured_content["result"]
             ids = {r["id"] for r in open_items}
@@ -50,10 +51,16 @@ def test_server_serves_the_store(site_items):
             hits = (await client.call_tool("search", {"query": "consultation"})).structured_content["result"]
             assert hits
 
-            detail = (await client.call_tool("get_item", {"id": "brand-new", "lang": "fr"})).structured_content
-            assert detail["title"] == "Consultation de test"
-            fallback = (await client.call_tool("get_item", {"id": "untranslated", "lang": "fr"})).structured_content
-            assert fallback["title"].startswith("Test consultation")
+            detail = (await client.call_tool("get_item", {"id": "brand-new", "lang": PRIMARY})).structured_content
+            assert detail["title"].startswith("Test consultation")
+            if LANG2:
+                detail = (await client.call_tool("get_item", {"id": "brand-new", "lang": LANG2})).structured_content
+                assert detail["title"] == translated("title")
+                fallback = (await client.call_tool("get_item", {"id": "untranslated", "lang": LANG2})).structured_content
+                assert fallback["title"].startswith("Test consultation")
+
+            unknown = await client.call_tool("get_item", {"id": "brand-new", "lang": "xx"})
+            assert unknown.is_error, "an unconfigured language code must be rejected"
 
             bad = await client.call_tool("get_item", {"id": "does-not-exist"})
             assert bad.is_error
@@ -62,6 +69,9 @@ def test_server_serves_the_store(site_items):
             assert {t["topic"] for t in topics} >= {"privacy", "standards"}
 
             res = await client.list_resources()
-            assert any(str(r.uri) == "monitor://items" for r in res.resources)
+            uris = {str(r.uri) for r in res.resources}
+            assert "monitor://items" in uris and "monitor://digest" in uris
+            for lang in SECONDARY:
+                assert f"monitor://digest-{lang}" in uris
 
     _run(go())

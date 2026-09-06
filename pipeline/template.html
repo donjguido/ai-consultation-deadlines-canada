@@ -1,40 +1,30 @@
 <!doctype html>
-<html lang="en-CA">
+<html lang="__LOCALE__">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>AI Consultation Deadlines Canada — open federal consultations on AI</title>
+<title data-i18n="page_title">Page title</title>
 <meta name="description" content="__DESC__">
-<meta name="generator" content="ai-consultation-deadlines-canada pipeline">
+<meta name="generator" content="__SLUG__ pipeline">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="theme-color" content="#F4F6F8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121A20" media="(prefers-color-scheme: dark)">
-<link rel="canonical" href="__SITE_URL__/">
-<link rel="alternate" hreflang="en-ca" href="__SITE_URL__/">
-<link rel="alternate" hreflang="fr-ca" href="__SITE_URL__/?lang=fr">
-<link rel="alternate" hreflang="x-default" href="__SITE_URL__/">
-<link rel="alternate" type="application/rss+xml" title="AI Consultation Deadlines Canada — RSS (English)" href="feed.xml">
-<link rel="alternate" type="application/rss+xml" hreflang="fr-ca" title="Échéances des consultations sur l'IA Canada — fil RSS" href="feed-fr.xml">
-<link rel="alternate" type="application/feed+json" title="AI Consultation Deadlines Canada — JSON Feed" href="feed.json">
-<link rel="alternate" type="application/json" title="AI Consultation Deadlines Canada — full records" href="items.json">
-<link rel="alternate" type="text/markdown" title="AI Consultation Deadlines Canada — every item as Markdown" href="llms-full.txt">
+<!--__HEAD_LINKS__-->
 <link rel="sitemap" type="application/xml" href="sitemap.xml">
-<link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+<link rel="license" href="__LICENCE_URL__">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%231F5F45'/%3E%3Cg%20fill='%23fff'%3E%3Crect%20x='7'%20y='18'%20width='4'%20height='8'%20rx='1'/%3E%3Crect%20x='14'%20y='12'%20width='4'%20height='14'%20rx='1'/%3E%3Crect%20x='21'%20y='6'%20width='4'%20height='20'%20rx='1'/%3E%3C/g%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="AI Consultation Deadlines Canada">
-<meta property="og:title" content="AI Consultation Deadlines Canada">
+<meta property="og:site_name" data-i18n-content="title" content="Site name">
+<meta property="og:title" data-i18n-content="title" content="Site name">
 <meta property="og:description" content="__DESC__">
 <meta property="og:url" content="__SITE_URL__/">
-<meta property="og:locale" content="en_CA">
-<meta property="og:locale:alternate" content="fr_CA">
 <meta property="og:updated_time" content="__BUILT__">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AI Consultation Deadlines Canada">
+<meta name="twitter:title" data-i18n-content="title" content="Site name">
 <meta name="twitter:description" content="__DESC__">
 <meta name="dcterms.modified" content="__BUILT__">
-<meta name="dcterms.spatial" content="Canada">
+<meta name="dcterms.spatial" content="__PLACE__">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -74,6 +64,7 @@ h1{font-family:var(--display);font-weight:500;font-size:2rem;line-height:1.1;mar
 .meta{font-family:var(--mono);font-size:.78rem;color:var(--ink-3);text-align:right}
 .meta a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--rule)}
 .lang{margin-left:12px;font-family:var(--body);font-size:.85rem}
+.lang:empty{display:none}
 .lang button{background:none;border:1px solid var(--rule);border-radius:3px;color:var(--ink-2);padding:2px 8px;cursor:pointer;font:inherit}
 .lang button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 
@@ -138,6 +129,7 @@ dialog#calbox::backdrop{background:rgba(10,16,22,.45)}
 .empty{padding:40px 0;color:var(--ink-3);text-align:center}
 footer{margin:36px 0 40px;font-size:.85rem;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:16px}
 footer p{max-width:70ch}
+footer .forks a{margin-right:4px}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--new);outline-offset:2px}
 @media (max-width:720px){
   .wrap{padding:0 16px}
@@ -181,44 +173,41 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 <!--__JSONLD__-->
 </head>
 <body>
-<a class="skip" href="#items" data-en="Skip to the list of consultations" data-fr="Aller à la liste des consultations">Skip to the list of consultations</a>
+<a class="skip" href="#items" data-i18n="skip">Skip to the list</a>
 
 <header><div class="wrap">
   <div>
-    <h1 data-en="AI Consultation Deadlines Canada" data-fr="Échéances des consultations sur l'IA Canada">AI Consultation Deadlines Canada</h1>
-    <p class="tagline" data-en="Every federal consultation, call for briefs, Gazette notice, and funding call where Canadians can shape how AI is governed. Updated every Mondays and Thursdays."
-       data-fr="Chaque consultation fédérale, appel de mémoires, avis de la Gazette et appel de financement où les Canadiens peuvent influencer la gouvernance de l'IA. Mis à jour tous les lundis et jeudis.">Every federal consultation, call for briefs, Gazette notice, and funding call where Canadians can shape how AI is governed. Updated every Mondays and Thursdays.</p>
+    <h1 data-i18n="title">Site name</h1>
+    <p class="tagline" data-i18n="tagline">Tagline</p>
   </div>
   <div class="meta">
-    <span class="links"
-      data-en="built __BUILT__ · &lt;a href=&quot;feed.xml&quot;&gt;RSS&lt;/a&gt; · &lt;a href=&quot;deadlines.ics&quot;&gt;calendar&lt;/a&gt; · &lt;a href=&quot;items.json&quot;&gt;JSON&lt;/a&gt; · &lt;a href=&quot;digest.md&quot;&gt;weekly digest&lt;/a&gt; · &lt;a href=&quot;llms.txt&quot;&gt;llms.txt&lt;/a&gt;"
-      data-fr="mis à jour le __BUILT__ · &lt;a href=&quot;feed-fr.xml&quot;&gt;fil RSS&lt;/a&gt; · &lt;a href=&quot;deadlines-fr.ics&quot;&gt;calendrier&lt;/a&gt; · &lt;a href=&quot;items.json&quot;&gt;JSON&lt;/a&gt; · &lt;a href=&quot;digest-fr.md&quot;&gt;sommaire hebdomadaire&lt;/a&gt; · &lt;a href=&quot;llms.txt&quot;&gt;llms.txt&lt;/a&gt;">built __BUILT__ · <a href="feed.xml">RSS</a> · <a href="deadlines.ics">calendar</a> · <a href="items.json">JSON</a> · <a href="digest.md">weekly digest</a> · <a href="llms.txt">llms.txt</a></span>
-    <span class="lang" role="group" aria-label="Language / Langue"><button id="en" type="button" aria-pressed="true" lang="en">EN<span class="sr-only"> — English</span></button> <button id="fr" type="button" aria-pressed="false" lang="fr">FR<span class="sr-only"> — Français</span></button></span>
+    <span class="links" data-i18n="links_line">built __BUILT__</span>
+    <span class="lang" id="lang-toggle" role="group" aria-label="Language"><!--__LANG_BUTTONS__--></span>
   </div>
 </div></header>
 
 <main class="wrap" id="main">
   <section aria-labelledby="glance-h">
-    <h2 id="glance-h" class="sr-only" data-en="At a glance" data-fr="Aperçu">At a glance</h2>
+    <h2 id="glance-h" class="sr-only" data-i18n="at_a_glance">At a glance</h2>
     <div class="stats" id="stats"><!--__STATS__--></div>
   </section>
 
   <section aria-labelledby="filters-h">
-    <h2 id="filters-h" class="sr-only" data-en="Search and filter" data-fr="Rechercher et filtrer">Search and filter</h2>
+    <h2 id="filters-h" class="sr-only" data-i18n="search_and_filter">Search and filter</h2>
     <div class="filters" id="filters" role="search">
-      <label class="sr-only" for="q" data-en="Search titles, departments, topics" data-fr="Rechercher titres, ministères, sujets">Search titles, departments, topics</label>
-      <input type="search" id="q" placeholder="Search titles, departments, topics…">
-      <label class="sr-only" for="type" data-en="Filter by type" data-fr="Filtrer par type">Filter by type</label>
-      <select id="type"><option value="">All types</option></select>
-      <label class="sr-only" for="body" data-en="Filter by department" data-fr="Filtrer par ministère">Filter by department</label>
-      <select id="body"><option value="">All departments</option></select>
-      <span id="topics" role="group" aria-label="Topics"></span>
-      <button class="cal-all" id="cal-all" type="button" aria-haspopup="dialog">📅 Add all deadlines to my calendar</button>
+      <label class="sr-only" for="q" data-i18n="search_label">Search</label>
+      <input type="search" id="q" data-i18n-placeholder="search_placeholder" placeholder="Search…">
+      <label class="sr-only" for="type" data-i18n="filter_type">Filter by type</label>
+      <select id="type"><option value="" data-i18n="all_types">All types</option></select>
+      <label class="sr-only" for="body" data-i18n="filter_body">Filter by body</label>
+      <select id="body"><option value="" data-i18n="all_bodies">All bodies</option></select>
+      <span id="topics" role="group" data-i18n-aria-label="topics_label" aria-label="Topics"></span>
+      <button class="cal-all" id="cal-all" type="button" aria-haspopup="dialog">📅 <span data-i18n="all_cal">Add all deadlines to my calendar</span></button>
     </div>
   </section>
 
   <section aria-labelledby="items-h" id="items">
-    <h2 id="items-h" class="sr-only" data-en="Monitored items" data-fr="Éléments suivis">Monitored items</h2>
+    <h2 id="items-h" class="sr-only" data-i18n="monitored_items">Monitored items</h2>
     <p class="count" id="count" role="status" aria-live="polite">__COUNT__</p>
     <div class="list" id="list"><!--__ITEMS__--></div>
   </section>
@@ -227,102 +216,56 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 </main>
 
 <footer class="wrap">
-    <p data-en="Prototype. Status badges are computed from stated closing dates: &lt;b&gt;New&lt;/b&gt; = opened or first seen in the last 14 days; &lt;b&gt;Closing soon&lt;/b&gt; = closes within 7 days; &lt;b&gt;Retired&lt;/b&gt; = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting."
-       data-fr="Prototype. Les étiquettes sont calculées à partir des dates de clôture annoncées : &lt;b&gt;Nouveau&lt;/b&gt; = ouvert ou repéré au cours des 14 derniers jours ; &lt;b&gt;Se termine bientôt&lt;/b&gt; = clôture dans les 7 jours ; &lt;b&gt;Retiré&lt;/b&gt; = date de clôture dépassée ou retiré. Les éléments marqués ⚠ n'ont pas encore été vérifiés par une personne. Vérifiez toujours les échéances sur la page officielle avant de soumettre.">Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting.</p>
-    <p data-en="© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the &lt;a href=&quot;https://github.com/donjguido/ai-consultation-deadlines-canada&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;original repo&lt;/a&gt;."
-       data-fr="© 2026 Julian Guidote. Code sous licence MIT, données sous CC BY 4.0. Une erreur ou une suggestion ? Ouvrez une demande de tirage (pull request) sur le &lt;a href=&quot;https://github.com/donjguido/ai-consultation-deadlines-canada&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;dépôt d'origine&lt;/a&gt;.">© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href="https://github.com/donjguido/ai-consultation-deadlines-canada" target="_blank" rel="noopener">original repo</a>.</p>
+    <p data-i18n="footer_status">Status note</p>
+    <!--__FORKS__-->
+    <p data-i18n="footer_credit">Credit</p>
 </footer>
 
 <script>
 const DATA = /*__DATA__*/[];
-const L = {
-  en:{new:"New",closing_soon:"Closing soon",open:"Open",retired:"Retired",
-      hint:{new:"opened in last 14 days",closing_soon:"deadline within 7 days",open:"accepting input now",retired:"past deadline or withdrawn"},
-      closes:"Closes",closed:"Closed",opened:"Opened",noDeadline:"No stated deadline",daysLeft:d=>d===0?"closes today":d===1?"1 day left":`${d} days left`,
-      why:"Why it matters:",how:"How to participate:",empty:"Nothing matches these filters.",
-      unverified:"Not yet checked by a human",
-      addCal:"Add deadline to calendar",icsOne:"Apple Calendar / .ics file",
-      deadlinePrefix:"Deadline:",calUnverified:"This date has not been checked by a human yet. Confirm it on the official page.",
-      calTracked:"Tracked by the AI Consultation Deadlines Canada:",calName:"AI Consultation Deadlines Canada",
-      alarm7:x=>x+" closes in 7 days",alarm1:x=>x+" closes tomorrow",
-      allCal:"Add all deadlines to my calendar",close:"Close",
-      allTitle:"Add every upcoming deadline",
-      allIntro:n=>n===1?"One consultation currently has a stated closing date. Subscribing keeps it in sync as items are added, dates change, and closed items drop off."
-                       :`${n} consultations currently have stated closing dates. Subscribing keeps them in sync as items are added, dates change, and closed items drop off.`,
-      subHead:"Subscribe (stays up to date)",appleSub:"Apple Calendar / other",copyLink:"Copy feed link",copied:"Link copied",
-      subNote:"Google and Outlook check the feed every few hours. In Google, the calendar appears under “Other calendars”.",
-      onceHead:"Or add them once",
-      onceNote:"A one-time import: the events will not update if a deadline moves.",
-      download:n=>`Download .ics (${n} deadline${n===1?"":"s"})`,
-      calFine:"Each event is all-day on the closing date, with reminders 7 days and 1 day before. Always confirm the deadline on the official page.",
-      noDated:"No open item currently has a stated closing date, so there is nothing to add yet. Subscribe anyway and deadlines will appear as they are published.",
-      type:{consultation:"Consultation",call_for_briefs:"Call for briefs",gazette_notice:"Gazette notice",funding_call:"Funding call",standards_review:"Standards review",petition:"Petition",other:"Other"}},
-  fr:{new:"Nouveau",closing_soon:"Se termine bientôt",open:"Ouvert",retired:"Retiré",
-      hint:{new:"ouvert depuis 14 jours ou moins",closing_soon:"échéance dans 7 jours",open:"accepte des contributions",retired:"échéance dépassée ou retiré"},
-      closes:"Clôture",closed:"Clôturé",opened:"Ouvert le",noDeadline:"Aucune échéance annoncée",daysLeft:d=>d===0?"clôture aujourd'hui":d===1?"1 jour restant":`${d} jours restants`,
-      why:"Pourquoi c'est important :",how:"Comment participer :",empty:"Aucun résultat pour ces filtres.",
-      unverified:"Pas encore vérifié par une personne",
-      addCal:"Ajouter l'échéance au calendrier",icsOne:"Calendrier Apple / fichier .ics",
-      deadlinePrefix:"Échéance :",calUnverified:"Cette date n'a pas encore été vérifiée par une personne. Confirmez-la sur la page officielle.",
-      calTracked:"Suivi par Échéances des consultations sur l'IA Canada :",calName:"Échéances des consultations sur l'IA Canada",
-      alarm7:x=>x+" : clôture dans 7 jours",alarm1:x=>x+" : clôture demain",
-      allCal:"Ajouter toutes les échéances à mon calendrier",close:"Fermer",
-      allTitle:"Ajouter toutes les échéances à venir",
-      allIntro:n=>n===1?"Une consultation a actuellement une date de clôture annoncée. L'abonnement la tient à jour à mesure que des éléments s'ajoutent, que les dates changent et que les éléments clos disparaissent."
-                       :`${n} consultations ont actuellement une date de clôture annoncée. L'abonnement les tient à jour à mesure que des éléments s'ajoutent, que les dates changent et que les éléments clos disparaissent.`,
-      subHead:"S'abonner (mise à jour automatique)",appleSub:"Calendrier Apple / autre",copyLink:"Copier le lien du fil",copied:"Lien copié",
-      subNote:"Google et Outlook consultent le fil toutes les quelques heures. Dans Google, le calendrier apparaît sous « Autres agendas ».",
-      onceHead:"Ou les ajouter une seule fois",
-      onceNote:"Importation unique : les événements ne seront pas mis à jour si une échéance change.",
-      download:n=>`Télécharger le fichier .ics (${n} échéance${n===1?"":"s"})`,
-      calFine:"Chaque événement occupe toute la journée de clôture, avec des rappels 7 jours et 1 jour à l'avance. Confirmez toujours l'échéance sur la page officielle.",
-      noDated:"Aucun élément ouvert n'a de date de clôture annoncée pour le moment ; il n'y a donc rien à ajouter. Abonnez-vous quand même : les échéances apparaîtront dès leur publication.",
-      type:{consultation:"Consultation",call_for_briefs:"Appel de mémoires",gazette_notice:"Avis de la Gazette",funding_call:"Appel de financement",standards_review:"Examen de norme",petition:"Pétition",other:"Autre"}}
-};
-// Topic tags come from the closed TOPICS list in pipeline/classify.py; French labels for display only.
-const TOPIC_FR={
-  "frontier-models":"modèles de pointe","privacy":"vie privée","copyright":"droit d'auteur",
-  "procurement":"approvisionnement","deepfakes":"hypertrucages","biometrics":"biométrie",
-  "defence":"défense","health":"santé","children":"enfance","elections":"élections",
-  "competition":"concurrence","standards":"normalisation","public-service":"fonction publique",
-  "research-funding":"financement de la recherche","international":"international",
-  "safety-institute":"institut de la sécurité de l'IA","employment":"emploi","finance":"finance",
-  "critical-infrastructure":"infrastructures essentielles"
-};
-const topicLabel=x=>lang==="fr"?(TOPIC_FR[x]||x):x;
-const MOIS=["janv.","févr.","mars","avr.","mai","juin","juill.","août","sept.","oct.","nov.","déc."];
-// ISO dates read as-is in English; French readers get the conventional long form.
-const fmtDate=iso=>{if(lang!=="fr")return iso;const[y,m,d]=iso.split("-").map(Number);return `${d===1?"1er":d} ${MOIS[m-1]} ${y}`};
-// French text falls back to English so a not-yet-translated item is still readable.
-const fr=(r,f)=>(lang==="fr"&&r[f+"_fr"])?r[f+"_fr"]:r[f];
-const COLOR={new:"var(--new)",closing_soon:"var(--soon)",open:"var(--open)",retired:"var(--retired)"};
-const BG={new:"var(--new-bg)",closing_soon:"var(--soon-bg)",open:"var(--open-bg)",retired:"var(--retired-bg)"};
+const CFG = /*__CONFIG__*/{};
+// UI strings per language, from pipeline/strings/<lang>.yaml merged with the site's own
+// text in data/site.yaml. build.py fills the same strings into the HTML above for the
+// primary language, so the first paint needs no JavaScript.
+const L = /*__L__*/{};
+const SITE=CFG.site, PRIMARY=CFG.primary, LANGS=CFG.langs;
 let statusFilter="", topicFilter="";
-// ?lang=fr wins over the stored choice, so a French URL is shareable and crawlable.
+// ?lang=<code> wins over the stored choice, so a translated URL is shareable and crawlable.
 let lang=new URLSearchParams(location.search).get("lang");
-if(lang!=="fr"&&lang!=="en"){lang=null;try{lang=localStorage.getItem("lang")}catch(e){}}
-lang=lang==="fr"?"fr":"en";
+if(!LANGS.includes(lang)){lang=null;try{lang=localStorage.getItem("lang")}catch(e){}}
+if(!LANGS.includes(lang))lang=PRIMARY;
 
 const $=s=>document.querySelector(s);
 function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function primary(r){return r.badges.includes("retired")?"retired":r.badges.includes("closing_soon")?"closing_soon":r.badges.includes("new")?"new":"open"}
+const fmt=(s,o)=>String(s).replace(/\{(\w+)\}/g,(m,k)=>o[k]??m);
+// zero/one/other forms, formatted with {n} and anything else passed in.
+const plural=(forms,n,o={})=>{if(typeof forms==="string")return fmt(forms,{n,...o});
+  const f=(n===0&&forms.zero)||(n===1&&forms.one)||forms.other;return fmt(f,{n,...o})};
+// Translated text falls back to the primary language so a not-yet-translated item is still readable.
+const tr=(r,f)=>(lang!==PRIMARY&&r[f+"_"+lang])?r[f+"_"+lang]:r[f];
+const topicLabel=x=>(L[lang].topic||{})[x]||x;
+// ISO dates read as-is where the strings file says so; otherwise the locale's short form.
+const fmtDate=iso=>{if(L[lang].date_style!=="long")return iso;const[y,m,d]=iso.split("-").map(Number);
+  return new Intl.DateTimeFormat(CFG.locales[lang]||lang,{day:"numeric",month:"short",year:"numeric"}).format(new Date(y,m-1,d))};
+const COLOR={new:"var(--new)",closing_soon:"var(--soon)",open:"var(--open)",retired:"var(--retired)"};
+const BG={new:"var(--new-bg)",closing_soon:"var(--soon-bg)",open:"var(--open-bg)",retired:"var(--retired-bg)"};
 
 // ---- add to calendar -------------------------------------------------------
 // Google and Outlook take one event per URL, so single deadlines go through
 // their web templates and anything bulk goes through .ics — either the
 // published feed (subscribe, stays current) or a generated file (import once).
-// The published feed is written once per official language, like feed.xml and digest.md,
-// so every subscribe link follows the current EN/FR toggle.
-const SITE="__SITE_URL__";
-const icsUrl=()=>SITE+"/"+(lang==="fr"?"deadlines-fr.ics":"deadlines.ics");
+// The published feed is written once per language, like feed.xml and digest.md,
+// so every subscribe link follows the current language toggle.
+const icsUrl=()=>SITE+"/"+L[lang].ics_file;
 const webcalUrl=()=>icsUrl().replace(/^https?:/,"webcal:");
 const googleSub=()=>"https://calendar.google.com/calendar/r?cid="+encodeURIComponent(webcalUrl());
 const outlookSub=()=>"https://outlook.live.com/calendar/0/addfromweb?"+
-  "url="+encodeURIComponent(icsUrl())+"&name="+encodeURIComponent(L[lang].calName);
+  "url="+encodeURIComponent(icsUrl())+"&name="+encodeURIComponent(L[lang].text.title);
 const qs=o=>Object.entries(o).map(([k,v])=>encodeURIComponent(k)+"="+encodeURIComponent(v)).join("&");
 const ymd=s=>s.replace(/-/g,"");
 function nextDay(s){const d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+1);return d.toISOString().slice(0,10)}
-// r.status is frozen at build time and the site is rebuilt twice a week, so a
+// r.status is frozen at build time and the site is rebuilt on a fixed cadence, so a
 // deadline can pass between builds. Re-check against the reader's own calendar
 // date: a closed deadline is not worth adding, least of all in a bulk download.
 const todayISO=()=>{const d=new Date();return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
@@ -330,11 +273,11 @@ const upcoming=r=>!!r.closes&&r.status==="open"&&r.closes>=todayISO();
 function dated(){return DATA.filter(upcoming)}
 
 function calText(r){
-  const t=L[lang], parts=[fr(r,"body"),fr(r,"summary"),t.why+" "+fr(r,"why_it_matters")];
-  if(r.how_to_participate)parts.push(t.how+" "+fr(r,"how_to_participate"));
-  if(!r.verified)parts.push("⚠ "+t.calUnverified);
-  parts.push(r.url,t.calTracked+" "+SITE);
-  return {title:L[lang].deadlinePrefix+" "+fr(r,"title"),details:parts.join("\n")};
+  const t=L[lang], parts=[tr(r,"body"),tr(r,"summary"),t.why+" "+tr(r,"why_it_matters")];
+  if(r.how_to_participate)parts.push(t.how+" "+tr(r,"how_to_participate"));
+  if(!r.verified)parts.push("⚠ "+t.cal_unverified);
+  parts.push(r.url,t.cal_tracked+" "+SITE);
+  return {title:t.deadline_prefix+" "+tr(r,"title"),details:parts.join("\n")};
 }
 function googleUrl(r){
   const c=calText(r);
@@ -359,20 +302,20 @@ function icsFold(line){
   out.push(cur);return out.join("\r\n ");
 }
 function icsEvent(r,stamp){
-  const c=calText(r), out=["BEGIN:VEVENT",
-    "UID:"+r.id+"@ai-consultation-deadlines-canada","DTSTAMP:"+stamp,"LAST-MODIFIED:"+stamp,
+  const t=L[lang], c=calText(r), out=["BEGIN:VEVENT",
+    "UID:"+r.id+"@"+CFG.slug,"DTSTAMP:"+stamp,"LAST-MODIFIED:"+stamp,
     "DTSTART;VALUE=DATE:"+ymd(r.closes),"DTEND;VALUE=DATE:"+ymd(nextDay(r.closes)),
     "SUMMARY:"+icsEsc(c.title),"DESCRIPTION:"+icsEsc(c.details),"URL:"+icsEsc(r.url),"TRANSP:TRANSPARENT"];
   if(r.topics.length)out.push("CATEGORIES:"+r.topics.map(icsEsc).join(","));
-  [["-P7D",L[lang].alarm7],["-P1D",L[lang].alarm1]].forEach(([trg,label])=>out.push(
-    "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsEsc(label(fr(r,"title"))),
+  [["-P7D",t.alarm_7],["-P1D",t.alarm_1]].forEach(([trg,label])=>out.push(
+    "BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+icsEsc(fmt(label,{x:tr(r,"title")})),
     "TRIGGER;VALUE=DURATION:"+trg,"END:VALARM"));
   out.push("END:VEVENT");return out;
 }
 function icsFile(rows){
   const stamp=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d+/,"");
-  let out=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//AI Consultation Deadlines Canada//v1.0//EN",
-    "CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:"+icsEsc(L[lang].calName)];
+  let out=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//"+CFG.name+"//v"+CFG.version+"//EN",
+    "CALSCALE:GREGORIAN","METHOD:PUBLISH","X-WR-CALNAME:"+icsEsc(L[lang].text.title)];
   rows.forEach(r=>{out=out.concat(icsEvent(r,stamp))});
   out.push("END:VCALENDAR");
   return out.map(icsFold).join("\r\n")+"\r\n";
@@ -389,11 +332,11 @@ function closeMenus(){document.querySelectorAll(".cal-menu").forEach(m=>m.hidden
 function calMenu(r){
   const t=L[lang];
   return `<div class="cal">
-    <button class="cal-btn" data-cal="${esc(r.id)}" aria-expanded="false" aria-haspopup="true">📅 ${t.addCal}</button>
+    <button class="cal-btn" data-cal="${esc(r.id)}" aria-expanded="false" aria-haspopup="true">📅 ${esc(t.add_cal)}</button>
     <div class="cal-menu" role="menu" hidden>
       <a role="menuitem" href="${esc(googleUrl(r))}" target="_blank" rel="noopener">Google Calendar</a>
       <a role="menuitem" href="${esc(outlookUrl(r))}" target="_blank" rel="noopener">Outlook</a>
-      <button role="menuitem" data-ics="${esc(r.id)}">${t.icsOne}</button>
+      <button role="menuitem" data-ics="${esc(r.id)}">${esc(t.ics_one)}</button>
     </div></div>`;
 }
 function wireItemMenus(){
@@ -412,29 +355,29 @@ function wireItemMenus(){
 function renderCalBox(){
   const t=L[lang], rows=dated(), n=rows.length;
   $("#calbox").innerHTML=`<button class="x" id="calbox-x" aria-label="${esc(t.close)}">&times;</button>
-    <h2 id="calbox-title">${esc(t.allTitle)}</h2>
-    <p>${esc(n?t.allIntro(n):t.noDated)}</p>
-    <p class="note"><b>${esc(t.subHead)}</b></p>
+    <h2 id="calbox-title">${esc(t.all_title)}</h2>
+    <p>${esc(n?plural(t.all_intro,n):t.no_dated)}</p>
+    <p class="note"><b>${esc(t.sub_head)}</b></p>
     <div class="calrow">
       <a class="calopt" href="${esc(googleSub())}" target="_blank" rel="noopener">Google Calendar</a>
       <a class="calopt" href="${esc(outlookSub())}" target="_blank" rel="noopener">Outlook</a>
-      <a class="calopt" href="${esc(webcalUrl())}">${esc(t.appleSub)}</a>
-      <button class="calopt" id="calcopy">${esc(t.copyLink)}</button>
+      <a class="calopt" href="${esc(webcalUrl())}">${esc(t.apple_sub)}</a>
+      <button class="calopt" id="calcopy">${esc(t.copy_link)}</button>
     </div>
-    <p class="note">${t.subNote}</p>
-    ${n?`<hr><p class="note"><b>${esc(t.onceHead)}</b></p>
-    <div class="calrow"><button class="calopt" id="caldl">${esc(t.download(n))}</button></div>
-    <p class="note">${esc(t.onceNote)}</p>`:""}
-    <hr><p class="note">${esc(t.calFine)}</p>`;
+    <p class="note">${t.sub_note}</p>
+    ${n?`<hr><p class="note"><b>${esc(t.once_head)}</b></p>
+    <div class="calrow"><button class="calopt" id="caldl">${esc(plural(t.download,n))}</button></div>
+    <p class="note">${esc(t.once_note)}</p>`:""}
+    <hr><p class="note">${esc(t.cal_fine)}</p>`;
   $("#calbox-x").onclick=()=>$("#calbox").close();
   $("#calcopy").onclick=async e=>{
     const url=icsUrl();
     try{await navigator.clipboard.writeText(url)}
     catch(err){const ta=document.createElement("textarea");ta.value=url;document.body.appendChild(ta);
       ta.select();try{document.execCommand("copy")}catch(e2){}ta.remove()}
-    e.target.textContent=t.copied;setTimeout(()=>{e.target.textContent=t.copyLink},1800);
+    e.target.textContent=t.copied;setTimeout(()=>{e.target.textContent=t.copy_link},1800);
   };
-  if(n)$("#caldl").onclick=()=>downloadIcs("canadian-ai-governance-deadlines.ics",rows);
+  if(n)$("#caldl").onclick=()=>downloadIcs(CFG.slug+"-deadlines.ics",rows);
 }
 document.addEventListener("click",closeMenus);
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenus()});
@@ -446,64 +389,60 @@ function renderStats(){
   DATA.forEach(r=>r.badges.forEach(b=>counts[b]++));
   $("#stats").innerHTML=["new","open","closing_soon","retired"].map(k=>
     `<button class="stat" style="--c:${COLOR[k]}" data-k="${k}" aria-pressed="${statusFilter===k}">
-      <div class="n">${counts[k]}</div><div class="l">${t[k]}</div><div class="h">${t.hint[k]}</div></button>`).join("");
+      <div class="n">${counts[k]}</div><div class="l">${t.badge[k]}</div><div class="h">${t.badge_hint[k]}</div></button>`).join("");
   document.querySelectorAll(".stat").forEach(b=>b.onclick=()=>{statusFilter=statusFilter===b.dataset.k?"":b.dataset.k;render()});
 }
 function renderFilters(){
   const t=L[lang];
   const types=[...new Set(DATA.map(r=>r.type))];
-  $("#type").innerHTML=`<option value="">${lang==="fr"?"Tous les types":"All types"}</option>`+types.map(x=>`<option value="${x}">${t.type[x]||x}</option>`).join("");
-  const bodies=[...new Map(DATA.map(r=>[r.body,r])).values()].sort((a,b)=>fr(a,"body").localeCompare(fr(b,"body"),lang));
-  $("#body").innerHTML=`<option value="">${lang==="fr"?"Tous les ministères":"All departments"}</option>`+bodies.map(r=>`<option value="${esc(r.body)}">${esc(fr(r,"body"))}</option>`).join("");
+  $("#type").innerHTML=`<option value="">${esc(t.all_types)}</option>`+types.map(x=>`<option value="${x}">${t.type[x]||x}</option>`).join("");
+  const bodies=[...new Map(DATA.map(r=>[r.body,r])).values()].sort((a,b)=>tr(a,"body").localeCompare(tr(b,"body"),CFG.locales[lang]||lang));
+  $("#body").innerHTML=`<option value="">${esc(t.all_bodies)}</option>`+bodies.map(r=>`<option value="${esc(r.body)}">${esc(tr(r,"body"))}</option>`).join("");
   const tc={};DATA.forEach(r=>r.topics.forEach(x=>tc[x]=(tc[x]||0)+1));
   const top=Object.entries(tc).sort((a,b)=>b[1]-a[1]).slice(0,8);
   $("#topics").innerHTML=top.map(([x,n])=>`<button class="chip" data-t="${x}" aria-pressed="${topicFilter===x}">${esc(topicLabel(x))} <span style="opacity:.6">${n}</span></button>`).join(" ");
   document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{topicFilter=topicFilter===b.dataset.t?"":b.dataset.t;render()});
 }
+const haystack=r=>LANGS.flatMap(l=>["title","body","summary"].map(f=>r[f+(l===PRIMARY?"":"_"+l)]||""))
+  .concat(r.topics.join(" "),r.topics.map(topicLabel).join(" ")).join(" ").toLowerCase();
 function renderList(){
   const t=L[lang], q=$("#q").value.toLowerCase(), ty=$("#type").value, bo=$("#body").value;
   const rows=DATA.filter(r=>
     (!statusFilter||r.badges.includes(statusFilter)) && (!topicFilter||r.topics.includes(topicFilter)) &&
-    (!ty||r.type===ty) && (!bo||r.body===bo) &&
-    (!q||[r.title,r.title_fr,r.body,r.body_fr,r.summary,r.summary_fr,r.topics.join(" "),r.topics.map(topicLabel).join(" ")].join(" ").toLowerCase().includes(q)));
+    (!ty||r.type===ty) && (!bo||r.body===bo) && (!q||haystack(r).includes(q)));
   setCount(rows.length,DATA.length);
   if(!rows.length){$("#list").innerHTML=`<div class="empty">${t.empty}</div>`;return}
   $("#list").innerHTML=rows.map(r=>{
     const p=primary(r);
-    const title=fr(r,"title");
+    const title=tr(r,"title");
     const when = r.closes
-      ? `<b>${p==="retired"?t.closed:t.closes} <time datetime="${esc(r.closes)}">${fmtDate(r.closes)}</time></b>${r.days_left!=null?`<span>${t.daysLeft(r.days_left)}</span>`:""}`
-      : `<b>${t.noDeadline}</b>`;
-    const opened = r.opened?`<span class="d">${t.opened} <time datetime="${esc(r.opened)}">${fmtDate(r.opened)}</time></span>`:"";
-    const badges=r.badges.filter(b=>b!=="open"||r.badges.length===1).map(b=>`<span class="badge" style="--c:${COLOR[b]};--bg:${BG[b]}">${t[b]}</span>`).join("");
+      ? `<b>${p==="retired"?t.closed:t.closes} <time datetime="${esc(r.closes)}">${fmtDate(r.closes)}</time></b>${r.days_left!=null?`<span>${plural(t.days_left,r.days_left)}</span>`:""}`
+      : `<b>${esc(t.no_deadline)}</b>`;
+    const opened = r.opened?`<span class="d">${esc(t.opened)} <time datetime="${esc(r.opened)}">${fmtDate(r.opened)}</time></span>`:"";
+    const badges=r.badges.filter(b=>b!=="open"||r.badges.length===1).map(b=>`<span class="badge" style="--c:${COLOR[b]};--bg:${BG[b]}">${t.badge[b]}</span>`).join("");
     return `<article class="item ${p}" id="item-${esc(r.id)}" style="--c:${COLOR[p]}">
       <div class="stripe" aria-hidden="true"></div>
       <div class="when">${when}${opened}</div>
       <div class="main">
         <h3><a href="${esc(r.url)}" rel="noopener external">${esc(title)}</a></h3>
-        <div class="body">${esc(fr(r,"body"))}<span class="type">${t.type[r.type]||r.type}</span><span class="badges">${badges}</span>${r.verified?"":` <span class="unverified" title="${t.unverified}">⚠</span>`}</div>
-        <p>${esc(fr(r,"summary"))}</p>
-        <p class="why"><em>${t.why}</em> ${esc(fr(r,"why_it_matters"))}</p>
-        ${r.how_to_participate?`<p class="how"><strong>${t.how}</strong> ${esc(fr(r,"how_to_participate"))}</p>`:""}
+        <div class="body">${esc(tr(r,"body"))}<span class="type">${t.type[r.type]||r.type}</span><span class="badges">${badges}</span>${r.verified?"":` <span class="unverified" title="${esc(t.unverified)}">⚠</span>`}</div>
+        <p>${esc(tr(r,"summary"))}</p>
+        <p class="why"><em>${esc(t.why)}</em> ${esc(tr(r,"why_it_matters"))}</p>
+        ${r.how_to_participate?`<p class="how"><strong>${esc(t.how)}</strong> ${esc(tr(r,"how_to_participate"))}</p>`:""}
         <div class="topics">${r.topics.map(x=>`<span class="topic">${esc(topicLabel(x))}</span>`).join("")}</div>
         ${upcoming(r)?calMenu(r):""}
       </div></article>`;}).join("");
   wireItemMenus();
 }
-function setCount(n,total){
-  $("#count").textContent = lang==="fr"
-    ? `${n} élément${n===1?"":"s"} affiché${n===1?"":"s"} sur ${total}`
-    : `Showing ${n} of ${total} items`;
-}
+function setCount(n,total){$("#count").textContent=plural(L[lang].count,n,{total})}
 function applyLang(){
-  document.documentElement.lang=lang==="fr"?"fr-CA":"en-CA";
-  document.title=lang==="fr"
-    ?"Échéances des consultations sur l'IA Canada — consultations fédérales ouvertes"
-    :"AI Consultation Deadlines Canada — open federal consultations on AI";
-  document.querySelectorAll("[data-en]").forEach(el=>el.innerHTML=el.dataset[lang]);
-  $("#en").setAttribute("aria-pressed",lang==="en");$("#fr").setAttribute("aria-pressed",lang==="fr");
-  $("#q").placeholder=lang==="fr"?"Rechercher titres, ministères, sujets…":"Search titles, departments, topics…";
-  $("#cal-all").textContent="📅 "+L[lang].allCal;
+  const t=L[lang], get=k=>t[k]??t.text[k];
+  document.documentElement.lang=CFG.locales[lang]||lang;
+  document.title=t.text.page_title;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const v=get(el.dataset.i18n);if(v!=null&&el.tagName!=="TITLE")el.innerHTML=v});
+  ["placeholder","aria-label","content"].forEach(a=>document.querySelectorAll(`[data-i18n-${a}]`).forEach(el=>{
+    const v=get(el.getAttribute(`data-i18n-${a}`));if(v!=null)el.setAttribute(a,v)}));
+  document.querySelectorAll("#lang-toggle button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===lang));
 }
 function render(skipList){
   applyLang();renderStats();renderFilters();
@@ -517,15 +456,14 @@ function setLang(x){
   lang=x;
   try{localStorage.setItem("lang",x)}catch(e){}
   const u=new URL(location.href);
-  if(x==="fr")u.searchParams.set("lang","fr"); else u.searchParams.delete("lang");
+  if(x!==PRIMARY)u.searchParams.set("lang",x); else u.searchParams.delete("lang");
   try{history.replaceState(null,"",u.pathname+u.search+u.hash)}catch(e){}
   render();
 }
-$("#en").onclick=()=>setLang("en");
-$("#fr").onclick=()=>setLang("fr");
-// build.py already wrote the English, unfiltered list into #list, so the first paint
-// needs no client render: crawlers and browsers end up with identical markup.
-render(lang==="en");
+document.querySelectorAll("#lang-toggle button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+// build.py already wrote the primary-language, unfiltered list into #list, so the first
+// paint needs no client render: crawlers and browsers end up with identical markup.
+render(lang===PRIMARY);
 </script>
 </body>
 </html>

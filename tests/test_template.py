@@ -5,19 +5,28 @@ import re
 from pipeline.build import TEMPLATE
 
 REQUIRED_PLACEHOLDERS = [
-    "__DESC__", "__SITE_URL__", "__COUNT__", "__BUILT__",
-    "<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "/*__DATA__*/[]",
+    "__DESC__", "__SITE_URL__", "__COUNT__", "__BUILT__", "__SLUG__", "__LOCALE__", "__PLACE__",
+    "__LICENCE_URL__",
+    "<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "<!--__HEAD_LINKS__-->",
+    "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->",
+    "/*__DATA__*/[]", "/*__L__*/{}", "/*__CONFIG__*/{}",
 ]
 # Elements the inline script and the build step address by id.
-REQUIRED_IDS = ["en", "fr", "main", "stats", "filters", "q", "type", "body", "topics", "items", "count",
+REQUIRED_IDS = ["lang-toggle", "main", "stats", "filters", "q", "type", "body", "topics", "items", "count",
                 "list", "cal-all", "calbox"]
+# Strings the script reads from the injected L object; each must exist in every strings file.
+I18N_KEYS = ["page_title", "title", "tagline", "links_line", "skip", "at_a_glance", "search_and_filter",
+             "search_label", "filter_type", "all_types", "filter_body", "all_bodies", "monitored_items",
+             "all_cal", "footer_status", "footer_credit"]
 
 
 def _html() -> str:
     return TEMPLATE.read_text(encoding="utf-8")
 
 
-ONCE_ONLY = {"<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "/*__DATA__*/[]", "__COUNT__"}
+ONCE_ONLY = {"<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "<!--__HEAD_LINKS__-->",
+             "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->", "/*__DATA__*/[]", "/*__L__*/{}",
+             "/*__CONFIG__*/{}", "__COUNT__"}
 
 
 def test_placeholders_present():
@@ -38,10 +47,22 @@ def test_required_ids_present_once():
         assert n == 1, f'id="{i}" appears {n} times'
 
 
-def test_bilingual_toggle_and_language_attributes():
+def test_no_hardcoded_site_identity():
+    """Everything that names the site, the place or the author comes from site.yaml."""
     html = _html()
-    assert 'lang="en"' in html and 'lang="fr"' in html
-    assert html.count("data-fr=") >= 5, "bilingual strings should carry data-fr attributes"
+    for word in ("Canada", "donjguido", "Guidote", "fr-CA", "en-CA", "data-fr=", "data-en="):
+        assert word not in html, f"{word!r} is hardcoded in template.html"
+
+
+def test_i18n_keys_used_by_the_template_exist_in_every_strings_file():
+    from pipeline.config import LANGS, strings
+    html = _html()
+    used = set(re.findall(r'data-i18n(?:-[a-z-]+)?="([^"]+)"', html))
+    assert used >= set(I18N_KEYS)
+    for lang in LANGS:
+        t = strings(lang)
+        missing = [k for k in used if k not in t and k not in t["text"] and k != "links_line"]
+        assert not missing, f"{lang}: strings missing for {missing}"
 
 
 def test_script_and_style_tags_balance():

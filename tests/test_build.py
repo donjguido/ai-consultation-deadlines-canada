@@ -9,32 +9,25 @@ from pathlib import Path
 import pytest
 
 from pipeline import build
-from tests.conftest import ROOT, TODAY
+from tests.conftest import (
+    LANG2, LANGS, PRIMARY, ROOT, SECONDARY, TODAY, needs_second_language, output_name, translated,
+)
 
 EXPECTED_FILES = [
-    "index.html", "items.json", "feed.xml", "feed-fr.xml", "feed.json",
-    "deadlines.ics", "deadlines-fr.ics",
-    "digest.md", "digest-fr.md", "llms.txt", "llms-full.txt",
+    "index.html", "items.json", "feed.json", "llms.txt", "llms-full.txt", "forks.json",
     "robots.txt", "sitemap.xml", ".nojekyll",
+    *[output_name("feed", ".xml", x) for x in LANGS],
+    *[output_name("deadlines", ".ics", x) for x in LANGS],
+    *[output_name("digest", ".md", x) for x in LANGS],
 ]
-PLACEHOLDERS = ["__DESC__", "__SITE_URL__", "__COUNT__", "__BUILT__",
-                "<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "/*__DATA__*/"]
+PLACEHOLDERS = ["__DESC__", "__SITE_URL__", "__COUNT__", "__BUILT__", "__SLUG__", "__LOCALE__",
+                "__PLACE__", "__LICENCE_URL__",
+                "<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "<!--__HEAD_LINKS__-->",
+                "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->", "/*__DATA__*/", "/*__L__*/", "/*__CONFIG__*/"]
 
 
 def _build(items, out: Path):
-    out.mkdir(parents=True, exist_ok=True)
-    records = build.build_site(items, out, TODAY)
-    for lang in ("en", "fr"):
-        build.build_feed(items, out, TODAY, lang)
-        build.build_calendar(items, out, TODAY, lang)
-        build.build_digest(items, out, TODAY, lang)
-    build.build_json_feed(records, out, TODAY)
-    build.build_llms(records, out, TODAY)
-    build.build_llms_full(records, out, TODAY)
-    build.build_robots(out)
-    build.build_sitemap(out, TODAY)
-    (out / ".nojekyll").write_text("", encoding="utf-8")
-    return records
+    return build.build_all(items, out, TODAY)
 
 
 @pytest.fixture
@@ -55,6 +48,28 @@ def test_no_template_placeholder_survives(built):
     html = (out / "index.html").read_text(encoding="utf-8")
     left = [p for p in PLACEHOLDERS if p in html]
     assert not left, f"unfilled placeholders in index.html: {left}"
+
+
+def test_i18n_slots_are_filled_server_side(built):
+    """Every data-i18n element and attribute carries the primary-language string in the
+    HTML itself, so the page reads correctly with JavaScript off."""
+    out, _ = built
+    html = (out / "index.html").read_text(encoding="utf-8")
+    t = build.strings(PRIMARY)
+    assert f'<h1 data-i18n="title">{t["text"]["title"]}</h1>' in html
+    assert f'<title data-i18n="page_title">{t["text"]["page_title"]}</title>' in html
+    assert f'data-i18n-content="title" content="{build.esc(t["text"]["title"])}"' in html
+    assert f'data-i18n-placeholder="search_placeholder" placeholder="{build.esc(t["search_placeholder"])}"' in html
+    assert 'content="Site name"' not in html and ">Tagline<" not in html
+
+
+def test_language_toggle_matches_the_configured_languages(built):
+    out, _ = built
+    html = (out / "index.html").read_text(encoding="utf-8")
+    for lang in LANGS:
+        assert (f'data-lang="{lang}"' in html) is (len(LANGS) > 1)
+        assert f'hreflang="{build.locale(lang).lower()}"' in html
+    assert f'<html lang="{build.locale(PRIMARY)}">' in html
 
 
 def test_every_item_is_rendered_into_the_html(built, sample_items):
@@ -100,34 +115,49 @@ def test_records_sorted_open_first_then_soonest(built):
 
 def test_rss_feeds_are_valid_xml_with_one_entry_per_item(built, sample_items):
     out, _ = built
-    for name in ("feed.xml", "feed-fr.xml"):
+    for lang in LANGS:
+        name = output_name("feed", ".xml", lang)
         root = ET.parse(out / name).getroot()
         channel = root.find("channel")
         assert channel is not None, f"{name} has no channel"
+        assert channel.findtext("language") == build.locale(lang).lower()
         entries = channel.findall("item")
         assert len(entries) == len(sample_items), f"{name}: {len(entries)} entries for {len(sample_items)} items"
         for e in entries:
             assert e.findtext("title") and e.findtext("link", "").startswith("https://")
-    fr = (out / "feed-fr.xml").read_text(encoding="utf-8")
-    assert "Consultation de test" in fr
-    assert "Test consultation" in fr, "untranslated item should fall back to English in the French feed"
+
+
+@needs_second_language
+def test_translated_feed_uses_translations_and_falls_back(built):
+    out, _ = built
+    fr = (out / output_name("feed", ".xml", LANG2)).read_text(encoding="utf-8")
+    assert translated("title") in fr
+    assert "Test consultation" in fr, "untranslated item should fall back to the primary language"
 
 
 def test_json_feed_is_valid(built, sample_items):
     out, _ = built
     feed = json.loads((out / "feed.json").read_text(encoding="utf-8"))
     assert feed["version"].startswith("https://jsonfeed.org/version/1")
+    assert feed["language"] == build.locale(PRIMARY)
     assert len(feed["items"]) == len(sample_items)
     for it in feed["items"]:
         assert it["id"] and it["url"].startswith("https://") and it["title"]
 
 
-def test_digests_mention_open_items_and_are_bilingual(built):
+def test_digests_mention_open_items(built):
     out, _ = built
-    en = (out / "digest.md").read_text(encoding="utf-8")
-    fr = (out / "digest-fr.md").read_text(encoding="utf-8")
+    en = (out / output_name("digest", ".md", PRIMARY)).read_text(encoding="utf-8")
     assert "closing-soon" in en or "Test consultation" in en
-    assert "Consultation de test" in fr
+    assert build.strings(PRIMARY)["text"]["title"] in en
+
+
+@needs_second_language
+def test_translated_digest_differs_from_the_primary(built):
+    out, _ = built
+    en = (out / output_name("digest", ".md", PRIMARY)).read_text(encoding="utf-8")
+    fr = (out / output_name("digest", ".md", LANG2)).read_text(encoding="utf-8")
+    assert translated("title") in fr
     assert en != fr
 
 
@@ -136,6 +166,8 @@ def test_sitemap_and_robots(built):
     root = ET.parse(out / "sitemap.xml").getroot()
     locs = [el.text or "" for el in root.iter() if el.tag.endswith("loc")]
     assert locs and all(l.startswith(build.SITE_URL) for l in locs)
+    for lang in SECONDARY:
+        assert f"{build.SITE_URL}/?lang={lang}" in locs
     robots = (out / "robots.txt").read_text(encoding="utf-8")
     assert f"Sitemap: {build.SITE_URL}/sitemap.xml" in robots
     assert "User-agent: *\nAllow: /" in robots
@@ -147,7 +179,30 @@ def test_llms_files_list_every_item(built, sample_items):
     full = (out / "llms-full.txt").read_text(encoding="utf-8")
     for item in sample_items:
         assert item.url in full, f"{item.id} missing from llms-full.txt"
-    assert (out / "llms.txt").read_text(encoding="utf-8").strip()
+    llms = (out / "llms.txt").read_text(encoding="utf-8")
+    assert llms.strip()
+    assert f"{build.SITE_URL}/forks.json" in llms
+
+
+def test_forks_json_describes_this_site_and_its_siblings(built):
+    out, _ = built
+    data = json.loads((out / "forks.json").read_text(encoding="utf-8"))
+    assert data["self"]["url"] == build.SITE_URL
+    assert data["self"]["languages"] == LANGS
+    assert isinstance(data["forks"], list)
+    for f in data["forks"]:
+        assert f["name"] and f["url"].startswith("https://")
+
+
+def test_jsonld_names_the_jurisdiction_and_languages(built):
+    out, _ = built
+    html = (out / "index.html").read_text(encoding="utf-8")
+    start = html.index('<script type="application/ld+json">') + len('<script type="application/ld+json">')
+    graph = json.loads(html[start:html.index("</script>", start)])["@graph"]
+    dataset = next(g for g in graph if g["@type"] == "Dataset")
+    assert dataset["spatialCoverage"]["name"] == build.SITE["jurisdiction"]["name"]
+    assert dataset["inLanguage"] == [build.locale(x) for x in LANGS]
+    assert dataset["license"] == build.SITE["licence"]["data_url"]
 
 
 def test_real_store_builds_cleanly(tmp_path):
@@ -160,8 +215,8 @@ def test_real_store_builds_cleanly(tmp_path):
     for item in items:
         assert f'id="item-{item.id}"' in html
     assert not [p for p in PLACEHOLDERS if p in html]
-    ET.parse(out / "feed.xml")
-    ET.parse(out / "feed-fr.xml")
+    for lang in LANGS:
+        ET.parse(out / output_name("feed", ".xml", lang))
     json.loads((out / "feed.json").read_text(encoding="utf-8"))
 
 

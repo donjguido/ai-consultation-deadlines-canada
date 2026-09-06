@@ -1,8 +1,9 @@
-"""MCP server for the AI Consultation Deadlines Canada.
+"""MCP server for the monitor.
 
 A thin, read-only Model Context Protocol server so that AI assistants can
-answer questions like "what AI consultations are open in Canada right now?"
-from the monitor's canonical data instead of guessing.
+answer questions like "what AI consultations are open right now?" from the
+monitor's canonical data instead of guessing. The site name, URL and language
+list come from data/site.yaml via pipeline/config.py.
 
 Data source
 -----------
@@ -29,7 +30,7 @@ import sys
 import time
 from datetime import date, timedelta
 from pathlib import Path
-from typing import Literal, Optional
+from typing import Literal, Optional  # noqa: F401
 
 import requests
 from mcp.server import MCPServer
@@ -41,13 +42,16 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from pipeline.config import LANGS, NAME, PRIMARY, SECONDARY, SLUG, output_name, pick, strings  # noqa: E402
+from pipeline.config import SITE_URL as _SITE_ROOT  # noqa: E402
 from pipeline.models import CLOSING_SOON_DAYS, NEW_WINDOW_DAYS, Item  # noqa: E402
 
-SITE_URL = "https://donjguido.github.io/ai-consultation-deadlines-canada/"
+SITE_URL = _SITE_ROOT + "/"
 DEFAULT_ITEMS_URL = SITE_URL + "items.json"
 CACHE_TTL_SECONDS = 600
+_UA = {"User-Agent": f"{SLUG}-mcp/1.0"}
 
-Lang = Literal["en", "fr"]
+Lang = str  # one of LANGS; validated in _lang()
 Status = Literal["new", "open", "closing_soon", "retired", "any"]
 
 # ---------------------------------------------------------------------------
@@ -70,7 +74,7 @@ class Store:
 
     def _read_raw(self) -> list[dict]:
         if self.is_remote:
-            resp = requests.get(self.location, timeout=20, headers={"User-Agent": "aicdc-mcp/1.0"})
+            resp = requests.get(self.location, timeout=20, headers=_UA)
             resp.raise_for_status()
             return resp.json()
         return json.loads(Path(self.location).read_text(encoding="utf-8"))
@@ -149,12 +153,16 @@ class MonitorStatus(BaseModel):
 # ---------------------------------------------------------------------------
 
 
+def _lang(lang: Optional[str]) -> str:
+    if not lang:
+        return PRIMARY
+    if lang not in LANGS:
+        raise ToolError(f"lang must be one of {LANGS}")
+    return lang
+
+
 def _pick(item: Item, field: str, lang: Lang) -> str:
-    if lang == "fr":
-        fr = getattr(item, f"{field}_fr", None)
-        if fr:
-            return fr
-    return getattr(item, field)
+    return pick(item, field, _lang(lang))
 
 
 def _status_of(item: Item, today: date) -> str:
@@ -230,7 +238,7 @@ def _filter(
             continue
         if topic and topic.lower() not in [t.lower() for t in it.topics]:
             continue
-        if body and body.lower() not in (it.body + " " + (it.body_fr or "")).lower():
+        if body and body.lower() not in " ".join([it.body, *[getattr(it, f"body_{x}", None) or "" for x in SECONDARY]]).lower():
             continue
         out.append(it)
     return sorted(out, key=_sort_key)
@@ -240,18 +248,17 @@ def _filter(
 # Server
 # ---------------------------------------------------------------------------
 
+_T = strings(PRIMARY)["text"]
 mcp = MCPServer(
-    "AI Consultation Deadlines Canada",
+    NAME,
     instructions=(
-        "Read-only access to the AI Consultation Deadlines Canada: every federal channel "
-        "through which Canadians can shape AI governance (consultations, parliamentary "
-        "calls for briefs, Canada Gazette comment periods, funding calls, standards "
-        "reviews, e-petitions). Start with list_open or closing_soon for what is "
+        f"Read-only access to {NAME}: every channel through which {_T['audience']} can shape "
+        f"AI governance ({_T['channels']}). Start with list_open or closing_soon for what is "
         "actionable now; use get_item for the summary, why it matters, and how to "
         "participate; use search for keyword or topic lookups. Items with verified=false "
         "have been machine-classified but not yet checked by a human curator, so confirm "
-        "dates against the linked source page before relying on them. Data is refreshed "
-        "on Mondays and Thursdays."
+        f"dates against the linked source page before relying on them. Languages: {', '.join(LANGS)} "
+        f"(lang parameter; {PRIMARY} is the default). Data is refreshed {_T['cadence']}."
     ),
 )
 
@@ -260,7 +267,7 @@ mcp = MCPServer(
 def list_open(
     type: Optional[str] = None,
     topic: Optional[str] = None,
-    lang: Lang = "en",
+    lang: Lang = PRIMARY,
     limit: int = 50,
 ) -> list[ItemSummary]:
     """List every currently open channel for participation, soonest closing first.
@@ -269,7 +276,7 @@ def list_open(
         type: Optional filter: consultation, call_for_briefs, gazette_notice,
             funding_call, standards_review, petition, other.
         topic: Optional topic tag filter (see list_topics).
-        lang: "en" or "fr" for titles and body names.
+        lang: Language code for titles and body names (one of the site's languages).
         limit: Maximum number of items to return.
     """
     today = date.today()
@@ -278,7 +285,7 @@ def list_open(
 
 
 @mcp.tool()
-def closing_soon(days: int = CLOSING_SOON_DAYS, lang: Lang = "en") -> list[ItemSummary]:
+def closing_soon(days: int = CLOSING_SOON_DAYS, lang: Lang = PRIMARY) -> list[ItemSummary]:
     """List open items whose closing date falls within the next N days (default 7, the
     monitor's own "closing soon" window), soonest first."""
     today = date.today()
@@ -291,7 +298,7 @@ def closing_soon(days: int = CLOSING_SOON_DAYS, lang: Lang = "en") -> list[ItemS
 
 
 @mcp.tool()
-def list_new(lang: Lang = "en") -> list[ItemSummary]:
+def list_new(lang: Lang = PRIMARY) -> list[ItemSummary]:
     """List items the monitor first saw (or that opened) within the last 14 days."""
     today = date.today()
     items = [i for i in _filter(STORE.items(), today, status="open") if i.is_new(today)]
@@ -302,10 +309,10 @@ def list_new(lang: Lang = "en") -> list[ItemSummary]:
 def search(
     query: str,
     include_retired: bool = False,
-    lang: Lang = "en",
+    lang: Lang = PRIMARY,
     limit: int = 25,
 ) -> list[ItemSummary]:
-    """Keyword search across titles, summaries, bodies, and topic tags in both languages.
+    """Keyword search across titles, summaries, bodies, and topic tags in every language.
 
     All words in the query must appear somewhere in the item. Retired (closed) items
     are excluded unless include_retired is true.
@@ -316,20 +323,18 @@ def search(
     today = date.today()
     hits = []
     for it in _filter(STORE.items(), today, include_retired=include_retired):
-        haystack = " ".join(
-            filter(None, [
-                it.id, it.title, it.title_fr, it.body, it.body_fr, it.summary, it.summary_fr,
-                it.why_it_matters, it.why_it_matters_fr, it.how_to_participate,
-                it.how_to_participate_fr, it.type.value, " ".join(it.topics),
-            ])
-        ).lower()
+        fields = [it.id, it.type.value, " ".join(it.topics)]
+        for base in ("title", "body", "summary", "why_it_matters", "how_to_participate"):
+            fields.append(getattr(it, base))
+            fields += [getattr(it, f"{base}_{x}", None) for x in SECONDARY]
+        haystack = " ".join(filter(None, fields)).lower()
         if all(w in haystack for w in words):
             hits.append(it)
     return [_summary(i, today, lang) for i in hits[:limit]]
 
 
 @mcp.tool()
-def get_item(id: str, lang: Lang = "en") -> ItemDetail:
+def get_item(id: str, lang: Lang = PRIMARY) -> ItemDetail:
     """Get the full record for one item by id: summary, why it matters, how to participate,
     dates, source link, and verification flag."""
     today = date.today()
@@ -375,7 +380,7 @@ def monitor_status() -> MonitorStatus:
         rules={"new_window_days": NEW_WINDOW_DAYS, "closing_soon_days": CLOSING_SOON_DAYS},
         note=(
             "Status counts overlap: an item can be both new and open. The store is curated "
-            "every Monday and Thursday; verified=true means a human checked the item."
+            f"{_T['cadence']}; verified=true means a human checked the item."
         ),
     )
 
@@ -390,7 +395,7 @@ def items_resource() -> str:
     """Every item in the monitor, with status recomputed for today, as JSON."""
     today = date.today()
     return json.dumps(
-        [_detail(i, today, "en").model_dump(mode="json") for i in sorted(STORE.items(), key=_sort_key)],
+        [_detail(i, today, PRIMARY).model_dump(mode="json") for i in sorted(STORE.items(), key=_sort_key)],
         ensure_ascii=False,
         indent=2,
     )
@@ -404,7 +409,7 @@ def item_resource(id: str) -> str:
 
 def _digest(filename: str) -> str:
     if STORE.is_remote:
-        resp = requests.get(SITE_URL + filename, timeout=20, headers={"User-Agent": "aicdc-mcp/1.0"})
+        resp = requests.get(SITE_URL + filename, timeout=20, headers=_UA)
         resp.raise_for_status()
         return resp.text
     local = Path(STORE.location).resolve().parent / filename
@@ -417,14 +422,23 @@ def _digest(filename: str) -> str:
 
 @mcp.resource("monitor://digest", mime_type="text/markdown")
 def digest_resource() -> str:
-    """The latest weekly digest (Markdown, English) as published on the site."""
-    return _digest("digest.md")
+    """The latest weekly digest (Markdown, primary language) as published on the site."""
+    return _digest(output_name("digest", ".md", PRIMARY))
 
 
-@mcp.resource("monitor://digest-fr", mime_type="text/markdown")
-def digest_fr_resource() -> str:
-    """The latest weekly digest in French (Markdown) as published on the site."""
-    return _digest("digest-fr.md")
+def _register_digest(lang: str) -> None:
+    name = strings(lang).get("language_name_en", lang)
+
+    def digest_lang_resource() -> str:
+        return _digest(output_name("digest", ".md", lang))
+
+    digest_lang_resource.__name__ = f"digest_{lang}_resource"
+    digest_lang_resource.__doc__ = f"The latest weekly digest in {name} (Markdown) as published on the site."
+    mcp.resource(f"monitor://digest-{lang}", mime_type="text/markdown")(digest_lang_resource)
+
+
+for _lang_code in SECONDARY:
+    _register_digest(_lang_code)
 
 
 # ---------------------------------------------------------------------------
@@ -433,7 +447,7 @@ def digest_fr_resource() -> str:
 
 
 def main(argv: Optional[list[str]] = None) -> None:
-    parser = argparse.ArgumentParser(prog="python -m mcp_server", description=__doc__.split("\n\n")[0])
+    parser = argparse.ArgumentParser(prog="python -m mcp_server", description=(__doc__ or "").split("\n\n")[0])
     parser.add_argument("--items", help="Local path or URL of items.json (default: the live site, or $MONITOR_ITEMS)")
     parser.add_argument("--http", action="store_true", help="Serve streamable HTTP instead of stdio")
     parser.add_argument("--host", default="127.0.0.1")

@@ -1,6 +1,6 @@
 # AI Consultation Deadlines Canada: design plan
 
-Version 1.0, 6 September 2026. Companion document: [SOURCES.md](SOURCES.md) (data-source inventory).
+Version 1.1, 6 September 2026. Companion documents: [SOURCES.md](SOURCES.md) (data-source inventory), [CURATION.md](CURATION.md) (the human loop), [FORKING.md](FORKING.md) (other geographies).
 
 ## 1. What it is
 
@@ -62,7 +62,9 @@ sources.yaml ──► fetch.py ──► candidates.json ──► classify.py 
                    (site,EN/FR) (RSS, EN/FR)  (calendar, EN/FR)  (JSON API) (email, EN/FR)
 ```
 
-**Fetch.** Each source in `data/sources.yaml` maps to one of three fetchers: the Consulting with Canadians open-data CSV (tier 1, structured, bilingual, has dates), RSS (Canada Gazette Part I, tier 1), and HTML index scraping (committee pages, ISED and OPC consultation lists, tier 2). A broad bilingual keyword filter drops obviously irrelevant records before any model call.
+**Fetch.** Each source in `data/sources.yaml` maps to one of five fetchers: `csv` (the Consulting with Canadians open-data export, tier 1, structured, bilingual, has dates), `rss` (Canada Gazette Part I, tier 1), `json_api` and `sitemap` (generic, unused here but configured in YAML for forks), and `html_index` scraping (committee pages, ISED and OPC consultation lists, tier 2). A broad keyword filter from `data/site.yaml` drops obviously irrelevant records before any model call.
+
+**Configure.** `data/site.yaml` holds everything that names this site rather than the design: name, URL, author, jurisdiction, language list, licence, per-language prose, the classifier's scope block and the keyword pre-filter. `pipeline/config.py` loads it and `pipeline/strings/<lang>.yaml` supplies UI strings per language. No Python module names a place, which is what makes [FORKING.md](FORKING.md) a three-file job.
 
 **Classify.** Each new candidate goes once to Claude with a structured-output schema: relevant or not, confidence, type, plain-language summary, why it matters for AI safety, how to participate, topic tags from a controlled vocabulary, and the closing date if stated in the page text. The same call returns the French of every prose field, so an item arrives in the store bilingual rather than waiting on a translation pass. Items already in the store are never re-classified; only their closing date and retired flag are refreshed. This keeps model cost proportional to new items, not to the size of the archive.
 
@@ -128,7 +130,7 @@ One caveat worth recording: on a `github.io` **project** page the `robots.txt` c
 2. Run the classifier from GitHub Actions on a manual Monday/Thursday trigger and publish the site, RSS and JSON from GitHub Pages.
 3. Email digest (weekly plus closing-soon alerts).
 4. ~~MCP server so assistants can query the store directly.~~ Done: `mcp_server/`, see [MCP.md](MCP.md).
-5. Provincial coverage once the federal spine is reliable.
+5. Provincial coverage once the federal spine is reliable. The fork scaffold (`python -m pipeline.fork`) and `forks.json` exist for this; a worked provincial example is the next step.
 
 ## 10. What is in the prototype today
 

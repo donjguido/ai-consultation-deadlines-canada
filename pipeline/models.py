@@ -1,17 +1,24 @@
 """Canonical data model for a monitored initiative.
 
-One record per federal intake channel (consultation, call for briefs,
-Gazette notice, funding call, standards review, petition). The pipeline
-stores these in data/items.json; the site, RSS feed, email digest and MCP
-server all read from that single file.
+One record per intake channel (consultation, call for briefs, gazette notice,
+funding call, standards review, petition). The pipeline stores these in
+data/items.json; the site, RSS feed, email digest and MCP server all read from
+that single file.
+
+Translated prose fields are generated from the language list in data/site.yaml:
+for each secondary language <lang>, the model carries title_<lang>, body_<lang>,
+summary_<lang>, why_it_matters_<lang> and how_to_participate_<lang>, all optional.
+The site, feeds and digest fall back to the primary language per field.
 """
 from __future__ import annotations
 
 from datetime import date, timedelta
 from enum import Enum
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, create_model
+
+from .config import SECONDARY, TRANSLATED_FIELDS, field as lang_field, strings
 
 NEW_WINDOW_DAYS = 14        # "new" = opened (or first seen) within this many days
 CLOSING_SOON_DAYS = 7       # "closing soon" = closes within this many days
@@ -27,23 +34,25 @@ class ItemType(str, Enum):
     other = "other"
 
 
-class Item(BaseModel):
+def _lang_name(lang: str) -> str:
+    try:
+        return strings(lang).get("language_name_en") or strings(lang).get("language_name") or lang
+    except FileNotFoundError:
+        return lang
+
+
+class _ItemBase(BaseModel):
     id: str = Field(description="Stable slug, e.g. ised-2026-ai-strategy")
     title: str
-    title_fr: Optional[str] = None
     body: str = Field(description="Department, committee, or agency")
-    body_fr: Optional[str] = Field(default=None, description="French name of the department, committee, or agency")
     type: ItemType
     url: str
     opened: Optional[date] = None
     closes: Optional[date] = None
     first_seen: date = Field(description="Date the monitor first observed the item")
     summary: str = Field(description="1-2 sentence plain-language summary")
-    summary_fr: Optional[str] = Field(default=None, description="French summary")
     why_it_matters: str = Field(description="1 sentence on AI-safety relevance")
-    why_it_matters_fr: Optional[str] = Field(default=None, description="French why_it_matters")
     how_to_participate: str = Field(default="", description="Concrete next step: email, form, portal")
-    how_to_participate_fr: Optional[str] = Field(default=None, description="French how_to_participate")
     topics: list[str] = Field(default_factory=list)
     relevance: float = Field(ge=0, le=1, description="Classifier confidence that this is AI-safety relevant")
     source: str = Field(description="Source key from sources.yaml")
@@ -83,18 +92,54 @@ class Item(BaseModel):
         return b
 
 
-class Classification(BaseModel):
+def _item_translations() -> dict:
+    fields = {}
+    for lang in SECONDARY:
+        name = _lang_name(lang)
+        for base in TRANSLATED_FIELDS:
+            fields[lang_field(base, lang)] = (
+                Optional[str], Field(default=None, description=f"{name} {base.replace('_', ' ')}"),
+            )
+    return fields
+
+
+if TYPE_CHECKING:  # the static view; at runtime the class also carries the translated fields
+    class Item(_ItemBase): ...
+else:
+    Item = create_model("Item", __base__=_ItemBase, **_item_translations())
+    Item.__doc__ = "A monitored initiative; see the module docstring."
+
+
+class _ClassificationBase(BaseModel):
     """What the LLM returns for each candidate item."""
-    relevant: bool = Field(description="True if the initiative could shape AI safety or AI governance in Canada")
+    relevant: bool = Field(description="True if the initiative could shape AI safety or AI governance in the jurisdiction")
     relevance: float = Field(ge=0, le=1)
     type: ItemType
     summary: str
-    summary_fr: str = Field(description="French translation of summary")
     why_it_matters: str
-    why_it_matters_fr: str = Field(description="French translation of why_it_matters")
     how_to_participate: str
-    how_to_participate_fr: str = Field(description="French translation of how_to_participate")
-    title_fr: Optional[str] = Field(default=None, description="Official French title if the source gives one, otherwise a faithful French rendering")
-    body_fr: Optional[str] = Field(default=None, description="Official French name of the department, committee, or agency")
     topics: list[str] = Field(description="2-4 tags from the controlled vocabulary")
     closes: Optional[date] = Field(default=None, description="Closing date if stated in the text")
+
+
+def _classification_translations() -> dict:
+    fields = {}
+    for lang in SECONDARY:
+        name = _lang_name(lang)
+        for base in ("summary", "why_it_matters", "how_to_participate"):
+            fields[lang_field(base, lang)] = (str, Field(description=f"{name} translation of {base}"))
+        fields[lang_field("title", lang)] = (
+            Optional[str],
+            Field(default=None, description=f"Official {name} title if the source gives one, otherwise a faithful {name} rendering"),
+        )
+        fields[lang_field("body", lang)] = (
+            Optional[str],
+            Field(default=None, description=f"Official {name} name of the department, committee, or agency"),
+        )
+    return fields
+
+
+if TYPE_CHECKING:
+    class Classification(_ClassificationBase): ...
+else:
+    Classification = create_model("Classification", __base__=_ClassificationBase, **_classification_translations())
