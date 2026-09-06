@@ -21,6 +21,10 @@ ARGS = ["--name", "AI Consultation Deadlines Testland", "--place", "Testland", "
         "https://github.com/example/testland", "--author", "A Tester", "--year", "2027"]
 
 
+PARENT = yaml.safe_load((ROOT / "data" / "site.yaml").read_text(encoding="utf-8"))
+PARENT_NAME, PARENT_PLACE = PARENT["name"], PARENT["jurisdiction"]["name"]
+
+
 @pytest.fixture
 def copy(tmp_path):
     root = tmp_path / "fork"
@@ -29,6 +33,8 @@ def copy(tmp_path):
         shutil.copy(ROOT / "data" / name, root / "data" / name)
     (root / "pipeline").mkdir()
     shutil.copytree(ROOT / "pipeline" / "strings", root / "pipeline" / "strings")
+    (root / "site").mkdir()
+    (root / "site" / "index.html").write_text("stale", encoding="utf-8")
     return root
 
 
@@ -56,14 +62,36 @@ def test_scaffold_rewrites_identity_and_empties_the_store(copy):
     assert site["languages"] == {"primary": "en", "secondary": ["fr"]}
     assert site["locales"] == {"en": "en-GB", "fr": "fr"}
     assert site["author"] == {"name": "A Tester", "url": "https://github.com/example/testland"}
-    assert "Testland" in site["text"]["en"]["tagline"] and "Canada" not in site["text"]["en"]["tagline"]
+    assert "Testland" in site["text"]["en"]["tagline"] and PARENT_PLACE not in site["text"]["en"]["tagline"]
+    assert not site["text"]["fr"], "a secondary block starts empty and falls back, not as an English copy"
     assert site["classifier"]["place"] == "Testland"
     assert site["prefilter_keywords"], "the keyword list is kept for editing, not wiped"
     assert json.loads((copy / "data" / "items.json").read_text()) == []
     forks = yaml.safe_load((copy / "data" / "forks.yaml").read_text(encoding="utf-8"))["forks"]
-    assert forks[0]["url"].startswith("https://") and forks[0]["name"]
+    assert forks[0]["url"].startswith("https://") and forks[0]["name"] == PARENT_NAME
     sources = yaml.safe_load((copy / "data" / "sources.yaml").read_text(encoding="utf-8"))
-    assert sources["sources"] is None, "sources.yaml becomes a commented template"
+    assert not sources.get("sources"), "sources.yaml becomes a commented template"
+    assert not list((copy / "site").iterdir()), "the original's rendered site/ is emptied"
+
+
+def test_scaffolded_site_yaml_keeps_its_documentation(copy):
+    fork.main(ARGS + ["--root", str(copy), "--languages", "en,fr"])
+    text = (copy / "data" / "site.yaml").read_text(encoding="utf-8")
+    for key in ("schema_type", "secondary", "locales", "government_licence", "official_names",
+                "prefilter_keywords", "docs/FORKING.md"):
+        assert key in text, f"the scaffolded site.yaml no longer explains {key}"
+    assert text.count("#") > 40, "the scaffold used to strip every comment"
+    assert PARENT_PLACE not in text and "donjguido" not in text
+
+
+def test_a_fresh_scaffold_passes_the_config_tests(copy):
+    """A fork is born green: the whole config suite runs against the scaffolded files
+    before a single hand edit (the deploy workflow refuses a red suite)."""
+    fork.main(ARGS + ["--root", str(copy), "--languages", "en,fr"])
+    env = {**os.environ, "MONITOR_SITE_CONFIG": str(copy / "data" / "site.yaml")}
+    res = subprocess.run([sys.executable, "-m", "pytest", "-q", "tests/test_config.py"],
+                         cwd=ROOT, env=env, capture_output=True, text=True, timeout=120)
+    assert res.returncode == 0, res.stdout + res.stderr
 
 
 def test_a_bilingual_fork_builds_from_an_empty_store(copy, tmp_path):
@@ -73,13 +101,13 @@ def test_a_bilingual_fork_builds_from_an_empty_store(copy, tmp_path):
     assert "AI Consultation Deadlines Testland" in html
     footer = html[html.index("<footer"):]
     body_only = html[:html.index("<footer")]
-    assert "Canada" not in body_only and "donjguido" not in body_only
-    assert "AI Consultation Deadlines Canada" in footer, "the original is linked as a sister site"
+    assert PARENT_PLACE not in body_only and "donjguido" not in body_only
+    assert PARENT_NAME in footer, "the original is linked as a sister site"
     assert (out / "feed-fr.xml").exists() and (out / "deadlines-fr.ics").exists()
     assert 'data-lang="fr"' in html
     forks = json.loads((out / "forks.json").read_text(encoding="utf-8"))
     assert forks["self"]["name"] == "AI Consultation Deadlines Testland"
-    assert forks["forks"][0]["name"] == "AI Consultation Deadlines Canada", "the original is listed as a sibling"
+    assert forks["forks"][0]["name"] == PARENT_NAME, "the original is listed as a sibling"
 
 
 def test_a_monolingual_fork_builds_with_no_toggle_and_no_second_feed(copy, tmp_path):

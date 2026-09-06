@@ -3,6 +3,31 @@
 All notable changes to AI Consultation Deadlines Canada. Releases are tagged in git;
 the format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+Fixes from the first scored fork attempt (Ontario, `docs/fork-attempts/2026-09-06-ontario.md`).
+
+### Added
+- `docs/FORK-RUBRIC.md`: the pass/fail checklist a fork attempt is scored against.
+- `python -m pipeline.classify --print-prompt` prints the classifier prompt without an API key.
+- `url_template` on a `csv`/`json_api` source builds an item URL from row fields.
+- `html_index` gains `fetch_pages: true` (filter on page text, not link text) and `max_pages`;
+  `sitemap` gains `max_pages`, distinct from `limit`.
+- Fetch validates `kind` and `columns.title` up front with the valid values in the message, and
+  reports a column name the rows do not have once per source.
+
+### Changed
+- The scaffold writes `site.yaml` as a text template, so every documentation comment survives;
+  secondary-language prose blocks start empty (per-key fallback) instead of as an untranslated
+  copy, so a fresh fork's test suite is green. It also empties the inherited `site/`.
+- `tests/test_fork.py` reads the parent site's name from its config instead of hardcoding it.
+
+### Fixed
+- The keyword pre-filter wrapped the whole alternation in word boundaries, so stem fragments
+  (`biom[ée]tri`, `d[ée]cision automatis`) never matched. Fragments now match inside words;
+  `compute` and `agent` carry their own boundaries.
+- `pipeline.fetch` crashed on a `sources.yaml` with no sources.
+
 ## [1.1.0] - 2026-09-06
 
 Made the repository forkable for other geographies without editing Python.

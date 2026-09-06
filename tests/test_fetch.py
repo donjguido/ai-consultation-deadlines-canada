@@ -72,3 +72,41 @@ def test_every_declared_kind_has_a_fetcher():
 def test_keyword_filter_comes_from_site_config():
     assert fetch.relevant("intelligence artificielle") or not SECONDARY
     assert fetch.relevant("deepfake") and not fetch.relevant("pothole repair schedule")
+
+
+def test_keyword_stems_match_inside_words():
+    """A fragment is not wrapped in word boundaries: a stem catches every inflection.
+    Two shipped French stems never matched anything before this was fixed."""
+    kw = fetch.compile_keywords(["biom[ée]tri", "d[ée]cision automatis", r"\bAI\b"])
+    assert kw.search("données biométriques") and kw.search("décision automatisée")
+    assert kw.search("an AI plan") and not kw.search("a dairy farm")
+
+
+def test_unknown_kind_and_missing_title_column_are_named_up_front():
+    import pytest
+    with pytest.raises(ValueError, match="kind 'jsonapi'.*valid kinds"):
+        fetch.enabled_sources({"sources": [{"key": "x", "kind": "jsonapi", "url": "https://e.gov"}]})
+    with pytest.raises(ValueError, match="columns.title"):
+        fetch.enabled_sources({"sources": [{"key": "x", "kind": "csv", "url": "https://e.gov", "columns": {}}]})
+    assert fetch.enabled_sources({"sources": None}) == []
+    assert fetch.enabled_sources({"sources": [{"key": "x", "kind": "rss", "enabled": False}]}) == []
+
+
+def test_misspelt_column_warns_once_with_the_row_keys(capsys):
+    cfg = {**CSV_CFG, "columns": {**CSV_CFG["columns"], "title": "titel"}}
+    for x in SECONDARY:
+        cfg["columns"].pop(f"title_{x}", None)
+    assert fetch._record(cfg, _row()) is None and fetch._record(cfg, _row()) is None
+    err = capsys.readouterr().err
+    assert err.count("column 'titel'") == 1 and "title_en" in err
+
+
+def test_url_template_builds_a_link_from_row_fields():
+    cfg = {**CSV_CFG, "url_template": "https://example.gov/dataset/{registration_number}",
+           "columns": {**CSV_CFG["columns"], "url": "profile_page_en"}}
+    rec = fetch._record(cfg, _row(profile_page_en=""))
+    assert rec["url"] == "https://example.gov/dataset/123"
+    rec = fetch._record(cfg, _row())
+    assert rec["url"] == "https://example.gov/c/123", "a real url column wins over the template"
+    rec = fetch._record(cfg, _row(profile_page_en="", registration_number=""))
+    assert rec["url"] == "https://example.gov/portal", "an unfilled placeholder falls back to the portal"

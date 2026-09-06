@@ -39,7 +39,19 @@ from .config import ROOT, SITE, SLUG, translated_fields, SECONDARY
 UA = {"User-Agent": f"{SLUG}/{SITE.get('version', '1.0')} (+{SITE.get('repo') or SITE['url']})"}
 SOURCES = yaml.safe_load((ROOT / "data" / "sources.yaml").read_text(encoding="utf-8"))
 
-KEYWORDS = re.compile(r"\b(" + "|".join(SITE["prefilter_keywords"]) + r")\b", re.I) if SITE["prefilter_keywords"] else None
+
+
+def compile_keywords(fragments: list[str]) -> re.Pattern | None:
+    """The pre-filter: one case-insensitive alternation of the configured fragments.
+
+    A fragment matches anywhere inside a word, so a stem such as `biometri` catches
+    "biometrics" and "biométriques"; a fragment that wants a whole word carries its own
+    word boundary (the shipped `\\bAI\\b`). Wrapping the whole alternation in word
+    boundaries would silently disable every stem, which is what this used to do."""
+    return re.compile("(" + "|".join(fragments) + ")", re.I) if fragments else None
+
+
+KEYWORDS = compile_keywords(SITE.get("prefilter_keywords") or [])
 
 
 def relevant(text: str) -> bool:
@@ -85,6 +97,29 @@ def _get(row: Any, path: str | None) -> Any:
     return cur
 
 
+def _url(cfg: dict, row: Any) -> str:
+    """The item URL: `columns.url` if the row carries one, else the source's
+    `url_template` with `{dotted.path}` placeholders filled from the row (for a registry
+    that publishes a slug but no link), else the source's `portal` or `url`."""
+    cols = cfg["columns"]
+    direct = _get(row, cols.get("url"))
+    if direct:
+        return str(direct)
+    template = cfg.get("url_template")
+    if template:
+        missing = []
+
+        def fill(m):
+            v = _get(row, m.group(1))
+            if v in (None, ""):
+                missing.append(m.group(1))
+            return str(v or "")
+        filled = re.sub(r"\{([^}]+)\}", fill, template)
+        if not missing:
+            return filled
+    return str(cfg.get("portal") or cfg.get("url") or "")
+
+
 def _record(cfg: dict, row: Any) -> dict | None:
     """Turn one row of a csv/json_api source into a candidate using its `columns` map.
 
@@ -92,7 +127,7 @@ def _record(cfg: dict, row: Any) -> dict | None:
       id: registration_number        # optional; defaults to a slug of the title
       title: title_en
       title_fr: title_fr             # any <field>_<lang> the model has may be mapped
-      url: profile_page_en
+      url: profile_page_en           # or `url_template: https://x/{slug}` on the source
       opened: start_date
       closes: end_date
       status: status                 # optional, checked against `open_statuses`
@@ -104,6 +139,13 @@ def _record(cfg: dict, row: Any) -> dict | None:
     if cols.get("status") and cfg.get("open_statuses") and status not in cfg["open_statuses"]:
         return None
     title = _get(row, cols["title"])
+    if title is None and not cfg.get("_warned"):
+        # A misspelt column name is otherwise a silent zero, indistinguishable from an
+        # empty source. Say so once per source, with what the row actually offers.
+        cfg["_warned"] = True
+        have = sorted(row.keys())[:15] if isinstance(row, dict) else []
+        print(f"{cfg['key']}: column {cols['title']!r} is empty or missing in the first open row; "
+              f"row has: {have}", file=sys.stderr)
     if not title:
         for lang in SECONDARY:
             title = _get(row, cols.get(f"title_{lang}"))
@@ -120,7 +162,7 @@ def _record(cfg: dict, row: Any) -> dict | None:
         "id": f"{cfg.get('id_prefix', cfg['key'] + '-')}{raw_id or slug(str(title))}",
         "source": cfg["key"],
         "body": str(_get(row, cols.get("body")) or cfg.get("body", "")),
-        "url": str(_get(row, cols["url"]) or cfg.get("portal") or cfg.get("url") or ""),
+        "url": _url(cfg, row),
         "title": str(title),
         "text": blob,
         "opened": (str(_get(row, cols.get("opened")) or "")[:10]) or None,
@@ -191,11 +233,14 @@ def rss(cfg: dict) -> list[dict]:
 
 
 def sitemap(cfg: dict) -> list[dict]:
-    """An XML sitemap (or sitemap index). `include` is a regex the URL must match;
-    `limit` caps how many pages are fetched per run. Each matching page is fetched
-    and passes the keyword filter on its text; the title comes from <title>."""
+    """An XML sitemap (or sitemap index). `include` is a regex the URL must match.
+    Each matching page is fetched and passes the keyword filter on its text; the title
+    comes from <title>. `max_pages` caps how many matching pages are fetched per run
+    (default 500); `limit` caps how many candidates the source contributes (default 200)."""
     include = re.compile(cfg["include"]) if cfg.get("include") else None
     limit = int(cfg.get("limit", 200))
+    max_pages = int(cfg.get("max_pages", 500))
+    fetched = 0
     ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 
     def locs(url: str, depth: int = 0) -> list[str]:
@@ -215,8 +260,9 @@ def sitemap(cfg: dict) -> list[dict]:
     for url in locs(cfg["url"]):
         if include and not include.search(url):
             continue
-        if len(out) >= limit:
+        if len(out) >= limit or fetched >= max_pages:
             break
+        fetched += 1
         title, text = fetch_page(url)
         if not relevant(text):
             continue
@@ -236,38 +282,86 @@ def sitemap(cfg: dict) -> list[dict]:
 
 def html_index(cfg: dict) -> list[dict]:
     """Scrape an HTML index page for links matching a selector (committee study lists,
-    a regulator's consultations page, a standards body's notices)."""
+    a regulator's consultations page, a standards body's notices).
+
+    By default the keyword filter sees the link text only, which is cheap but useless
+    when the anchors read "Participate" or carry a project name. `fetch_pages: true`
+    fetches every linked page first and filters on its text instead, one request per
+    link, capped by `max_pages` (default 100); a generic anchor text is then replaced
+    by the page title."""
     r = requests.get(cfg["url"], headers=UA, timeout=30)
     r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
-    out = []
+    fetch_pages = bool(cfg.get("fetch_pages"))
+    max_pages = int(cfg.get("max_pages", 100))
+    out, seen = [], set()
     for a in soup.select(cfg["selector"]):
         title = a.get_text(" ", strip=True)
         href = a.get("href")
-        if not href or not title or not relevant(title):
+        if not href or not title:
             continue
         url = urljoin(cfg["url"], str(href))
+        if url in seen:
+            continue
+        seen.add(url)
+        if fetch_pages:
+            if len(seen) > max_pages:
+                break
+            page_title, text = fetch_page(url)
+            if not relevant(f"{title} {text}"):
+                continue
+            if page_title and GENERIC_ANCHOR.match(title):
+                title = re.split(r"\s+[|\-–—]\s+", page_title)[0].strip() or title
+        else:
+            if not relevant(title):
+                continue
+            text = fetch_text(url)
         out.append({
             "id": f"{cfg['key']}-{slug(title)}",
             "source": cfg["key"],
             "body": cfg.get("body", ""),
             "url": url,
             "title": title,
-            "text": fetch_text(url),
+            "text": text,
             "opened": None,
             "closes": None,
         })
     return out
 
 
+# Anchor texts that name the action rather than the thing.
+GENERIC_ANCHOR = re.compile(r"^(participate|read more|learn more|details|more|view|open|apply|"
+                            r"en savoir plus|participer|lire la suite|d[ée]tails|voir)\b", re.I)
+
+
 FETCHERS = {"csv": csv_source, "json_api": json_api, "rss": rss, "sitemap": sitemap, "html_index": html_index}
+
+
+def enabled_sources(sources: dict | None) -> list[dict]:
+    """The sources to run, validated up front so a typo fails with a message naming
+    the source, the field and the valid values rather than a bare KeyError."""
+    out = []
+    for cfg in (sources or {}).get("sources") or []:
+        if not cfg.get("enabled", True):
+            continue
+        if not cfg.get("key"):
+            raise ValueError("data/sources.yaml: every source needs a `key`")
+        if cfg.get("kind") not in FETCHERS:
+            raise ValueError(f"data/sources.yaml: source {cfg['key']!r} has kind {cfg.get('kind')!r}; "
+                             f"valid kinds are {sorted(FETCHERS)}")
+        if cfg["kind"] in ("csv", "json_api") and not (cfg.get("columns") or {}).get("title"):
+            raise ValueError(f"data/sources.yaml: source {cfg['key']!r} ({cfg['kind']}) needs `columns.title`")
+        out.append(cfg)
+    return out
 
 
 def main(out_path: str) -> None:
     candidates: list[dict] = []
-    for cfg in SOURCES["sources"]:
-        if not cfg.get("enabled", True):
-            continue
+    sources = enabled_sources(SOURCES)
+    if not sources:
+        print("data/sources.yaml has no enabled sources yet: add some (docs/FORKING.md, 'Fetcher kinds') "
+              "and run this again.", file=sys.stderr)
+    for cfg in sources:
         try:
             found = FETCHERS[cfg["kind"]](cfg)
             print(f"{cfg['key']:28s} {len(found):4d} candidates")
@@ -279,4 +373,6 @@ def main(out_path: str) -> None:
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        sys.exit("usage: python -m pipeline.fetch data/candidates.json")
     main(sys.argv[1])

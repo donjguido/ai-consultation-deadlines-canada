@@ -87,10 +87,11 @@ def test_plural_forms_format_cleanly():
 
 def test_prefilter_keywords_compile():
     import re as _re
+    from pipeline.fetch import compile_keywords
     for kw in SITE["prefilter_keywords"]:
         _re.compile(kw)
-    joined = _re.compile(r"\b(" + "|".join(SITE["prefilter_keywords"]) + r")\b", _re.I)
-    assert joined.search("a consultation on artificial intelligence")
+    joined = compile_keywords(SITE["prefilter_keywords"])
+    assert joined and joined.search("a consultation on artificial intelligence")
 
 
 def test_pick_falls_back_to_the_primary_language():

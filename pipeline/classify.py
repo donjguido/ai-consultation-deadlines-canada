@@ -151,5 +151,23 @@ def main(candidates_path: str, items_path: str, threshold: float = 0.5) -> None:
     print(f"classified {len(candidates)} candidates, added {added}, total {len(existing)}")
 
 
+def cli(argv: list[str] | None = None) -> None:
+    import argparse
+    p = argparse.ArgumentParser(prog="python -m pipeline.classify",
+                                description="Classify fetched candidates into the store with the configured model.")
+    p.add_argument("candidates", nargs="?", help="data/candidates.json from pipeline.fetch")
+    p.add_argument("items", nargs="?", help="data/items.json, the store to update")
+    p.add_argument("--print-prompt", action="store_true",
+                   help="print the system prompt built from data/site.yaml and exit; needs no API key")
+    p.add_argument("--threshold", type=float, default=0.5, help="minimum relevance to keep (default 0.5)")
+    args = p.parse_args(argv)
+    if args.print_prompt:
+        print(SYSTEM)
+        return
+    if not (args.candidates and args.items):
+        p.error("candidates and items paths are required (or pass --print-prompt)")
+    main(args.candidates, args.items, args.threshold)
+
+
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    cli()

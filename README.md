@@ -108,7 +108,7 @@ The design is built to travel, and nothing in the Python names a place. Everythi
 4. Run `python -m pytest` (offline), then fetch, classify and curate. The `verified` flag is a human claim and the pipeline never sets it.
 5. Open a pull request adding your site to `data/forks.yaml`; every site publishes `forks.json` and lists its siblings, so the family finds each other.
 
-The full guide, including the fetcher reference and how to add a language, is [docs/FORKING.md](docs/FORKING.md). Natural next forks in Canada are the provinces and territories, each of which runs its own consultation portal, legislative committees and gazette.
+The full guide, including the fetcher reference and how to add a language, is [docs/FORKING.md](docs/FORKING.md); [docs/FORK-RUBRIC.md](docs/FORK-RUBRIC.md) is the pass/fail checklist a fork is scored against. Natural next forks in Canada are the provinces and territories, each of which runs its own consultation portal, legislative committees and gazette.
 
 ## Feedback
 

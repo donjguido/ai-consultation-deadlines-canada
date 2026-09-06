@@ -104,7 +104,9 @@ classifier:
 
 # Regex fragments joined with | into the keyword pre-filter in pipeline/fetch.py. Broad on
 # purpose: false positives are cheap (the classifier rejects them), false negatives are
-# invisible. Include every language your sources publish in.
+# invisible. A fragment matches anywhere inside a word unless it carries its own \b, so
+# a stem such as `biom[ée]tri` catches every inflection. Include every language your
+# sources publish in.
 prefilter_keywords:
   - artificial intelligence
   - intelligence artificielle
@@ -126,8 +128,8 @@ prefilter_keywords:
   - large language
   - mod[èe]le de langage
   - chatbot
-  - agent(ic)?\b
-  - compute
+  - \bagent(ic)?\b
+  - \bcompute\b
   - data cent(er|re)
   - privacy
   - vie priv[ée]e
