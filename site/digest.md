@@ -73,4 +73,4 @@ Nothing this week.
   How to participate: Watch the petition page for presentation in the House and the government response.
   https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7427
 
-Full list: https://donjguido.github.io/ai-safety-participation-monitor  ·  RSS: https://donjguido.github.io/ai-safety-participation-monitor/feed.xml
+Full list: https://donjguido.github.io/canadian-ai-governance-monitor  ·  RSS: https://donjguido.github.io/canadian-ai-governance-monitor/feed.xml

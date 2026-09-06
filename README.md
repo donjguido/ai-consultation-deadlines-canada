@@ -2,7 +2,7 @@
 
 A public monitor of every federal channel through which Canadians can shape how AI is governed: consultations, parliamentary calls for briefs, Canada Gazette comment periods, funding calls, standards reviews, and e-petitions. Each item is labelled new, open, closing soon, or retired, with a plain-language summary and a concrete way to participate.
 
-Status: **prototype, 6 September 2026**. Live at https://donjguido.github.io/ai-safety-participation-monitor/. Updated every Mondays and Thursdays (no automatic schedule — run the workflow manually, e.g. via `workflow_dispatch` or `gh workflow run`, on that cadence).
+Status: **prototype, 6 September 2026**. Live at https://donjguido.github.io/canadian-ai-governance-monitor/. Updated every Mondays and Thursdays (no automatic schedule — run the workflow manually, e.g. via `workflow_dispatch` or `gh workflow run`, on that cadence).
 
 ## Documents
 
@@ -42,14 +42,14 @@ Every Monday and Thursday: open the diff of `data/items.json`, check items with 
 
 ## Outputs
 
-- Website: https://donjguido.github.io/ai-safety-participation-monitor/
-- RSS: https://donjguido.github.io/ai-safety-participation-monitor/feed.xml
-- JSON: https://donjguido.github.io/ai-safety-participation-monitor/items.json
-- Weekly digest: https://donjguido.github.io/ai-safety-participation-monitor/digest.md
+- Website: https://donjguido.github.io/canadian-ai-governance-monitor/
+- RSS: https://donjguido.github.io/canadian-ai-governance-monitor/feed.xml
+- JSON: https://donjguido.github.io/canadian-ai-governance-monitor/items.json
+- Weekly digest: https://donjguido.github.io/canadian-ai-governance-monitor/digest.md
 
 ## Feedback
 
-Spotted a wrong status, a dead link, or a missing consultation? Feedback is welcome via pull request against the [original repo](https://github.com/donjguido/ai-safety-participation-monitor).
+Spotted a wrong status, a dead link, or a missing consultation? Feedback is welcome via pull request against the [original repo](https://github.com/donjguido/canadian-ai-governance-monitor).
 
 ## Licence
 

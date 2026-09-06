@@ -12,7 +12,7 @@ from pathlib import Path
 
 from .models import Item
 
-SITE_URL = "https://donjguido.github.io/ai-safety-participation-monitor"  # GitHub Pages; swap for a custom domain later
+SITE_URL = "https://donjguido.github.io/canadian-ai-governance-monitor"  # GitHub Pages; swap for a custom domain later
 TEMPLATE = Path(__file__).parent / "template.html"
 
 

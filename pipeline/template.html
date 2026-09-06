@@ -94,7 +94,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
        data-fr="Chaque consultation fédérale, appel de mémoires, avis de la Gazette et appel de financement où les Canadiens peuvent influencer la gouvernance de l'IA. Mis à jour tous les lundis et jeudis.">Every federal consultation, call for briefs, Gazette notice, and funding call where Canadians can shape how AI is governed. Updated every Mondays and Thursdays.</p>
   </div>
   <div class="meta">
-    built __BUILT__ · <a href="feed.xml">RSS</a> · <a href="items.json">JSON</a> · <a href="digest.md">weekly digest</a>
+    <span class="links"
+      data-en="built __BUILT__ · <a href=&quot;feed.xml&quot;>RSS</a> · <a href=&quot;items.json&quot;>JSON</a> · <a href=&quot;digest.md&quot;>weekly digest</a>"
+      data-fr="mis à jour le __BUILT__ · <a href=&quot;feed.xml&quot;>fil RSS</a> · <a href=&quot;items.json&quot;>JSON</a> · <a href=&quot;digest.md&quot;>sommaire hebdomadaire</a>">built __BUILT__ · <a href="feed.xml">RSS</a> · <a href="items.json">JSON</a> · <a href="digest.md">weekly digest</a></span>
     <span class="lang"><button id="en" aria-pressed="true">EN</button> <button id="fr" aria-pressed="false">FR</button></span>
   </div>
 </div></header>
@@ -111,8 +113,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
   <footer>
     <p data-en="Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting."
        data-fr="Prototype. Les étiquettes sont calculées à partir des dates de clôture annoncées : <b>Nouveau</b> = ouvert ou repéré au cours des 14 derniers jours ; <b>Se termine bientôt</b> = clôture dans les 7 jours ; <b>Retiré</b> = date de clôture dépassée ou retiré. Les éléments marqués ⚠ n'ont pas encore été vérifiés par une personne. Vérifiez toujours les échéances sur la page officielle avant de soumettre.">Prototype. Status badges are computed from stated closing dates: <b>New</b> = opened or first seen in the last 14 days; <b>Closing soon</b> = closes within 7 days; <b>Retired</b> = past its closing date or withdrawn. Items marked ⚠ have not yet been checked by a human. Always confirm deadlines on the official page before submitting.</p>
-    <p data-en="© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href=&quot;https://github.com/donjguido/ai-safety-participation-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>original repo</a>."
-       data-fr="© 2026 Julian Guidote. Code sous licence MIT, données sous CC BY 4.0. Une erreur ou une suggestion ? Ouvrez une demande de tirage (pull request) sur le <a href=&quot;https://github.com/donjguido/ai-safety-participation-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>dépôt d'origine</a>.">© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href="https://github.com/donjguido/ai-safety-participation-monitor" target="_blank" rel="noopener">original repo</a>.</p>
+    <p data-en="© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href=&quot;https://github.com/donjguido/canadian-ai-governance-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>original repo</a>."
+       data-fr="© 2026 Julian Guidote. Code sous licence MIT, données sous CC BY 4.0. Une erreur ou une suggestion ? Ouvrez une demande de tirage (pull request) sur le <a href=&quot;https://github.com/donjguido/canadian-ai-governance-monitor&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>dépôt d'origine</a>.">© 2026 Julian Guidote. Code MIT, data CC BY 4.0. Spotted an error or have feedback? Open a pull request on the <a href="https://github.com/donjguido/canadian-ai-governance-monitor" target="_blank" rel="noopener">original repo</a>.</p>
   </footer>
 </main>
 
@@ -123,13 +125,28 @@ const L = {
       hint:{new:"opened in last 14 days",closing_soon:"deadline within 7 days",open:"accepting input now",retired:"past deadline or withdrawn"},
       closes:"Closes",opened:"Opened",noDeadline:"No stated deadline",daysLeft:d=>d===0?"closes today":d===1?"1 day left":`${d} days left`,
       why:"Why it matters:",how:"How to participate:",empty:"Nothing matches these filters.",
+      unverified:"Not yet checked by a human",
       type:{consultation:"Consultation",call_for_briefs:"Call for briefs",gazette_notice:"Gazette notice",funding_call:"Funding call",standards_review:"Standards review",petition:"Petition",other:"Other"}},
   fr:{new:"Nouveau",closing_soon:"Se termine bientôt",open:"Ouvert",retired:"Retiré",
       hint:{new:"ouvert depuis 14 jours ou moins",closing_soon:"échéance dans 7 jours",open:"accepte des contributions",retired:"échéance dépassée ou retiré"},
       closes:"Clôture",opened:"Ouvert le",noDeadline:"Aucune échéance annoncée",daysLeft:d=>d===0?"clôture aujourd'hui":d===1?"1 jour restant":`${d} jours restants`,
       why:"Pourquoi c'est important :",how:"Comment participer :",empty:"Aucun résultat pour ces filtres.",
+      unverified:"Pas encore vérifié par une personne",
       type:{consultation:"Consultation",call_for_briefs:"Appel de mémoires",gazette_notice:"Avis de la Gazette",funding_call:"Appel de financement",standards_review:"Examen de norme",petition:"Pétition",other:"Autre"}}
 };
+// Topic tags come from the closed TOPICS list in pipeline/classify.py; French labels for display only.
+const TOPIC_FR={
+  "frontier-models":"modèles de pointe","privacy":"vie privée","copyright":"droit d'auteur",
+  "procurement":"approvisionnement","deepfakes":"hypertrucages","biometrics":"biométrie",
+  "defence":"défense","health":"santé","children":"enfance","elections":"élections",
+  "competition":"concurrence","standards":"normalisation","public-service":"fonction publique",
+  "research-funding":"financement de la recherche","international":"international",
+  "safety-institute":"institut de la sécurité de l'IA","employment":"emploi","finance":"finance",
+  "critical-infrastructure":"infrastructures essentielles"
+};
+const topicLabel=x=>lang==="fr"?(TOPIC_FR[x]||x):x;
+// French text falls back to English so a not-yet-translated item is still readable.
+const fr=(r,f)=>(lang==="fr"&&r[f+"_fr"])?r[f+"_fr"]:r[f];
 const COLOR={new:"var(--new)",closing_soon:"var(--soon)",open:"var(--open)",retired:"var(--retired)"};
 const BG={new:"var(--new-bg)",closing_soon:"var(--soon-bg)",open:"var(--open-bg)",retired:"var(--retired-bg)"};
 let lang="en", statusFilter="", topicFilter="";
@@ -152,11 +169,11 @@ function renderFilters(){
   const t=L[lang];
   const types=[...new Set(DATA.map(r=>r.type))];
   $("#type").innerHTML=`<option value="">${lang==="fr"?"Tous les types":"All types"}</option>`+types.map(x=>`<option value="${x}">${t.type[x]||x}</option>`).join("");
-  const bodies=[...new Set(DATA.map(r=>r.body))].sort();
-  $("#body").innerHTML=`<option value="">${lang==="fr"?"Tous les ministères":"All departments"}</option>`+bodies.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join("");
+  const bodies=[...new Map(DATA.map(r=>[r.body,r])).values()].sort((a,b)=>fr(a,"body").localeCompare(fr(b,"body"),lang));
+  $("#body").innerHTML=`<option value="">${lang==="fr"?"Tous les ministères":"All departments"}</option>`+bodies.map(r=>`<option value="${esc(r.body)}">${esc(fr(r,"body"))}</option>`).join("");
   const tc={};DATA.forEach(r=>r.topics.forEach(x=>tc[x]=(tc[x]||0)+1));
   const top=Object.entries(tc).sort((a,b)=>b[1]-a[1]).slice(0,8);
-  $("#topics").innerHTML=top.map(([x,n])=>`<button class="chip" data-t="${x}" aria-pressed="${topicFilter===x}">${x} <span style="opacity:.6">${n}</span></button>`).join(" ");
+  $("#topics").innerHTML=top.map(([x,n])=>`<button class="chip" data-t="${x}" aria-pressed="${topicFilter===x}">${esc(topicLabel(x))} <span style="opacity:.6">${n}</span></button>`).join(" ");
   document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{topicFilter=topicFilter===b.dataset.t?"":b.dataset.t;render()});
 }
 function renderList(){
@@ -164,11 +181,11 @@ function renderList(){
   const rows=DATA.filter(r=>
     (!statusFilter||r.badges.includes(statusFilter)) && (!topicFilter||r.topics.includes(topicFilter)) &&
     (!ty||r.type===ty) && (!bo||r.body===bo) &&
-    (!q||[r.title,r.title_fr,r.body,r.summary,r.topics.join(" ")].join(" ").toLowerCase().includes(q)));
+    (!q||[r.title,r.title_fr,r.body,r.body_fr,r.summary,r.summary_fr,r.topics.join(" "),r.topics.map(topicLabel).join(" ")].join(" ").toLowerCase().includes(q)));
   if(!rows.length){$("#list").innerHTML=`<div class="empty">${t.empty}</div>`;return}
   $("#list").innerHTML=rows.map(r=>{
     const p=primary(r);
-    const title=(lang==="fr"&&r.title_fr)?r.title_fr:r.title;
+    const title=fr(r,"title");
     const when = r.closes
       ? `<b>${t.closes} ${r.closes}</b>${r.days_left!=null?`<span>${t.daysLeft(r.days_left)}</span>`:""}`
       : `<b>${t.noDeadline}</b>`;
@@ -179,15 +196,16 @@ function renderList(){
       <div class="when">${when}${opened}</div>
       <div class="main">
         <h2><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(title)}</a></h2>
-        <div class="body">${esc(r.body)}<span class="type">${t.type[r.type]||r.type}</span><span class="badges">${badges}</span>${r.verified?"":' <span class="unverified" title="Not yet checked by a human">⚠</span>'}</div>
-        <p>${esc(r.summary)}</p>
-        <p class="why"><em>${t.why}</em> ${esc(r.why_it_matters)}</p>
-        ${r.how_to_participate?`<p class="how"><strong>${t.how}</strong> ${esc(r.how_to_participate)}</p>`:""}
-        <div class="topics">${r.topics.map(x=>`<span class="topic">${esc(x)}</span>`).join("")}</div>
+        <div class="body">${esc(fr(r,"body"))}<span class="type">${t.type[r.type]||r.type}</span><span class="badges">${badges}</span>${r.verified?"":` <span class="unverified" title="${t.unverified}">⚠</span>`}</div>
+        <p>${esc(fr(r,"summary"))}</p>
+        <p class="why"><em>${t.why}</em> ${esc(fr(r,"why_it_matters"))}</p>
+        ${r.how_to_participate?`<p class="how"><strong>${t.how}</strong> ${esc(fr(r,"how_to_participate"))}</p>`:""}
+        <div class="topics">${r.topics.map(x=>`<span class="topic">${esc(topicLabel(x))}</span>`).join("")}</div>
       </div></article>`;}).join("");
 }
 function applyLang(){
   document.documentElement.lang=lang==="fr"?"fr-CA":"en-CA";
+  document.title=lang==="fr"?"Moniteur canadien de la gouvernance de l'IA":"Canadian AI Governance Monitor";
   document.querySelectorAll("[data-en]").forEach(el=>el.innerHTML=el.dataset[lang]);
   $("#en").setAttribute("aria-pressed",lang==="en");$("#fr").setAttribute("aria-pressed",lang==="fr");
   $("#q").placeholder=lang==="fr"?"Rechercher titres, ministères, sujets…":"Search titles, departments, topics…";
