@@ -4,6 +4,13 @@ The pipeline is built so that a province, a city, another country or a regional 
 its own AI Consultation Deadlines site by editing three data files and no Python. This page is
 the complete guide; the README has the short version.
 
+> **Status: forks are paused.** We are getting the federal site right before inviting anyone
+> to run their own. The two sites that were built this way (Ontario and Québec) have been
+> made private, so `data/forks.yaml` is empty and the sister-site register is closed for now.
+> Everything below still works, and the machinery is maintained. If you want to run a site for
+> your own geography, please open an issue saying so rather than launching it, and we will come
+> back to you when the register reopens.
+
 ## What is geography-specific, and where it lives
 
 | Concern | File | What to change |
@@ -14,7 +21,7 @@ the complete guide; the README has the short version.
 | The classifier prompt's jurisdiction block | `data/site.yaml` → `classifier` | `place`, `scope`, and per-language `style` notes. The prompt itself in `pipeline/classify.py` is neutral. |
 | UI strings per language | `pipeline/strings/<lang>.yaml` | English and French ship. For another language, copy `en.yaml` to `<lang>.yaml` and translate. |
 | The store | `data/items.json` | Starts empty. |
-| Sister sites | `data/forks.yaml` | The original is listed; add siblings as you find them. |
+| Sister sites | `data/forks.yaml` | The original is listed; add siblings as you find them. The original's own list is empty while the register is paused. |
 | The README and changelog | `README.md`, `CHANGELOG.md` | Not touched by the scaffold: rewrite the README's first section, start a fresh changelog. |
 
 Nothing in `pipeline/*.py`, `pipeline/template.html`, `mcp_server/` or `tests/` names a place.
@@ -137,9 +144,11 @@ before you start a French-, German- or Spanish-first site:
    `ANTHROPIC_API_KEY` secret, and run the "Monitor run" workflow. It rebuilds from the
    store even without the key.
 
-9. **Tell the family.** Open a pull request on the original repo adding your site to
-   `data/forks.yaml`. Every site publishes `forks.json` and lists its siblings in the footer and
-   in `llms.txt`, so an agent that finds one can find all.
+9. **Tell the family.** The register is closed while the federal site stabilises (see the
+   note at the top), so `data/forks.yaml` on the original is empty and pull requests against it
+   are on hold. Open an issue instead. When it reopens, one pull request adding your site is all
+   it takes: every site publishes `forks.json` and lists its siblings in the footer and in
+   `llms.txt`, so an agent that finds one can find all.
 
 10. **Score the experience** against [FORK-RUBRIC.md](FORK-RUBRIC.md) and file what you hit as
     an issue on the original. Every criterion there is a promise this page makes; a fail is a

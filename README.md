@@ -77,7 +77,7 @@ For people:
 For machines:
 
 - Full records (JSON): https://donjguido.github.io/ai-consultation-deadlines-canada/items.json
-- Sister sites for other geographies: https://donjguido.github.io/ai-consultation-deadlines-canada/forks.json
+- This site and any sister sites for other geographies: https://donjguido.github.io/ai-consultation-deadlines-canada/forks.json (no sister sites are listed at present)
 - JSON Feed 1.1, with status and deadline per item: https://donjguido.github.io/ai-consultation-deadlines-canada/feed.json
 - Orientation for AI agents: https://donjguido.github.io/ai-consultation-deadlines-canada/llms.txt
 - Every item as Markdown, in one fetch: https://donjguido.github.io/ai-consultation-deadlines-canada/llms-full.txt
@@ -88,27 +88,29 @@ the item list is rendered into the HTML rather than only into JavaScript, the he
 schema.org JSON-LD describing the dataset and every item, and each build also writes
 `robots.txt` (crawling and AI use explicitly permitted, data CC BY 4.0) and `sitemap.xml`.
 
-## Fork it for your own geography
+## Forking it for another geography
 
-The federal channels listed here are only one layer of Canadian governance, and Canada is only one country. We would explicitly love for other coders to fork this design and replicate it for their own geographies: a province or territory, a city, another national government, or a regional body like the EU.
+**Not yet, please.** The federal site comes first. Until it is stable and the Monday/Thursday
+curation cadence has a track record behind it, we are not inviting anyone to stand up their
+own version. Two forks (Ontario and Québec) were built and scored as design tests; both
+repositories have since been made private, so `data/forks.yaml` is empty and this site lists
+no sister sites. This section turns back into an invitation once the federal site is where we
+want it.
 
-The design is built to travel, and nothing in the Python names a place. Everything geography-specific lives in three data files: `data/site.yaml` (name, URL, author, jurisdiction, languages, licence, prose, classifier scope, keyword pre-filter), `data/sources.yaml` (which pages to fetch and how) and `data/items.json` (the store). The four-status model, the classifier, the template, the feeds, the calendar, the digest, the MCP server and the test suite all read that config. To start a fork:
+The design is built to travel all the same, and nothing in the Python names a place.
+Everything geography-specific lives in three data files: `data/site.yaml` (name, URL, author,
+jurisdiction, languages, licence, prose, classifier scope, keyword pre-filter),
+`data/sources.yaml` (which pages to fetch and how) and `data/items.json` (the store). The
+four-status model, the classifier, the template, the feeds, the calendar, the digest, the MCP
+server and the test suite all read that config, and `python -m pipeline.fork` rewrites
+`site.yaml` for a new place without touching Python.
 
-1. Click "Use this template" (the repo is a GitHub template) or fork it.
-2. Run the scaffold, which rewrites `site.yaml`, empties the store and leaves a commented `sources.yaml`:
-
-   ```
-   python -m pipeline.fork --name "AI Consultation Deadlines Ontario" --place Ontario --level provincial \
-       --url https://you.github.io/ai-consultation-deadlines-ontario --repo https://github.com/you/... \
-       --author "Your Name" --languages en,fr
-   ```
-
-   `--languages en` gives a single-language site; another language needs only a `pipeline/strings/<lang>.yaml`.
-3. Add your registry, legislature, gazette and petition sources. The `csv`, `json_api`, `rss` and `sitemap` kinds are configured entirely in YAML.
-4. Run `python -m pytest` (offline), then fetch, classify and curate. The `verified` flag is a human claim and the pipeline never sets it.
-5. Open a pull request adding your site to `data/forks.yaml`; every site publishes `forks.json` and lists its siblings, so the family finds each other.
-
-The full guide, including the fetcher reference and how to add a language, is [docs/FORKING.md](docs/FORKING.md); [docs/FORK-RUBRIC.md](docs/FORK-RUBRIC.md) is the pass/fail checklist a fork is scored against. Natural next forks in Canada are the provinces and territories, each of which runs its own consultation portal, legislative committees and gazette.
+The mechanics are documented and still work: [docs/FORKING.md](docs/FORKING.md) is the full
+guide, including the fetcher reference and how to add a language, and
+[docs/FORK-RUBRIC.md](docs/FORK-RUBRIC.md) is the pass/fail checklist a fork attempt is scored
+against. If you want to run one for your province, territory, city or country, please open an
+issue saying so rather than launching it. Knowing who is waiting is genuinely useful, and we
+would rather help you start once than watch a half-built sister site go stale.
 
 ## Feedback
 

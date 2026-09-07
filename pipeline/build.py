@@ -678,9 +678,15 @@ def build_json_feed(records: list[dict], out: Path, today: date) -> None:
 def build_forks(out: Path, today: date) -> None:
     """forks.json: this site plus every sister site listed in data/forks.yaml, so the
     family can be discovered from any one member."""
-    payload = {"generated": today.isoformat(), "self": self_entry(), "forks": load_forks(),
-               "template": REPO, "note": "Sites built from the same template for other geographies. "
-                                         "Add yours by pull request to data/forks.yaml in the template repo."}
+    forks = load_forks()
+    note = "Sites built from the same template for other geographies. "
+    # Only invite additions when there is a register to add to: an empty data/forks.yaml
+    # means this site is not currently taking sister sites, and saying otherwise sends
+    # agents and readers to a pull request nobody is waiting for.
+    note += ("Add yours by pull request to data/forks.yaml in the template repo."
+             if forks else "None are listed at present.")
+    payload = {"generated": today.isoformat(), "self": self_entry(), "forks": forks,
+               "template": REPO, "note": note}
     (out / "forks.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
 
 

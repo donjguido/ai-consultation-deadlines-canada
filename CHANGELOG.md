@@ -32,8 +32,14 @@ Ontario changed the place; Québec changed the primary language, and found the p
   réglementaire"): a fork without a gazette no longer inherits a Canada-flavoured label it cannot
   remove. Existing stores: replace the value in `data/items.json`; MCP clients filtering on the
   old value get no matches.
-- Ontario and Québec are listed in `data/forks.yaml` as the first sister sites
-  (`donjguido/ai-consultation-deadlines-ontario`, `donjguido/ai-consultation-deadlines-quebec`).
+- Forks are paused while the federal site stabilises. The Ontario and Québec repositories
+  (`donjguido/ai-consultation-deadlines-ontario`, `donjguido/ai-consultation-deadlines-quebec`)
+  have been made private and their Pages sites torn down, `data/forks.yaml` is empty, and the
+  footer, `llms.txt` and `forks.json` list no sister sites. The README's fork section and
+  `docs/FORKING.md` now say "not yet" and ask would-be forkers to open an issue instead of
+  launching. Nothing in the forking machinery changed: `pipeline/fork.py`, `docs/FORKING.md`,
+  `docs/FORK-RUBRIC.md`, the scored attempts in `docs/fork-attempts/` and `tests/test_fork.py`
+  are all intact, and the register reopens when the federal site is ready.
 - The scaffold writes `site.yaml` as a text template, so every documentation comment survives;
   secondary-language prose blocks start empty (per-key fallback) instead of as an untranslated
   copy, so a fresh fork's test suite is green. It also empties the inherited `site/`.

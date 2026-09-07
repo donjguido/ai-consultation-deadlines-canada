@@ -1,17 +1,22 @@
 # Sister sites built from this template for other geographies. Every build publishes
 # this list as forks.json, links it from llms.txt and lists it in the site footer, so
 # the family of sites can find each other and an agent can discover them all from one
-# llms.txt. Built one? Open a pull request adding it here.
+# llms.txt.
 #
-# Only one entry is required per site. `languages` is informational.
-forks:
-  - name: AI Consultation Deadlines Ontario
-    jurisdiction: Ontario, Canada
-    url: https://donjguido.github.io/ai-consultation-deadlines-ontario
-    repo: https://github.com/donjguido/ai-consultation-deadlines-ontario
-    languages: [en, fr]
-  - name: AI Consultation Deadlines Québec
-    jurisdiction: Québec, Canada
-    url: https://donjguido.github.io/ai-consultation-deadlines-quebec
-    repo: https://github.com/donjguido/ai-consultation-deadlines-quebec
-    languages: [fr, en]
+# The list is deliberately empty for now. The Ontario and Québec forks were the first two
+# scored attempts (their reports are in docs/fork-attempts/); both repositories have been
+# made private while the federal site is still being stabilised, so the sites they served
+# no longer resolve and are not listed here. The forking machinery is unchanged and the
+# guide in docs/FORKING.md still works. We will invite forks, and start taking pull
+# requests against this file again, once the federal site is where we want it.
+#
+# Entry shape, for when the list comes back. Only `name`, `jurisdiction`, `url` and `repo`
+# are used; `languages` is informational.
+#
+#   forks:
+#     - name: AI Consultation Deadlines Ontario
+#       jurisdiction: Ontario, Canada
+#       url: https://donjguido.github.io/ai-consultation-deadlines-ontario
+#       repo: https://github.com/donjguido/ai-consultation-deadlines-ontario
+#       languages: [en, fr]
+forks: []

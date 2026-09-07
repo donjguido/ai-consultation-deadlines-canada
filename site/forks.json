@@ -10,28 +10,7 @@
       "fr"
     ]
   },
-  "forks": [
-    {
-      "name": "AI Consultation Deadlines Ontario",
-      "jurisdiction": "Ontario, Canada",
-      "url": "https://donjguido.github.io/ai-consultation-deadlines-ontario",
-      "repo": "https://github.com/donjguido/ai-consultation-deadlines-ontario",
-      "languages": [
-        "en",
-        "fr"
-      ]
-    },
-    {
-      "name": "AI Consultation Deadlines Québec",
-      "jurisdiction": "Québec, Canada",
-      "url": "https://donjguido.github.io/ai-consultation-deadlines-quebec",
-      "repo": "https://github.com/donjguido/ai-consultation-deadlines-quebec",
-      "languages": [
-        "fr",
-        "en"
-      ]
-    }
-  ],
+  "forks": [],
   "template": "https://github.com/donjguido/ai-consultation-deadlines-canada",
-  "note": "Sites built from the same template for other geographies. Add yours by pull request to data/forks.yaml in the template repo."
+  "note": "Sites built from the same template for other geographies. None are listed at present."
 }
