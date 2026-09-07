@@ -10,6 +10,11 @@ Ontario changed the place; Québec changed the primary language, and found the p
 "English" was standing in for "primary".
 
 ### Added
+- Optional cookieless analytics: `analytics.goatcounter` in `site.yaml` renders the GoatCounter
+  tag and the page counts clicks on item links, calendar options, feed links, topic chips and
+  the language toggle as `/event/...` paths. Empty (the default and the scaffold) loads nothing.
+- `python -m pipeline.engagement` appends a weekly row to `data/engagement.csv`: Feedly
+  subscribers per feed, GitHub traffic for 14 days and, with a token, GoatCounter totals.
 - The meta description, the schema.org dataset description and the `llms.txt` lead are
   sentence frames in the strings files (`meta_description`, `dataset_description`,
   `llms_lead`, `llms_built`), so a non-English site is not described in English.

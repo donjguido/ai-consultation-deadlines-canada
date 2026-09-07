@@ -8,6 +8,20 @@ second step, so this page spells it out. It applies to the Canadian site and to 
 Twice a week (Mondays and Thursdays here; a fork sets its own `cadence` text in
 `data/site.yaml`). A quiet run takes ten minutes; a busy one under an hour.
 
+## Engagement snapshot (Mondays)
+
+Once a week, before the loop:
+
+```
+python -m pipeline.engagement
+```
+
+It appends one row to `data/engagement.csv`: Feedly subscribers per feed, GitHub views,
+unique visitors and clones for the last 14 days (needs `gh auth login`), and, when
+`analytics.goatcounter` is set in `site.yaml` and `GOATCOUNTER_TOKEN` is exported, the
+week's page views and click events. The sources keep no history, so the CSV is the record.
+A blank cell means the source was unreachable, not zero; commit the row with the curation.
+
 ## The loop
 
 1. **Pull first.** The workflow commits back to `main` as `monitor-bot`, so `git pull` before

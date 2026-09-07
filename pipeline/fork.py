@@ -202,6 +202,11 @@ licence:
 #   government_licence    the licence government content is reproduced under, or null
 text:
 {text}
+# Cookieless visit and click counting, off unless `goatcounter` names an endpoint. Create a
+# site at goatcounter.com (free for non-commercial use, no cookies, no consent banner) and
+# paste its count URL. Empty means the page loads no analytics at all.
+analytics:
+  goatcounter: ""
 keywords:                   # schema.org Dataset keywords
 {keywords}
 # The classifier prompt in pipeline/classify.py is jurisdiction-neutral; this block is

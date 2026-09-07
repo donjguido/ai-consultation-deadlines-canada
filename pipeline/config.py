@@ -43,6 +43,7 @@ def load_site(path: Path = SITE_FILE) -> dict[str, Any]:
     site.setdefault("licence", {})
     site.setdefault("author", {})
     site.setdefault("text", {})
+    site.setdefault("analytics", {})
     site["_path"] = str(path)
     return site
 

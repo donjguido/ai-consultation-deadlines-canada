@@ -332,6 +332,14 @@ def render_links_line(lang: str, today: date) -> str:
     )
 
 
+def render_analytics_html() -> str:
+    """The counter's script tag, or nothing when site.yaml names no endpoint."""
+    endpoint = (SITE["analytics"].get("goatcounter") or "").strip()
+    if not endpoint:
+        return ""
+    return f'<script data-goatcounter="{esc(endpoint)}" async src="//gc.zgo.at/count.js"></script>'
+
+
 def render_forks_html() -> str:
     forks = load_forks()
     if not forks:
@@ -380,6 +388,7 @@ def build_site(items: list[Item], out: Path, today: date) -> list[dict]:
         "site": SITE_URL, "slug": SLUG, "name": NAME, "version": SITE.get("version", "1.0"),
         "primary": PRIMARY, "langs": LANGS, "locales": {x: locale(x) for x in LANGS},
         "fields": list(TRANSLATED_FIELDS),
+        "analytics": bool((SITE["analytics"].get("goatcounter") or "").strip()),
     }
     html = TEMPLATE.read_text(encoding="utf-8")
     html = fill_i18n(html, {**ui[PRIMARY], **ui[PRIMARY]["text"]})
@@ -394,6 +403,7 @@ def build_site(items: list[Item], out: Path, today: date) -> list[dict]:
     html = html.replace("<!--__HEAD_LINKS__-->", render_head_links())
     html = html.replace("<!--__LANG_BUTTONS__-->", render_lang_buttons())
     html = html.replace("<!--__FORKS__-->", render_forks_html())
+    html = html.replace("<!--__ANALYTICS__-->", render_analytics_html())
     # Generated content goes in last so nothing inside it is scanned for placeholders.
     html = html.replace("<!--__STATS__-->", render_stats_html(records))
     html = html.replace("<!--__ITEMS__-->", render_items_html(records, {i.id: i for i in items}, today))

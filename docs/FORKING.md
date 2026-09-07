@@ -48,6 +48,7 @@ The scaffolded file carries a comment on every key. The ones people ask about:
 | `classifier.place` | Used in "in <place>" throughout the prompt. |
 | `classifier.official_names` | Optional. A free-text instruction on which naming conventions the translated fields follow, e.g. "use the official French name of a ministry or programme when one exists". |
 | `classifier.style.<lang>` | One paragraph per secondary language on how to write it well: register, date format, typography. |
+| `analytics.goatcounter` | Optional. A GoatCounter count URL (`https://<code>.goatcounter.com/count`). Empty, the page loads no analytics; set, it counts visits and clicks on item links, calendar buttons, feed links, topic chips and the language toggle as events, with no cookies and no identifiers. Create your own account; never inherit the parent's. |
 | `prefilter_keywords` | Regex fragments, one alternation. A fragment matches anywhere inside a word unless it carries its own `\b`, so `biom[ée]tri` catches every inflection and `\bAI\b` stays a whole word. |
 
 `version` is your site's own version string; it appears in the calendar PRODID and the fetchers'

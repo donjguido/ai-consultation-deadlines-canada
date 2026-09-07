@@ -72,6 +72,14 @@ text:
     dataset_name: Canaux fédéraux canadiens de participation à la gouvernance de l'IA
     government_licence: Licence du gouvernement ouvert - Canada
 
+# Cookieless visit and click counting, off unless `goatcounter` names an endpoint. GoatCounter
+# (goatcounter.com, free for non-commercial sites, open source) sets no cookies and stores no
+# personal data, so no consent banner is needed. Create a site there and paste its count URL.
+# Leave it empty and the page loads no analytics at all. Clicks on item links, calendar
+# buttons, feed links, topic chips and the language toggle are counted as events.
+analytics:
+  goatcounter: ""           # e.g. https://ai-consultation-deadlines-canada.goatcounter.com/count
+
 keywords:                   # schema.org Dataset keywords
   - AI governance
   - AI safety

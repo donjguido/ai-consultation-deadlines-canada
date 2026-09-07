@@ -23,7 +23,7 @@ EXPECTED_FILES = [
 PLACEHOLDERS = ["__DESC__", "__SITE_URL__", "__COUNT__", "__BUILT__", "__SLUG__", "__LOCALE__",
                 "__PLACE__", "__LICENCE_URL__",
                 "<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "<!--__HEAD_LINKS__-->",
-                "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->", "/*__DATA__*/", "/*__L__*/", "/*__CONFIG__*/"]
+                "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->", "<!--__ANALYTICS__-->", "/*__DATA__*/", "/*__L__*/", "/*__CONFIG__*/"]
 
 
 def _build(items, out: Path):
@@ -203,6 +203,22 @@ def test_jsonld_names_the_jurisdiction_and_languages(built):
     assert dataset["spatialCoverage"]["name"] == build.SITE["jurisdiction"]["name"]
     assert dataset["inLanguage"] == [build.locale(x) for x in LANGS]
     assert dataset["license"] == build.SITE["licence"]["data_url"]
+
+
+def test_analytics_tag_only_when_an_endpoint_is_configured(tmp_path, sample_items, monkeypatch):
+    """An empty analytics block loads no third-party script at all; a configured
+    endpoint renders the counter tag and tells the client script to send events."""
+    monkeypatch.setitem(build.SITE, "analytics", {"goatcounter": ""})
+    _build(sample_items, tmp_path / "off")
+    html = (tmp_path / "off" / "index.html").read_text(encoding="utf-8")
+    assert "gc.zgo.at" not in html and "data-goatcounter" not in html
+    assert '"analytics": false' in html
+
+    monkeypatch.setitem(build.SITE, "analytics", {"goatcounter": "https://example.goatcounter.com/count"})
+    _build(sample_items, tmp_path / "on")
+    html = (tmp_path / "on" / "index.html").read_text(encoding="utf-8")
+    assert '<script data-goatcounter="https://example.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>' in html
+    assert '"analytics": true' in html
 
 
 def test_real_store_builds_cleanly(tmp_path):

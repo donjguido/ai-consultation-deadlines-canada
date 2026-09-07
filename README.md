@@ -61,6 +61,14 @@ The deploy workflow runs it before fetching anything and again after classificat
 so a failing test blocks the deploy. Run it before committing changes to the pipeline,
 the template, or the store.
 
+## Engagement and privacy
+
+No cookies, no accounts, no identifiers. When `analytics.goatcounter` is set in `data/site.yaml`
+the page loads [GoatCounter](https://www.goatcounter.com/), which counts visits and clicks in
+aggregate without cookies or personal data, so no consent banner is needed. Leave it empty and
+nothing is loaded. `python -m pipeline.engagement` records the weekly signals that exist for a
+static site (feed reader subscribers, repository traffic, counter totals) in `data/engagement.csv`.
+
 ## Curation
 
 Every Monday and Thursday: fetch, run `python -m pipeline.triage`, work its UNSEEN, STALE, NEEDS CHECK and NO FRENCH sections against the source pages, set `verified`, retire dead items with a `retired_reason`, rebuild, test, commit, then trigger the workflow (push to `main` or `gh workflow run daily.yml`). The full loop and the record rules are in [docs/CURATION.md](docs/CURATION.md).
