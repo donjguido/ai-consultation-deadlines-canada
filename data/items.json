@@ -126,7 +126,7 @@
   ],
   "relevance": 0.85,
   "source": "senate",
-  "verified": false
+  "verified": true
  },
  {
   "id": "senate-trcm-ai-ict",
@@ -152,7 +152,7 @@
   ],
   "relevance": 0.85,
   "source": "senate",
-  "verified": false
+  "verified": true
  },
  {
   "id": "indu-ai-strategic-industries",
@@ -255,7 +255,7 @@
   "source": "petitions",
   "retired": true,
   "retired_reason": "closed",
-  "verified": false
+  "verified": true
  },
  {
   "id": "petition-e-7427-alberta-moratorium",
@@ -281,7 +281,7 @@
   "source": "petitions",
   "retired": true,
   "retired_reason": "closed",
-  "verified": false
+  "verified": true
  },
  {
   "id": "bill-c-34-safe-social-media",
@@ -357,7 +357,7 @@
   ],
   "relevance": 0.8,
   "source": "opc",
-  "verified": false,
+  "verified": true,
   "retired": true,
   "retired_reason": "closed"
  },
@@ -440,7 +440,7 @@
   "source": "commons",
   "retired": true,
   "retired_reason": "closed",
-  "verified": false
+  "verified": true
  },
  {
   "id": "cifar-ai-frontiers-school-2026",
@@ -493,7 +493,7 @@
   ],
   "relevance": 0.85,
   "source": "tbs",
-  "verified": false,
+  "verified": true,
   "retired": true,
   "retired_reason": "closed"
  },
@@ -600,7 +600,7 @@
   ],
   "relevance": 0.9,
   "source": "caisi",
-  "verified": false,
+  "verified": true,
   "retired": true,
   "retired_reason": "closed"
  },
@@ -655,7 +655,7 @@
   ],
   "relevance": 0.6,
   "source": "gazette",
-  "verified": false
+  "verified": true
  },
  {
   "id": "csa-ai-regulatory-guidance",
@@ -680,6 +680,6 @@
   ],
   "relevance": 0.7,
   "source": "scc",
-  "verified": false
+  "verified": true
  }
 ]
