@@ -357,7 +357,9 @@
   ],
   "relevance": 0.8,
   "source": "opc",
-  "verified": false
+  "verified": false,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "dgsi-137-credential-ai",
@@ -382,7 +384,9 @@
   ],
   "relevance": 0.6,
   "source": "scc",
-  "verified": true
+  "verified": true,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "ised-sovereign-compute-program",
@@ -407,7 +411,9 @@
   ],
   "relevance": 0.7,
   "source": "ised",
-  "verified": true
+  "verified": true,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "chpc-ai-creative-industries",
@@ -460,7 +466,9 @@
   ],
   "relevance": 0.8,
   "source": "caisi",
-  "verified": true
+  "verified": true,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "tbs-ai-register-mvp",
@@ -485,7 +493,9 @@
   ],
   "relevance": 0.85,
   "source": "tbs",
-  "verified": false
+  "verified": false,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "opc-guidance-process-2026",
@@ -509,7 +519,9 @@
   ],
   "relevance": 0.55,
   "source": "opc",
-  "verified": true
+  "verified": true,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "petition-e-7055-ai-labelling",
@@ -534,7 +546,9 @@
   ],
   "relevance": 0.6,
   "source": "petitions",
-  "verified": true
+  "verified": true,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "petition-e-7002-deepfakes",
@@ -559,7 +573,9 @@
   ],
   "relevance": 0.65,
   "source": "petitions",
-  "verified": true
+  "verified": true,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "caisi-catalyst-2025",
@@ -584,7 +600,9 @@
   ],
   "relevance": 0.9,
   "source": "caisi",
-  "verified": false
+  "verified": false,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "ised-ai-strategy-2025",
@@ -610,7 +628,9 @@
   ],
   "relevance": 0.95,
   "source": "ised",
-  "verified": true
+  "verified": true,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "ircc-citizenship-biometrics",

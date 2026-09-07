@@ -1,6 +1,6 @@
 # AI Consultation Deadlines Canada - full corpus
 
-Generated 2026-09-06 from https://donjguido.github.io/ai-consultation-deadlines-canada/items.json. 26 items.
+Generated 2026-09-07 from https://donjguido.github.io/ai-consultation-deadlines-canada/items.json. 26 items.
 CC BY 4.0. Government content under the Open Government Licence - Canada.
 Status is derived from the stated closing date: new = within 14 days of opening,
 closing soon = closes within 7 days, retired = past the date or withdrawn.
@@ -16,7 +16,7 @@ closing soon = closes within 7 days, retired = past the date or withdrawn.
 - Status: open
 - Opened: 2026-07-23
 - Closes: 2026-09-23
-- Days left: 17
+- Days left: 16
 - Topics: frontier-models, deepfakes, standards
 - Verified by a human: yes
 - Source: https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada
@@ -40,7 +40,7 @@ Summary (fr): Consultation de deux mois, menée dans le cadre de la stratégie �
 - Status: open
 - Opened: 2026-08-05
 - Closes: 2026-10-05
-- Days left: 29
+- Days left: 28
 - Topics: health, standards
 - Verified by a human: yes
 - Source: https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/

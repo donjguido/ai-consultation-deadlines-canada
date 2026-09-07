@@ -1,4 +1,4 @@
-# AI Consultation Deadlines Canada, week of 2026-09-06
+# AI Consultation Deadlines Canada, week of 2026-09-07
 
 ## Closing within 7 days
 

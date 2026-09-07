@@ -1,4 +1,4 @@
-# Échéances des consultations sur l'IA Canada, semaine du 2026-09-06
+# Échéances des consultations sur l'IA Canada, semaine du 2026-09-07
 
 ## Clôture dans les 7 jours
 
