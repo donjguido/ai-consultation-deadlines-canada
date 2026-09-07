@@ -76,6 +76,13 @@ h1{font-family:var(--display);font-weight:500;font-size:2rem;line-height:1.1;mar
 .stat .l{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin-top:4px}
 .stat .h{font-size:.82rem;color:var(--ink-3);margin-top:2px}
 
+.subscribe{border:1px solid var(--rule);border-radius:4px;background:var(--panel);padding:14px 16px;margin:0 0 18px}
+.subscribe h2{font-size:1rem;margin:0 0 4px}
+.subscribe p{margin:0 0 8px;font-size:.9rem;max-width:70ch}
+.subscribe form{display:flex;flex-wrap:wrap;gap:8px}
+.subscribe input[type=email]{flex:1 1 220px;padding:7px 10px;border:1px solid var(--rule);border-radius:3px;font:inherit}
+.subscribe button{padding:7px 14px;border:0;border-radius:3px;background:var(--accent);color:var(--accent-ink);font:inherit;cursor:pointer}
+.subscribe .fine{font-size:.78rem;color:var(--ink-3);margin:8px 0 0}
 .filters{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:0 0 18px;font-size:.9rem}
 .filters input[type=search]{flex:1 1 220px;padding:7px 10px;border:1px solid var(--rule);border-radius:3px;background:var(--panel);color:var(--ink);font:inherit}
 .filters select{padding:7px 8px;border:1px solid var(--rule);border-radius:3px;background:var(--panel);color:var(--ink);font:inherit}
@@ -171,6 +178,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
      The list itself is rendered into the HTML by build.py and stays fully readable. -->
 <noscript><style>#filters,.lang{display:none!important}.stat{cursor:default}</style></noscript>
 <!--__JSONLD__-->
+<!--__ANALYTICS__-->
 </head>
 <body>
 <a class="skip" href="#items" data-i18n="skip">Skip to the list</a>
@@ -191,6 +199,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
     <h2 id="glance-h" class="sr-only" data-i18n="at_a_glance">At a glance</h2>
     <div class="stats" id="stats"><!--__STATS__--></div>
   </section>
+
+  <!--__NEWSLETTER__-->
 
   <section aria-labelledby="filters-h">
     <h2 id="filters-h" class="sr-only" data-i18n="search_and_filter">Search and filter</h2>
@@ -450,6 +460,9 @@ function render(skipList){
   // buttons still need their handlers attached.
   if(skipList){setCount(DATA.length,DATA.length);wireItemMenus()}else renderList();
   if($("#calbox").open)renderCalBox();
+  // The subscribe form (rendered by build.py only when site.yaml names an account) tags
+  // the reader with the language they were reading in.
+  const nlTag=$("#nl-tag");if(nlTag)nlTag.value=lang;
 }
 ["#q","#type","#body"].forEach(s=>$(s).addEventListener("input",renderList));
 function setLang(x){
@@ -461,6 +474,26 @@ function setLang(x){
   render();
 }
 document.querySelectorAll("#lang-toggle button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+// Engagement events, counted only when site.yaml names an analytics endpoint and the
+// counter script has loaded. Each event is a path under /event/: which item link was
+// followed, which calendar option was used, which feed was opened. No identifiers.
+const track=p=>{try{if(CFG.analytics&&window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:"/event/"+p,event:true})}catch(e){}};
+document.addEventListener("click",e=>{
+  const el=e.target.closest("a[href],button,.stat,.chip");if(!el)return;
+  const item=el.closest("article.item"),id=item?item.id.replace(/^item-/,""):"";
+  if(el.matches("#list h3 a"))track("out/"+id);
+  else if(el.matches("a[role=menuitem]"))track("cal/item/"+(/google/i.test(el.textContent)?"google":"outlook"));
+  else if(el.matches("[data-ics]"))track("cal/item/ics");
+  else if(el.id==="caldl")track("cal/all/ics");
+  else if(el.closest("#nl-form"))track("newsletter/subscribe");
+  else if(el.matches("a.calopt"))track("cal/all/"+((el.getAttribute("href")||"").startsWith("webcal")?"webcal":/google/i.test(el.textContent)?"google":"outlook"));
+  else if(el.id==="cal-all")track("cal/all/open");
+  else if(el.closest("#lang-toggle"))track("lang/"+el.dataset.lang);
+  else if(el.matches(".chip"))track("topic/"+el.dataset.t);
+  else if(el.matches(".stat"))track("status/"+el.dataset.k);
+  else if(el.matches(".links a"))track("link/"+el.getAttribute("href"));
+  else if(el.matches(".forks a"))track("fork/"+el.hostname);
+},true);
 // build.py already wrote the primary-language, unfiltered list into #list, so the first
 // paint needs no client render: crawlers and browsers end up with identical markup.
 render(lang===PRIMARY);

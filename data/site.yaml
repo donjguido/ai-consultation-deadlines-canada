@@ -72,6 +72,22 @@ text:
     dataset_name: Canaux fédéraux canadiens de participation à la gouvernance de l'IA
     government_licence: Licence du gouvernement ouvert - Canada
 
+# Cookieless visit and click counting, off unless `goatcounter` names an endpoint. GoatCounter
+# (goatcounter.com, free for non-commercial sites, open source) sets no cookies and stores no
+# personal data, so no consent banner is needed. Create a site there and paste its count URL.
+# Leave it empty and the page loads no analytics at all. Clicks on item links, calendar
+# buttons, feed links, topic chips and the language toggle are counted as events.
+analytics:
+  goatcounter: ""           # e.g. https://ai-consultation-deadlines-canada.goatcounter.com/count
+
+# Fortnightly email, off unless `buttondown` names a Buttondown account (buttondown.com, free
+# under 100 subscribers). The page then shows Buttondown's hosted subscribe form, so no
+# address ever reaches this repository, and `python -m pipeline.newsletter` files each issue
+# through the Buttondown API (BUTTONDOWN_API_KEY) with Claude writing the subject and lead.
+# Buttondown keeps the list private: subscribers see their own unsubscribe link and nothing else.
+newsletter:
+  buttondown: ""            # the account's username, e.g. ai-consultation-deadlines-canada
+
 keywords:                   # schema.org Dataset keywords
   - AI governance
   - AI safety

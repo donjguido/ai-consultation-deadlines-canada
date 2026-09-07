@@ -8,6 +8,38 @@ second step, so this page spells it out. It applies to the Canadian site and to 
 Twice a week (Mondays and Thursdays here; a fork sets its own `cadence` text in
 `data/site.yaml`). A quiet run takes ten minutes; a busy one under an hour.
 
+## Engagement snapshot (Mondays)
+
+Once a week, before the loop:
+
+```
+python -m pipeline.engagement
+```
+
+It appends one row to `data/engagement.csv`: Feedly subscribers per feed, GitHub views,
+unique visitors and clones for the last 14 days (needs `gh auth login`), and, when
+`analytics.goatcounter` is set in `site.yaml` and `GOATCOUNTER_TOKEN` is exported, the
+week's page views and click events. The sources keep no history, so the CSV is the record.
+A blank cell means the source was unreachable, not zero; commit the row with the curation.
+
+## Newsletter (every second Tuesday, automatic)
+
+`.github/workflows/newsletter.yml` runs every Tuesday at 14:00 UTC, after the Monday pass has
+landed, and `pipeline/newsletter.py` skips any run within 13 days of the last issue, so an issue
+is filed fortnightly. It diffs the store against the snapshot in `data/newsletter.json` (items
+first seen since the last issue, closing within 7 days, with a moved deadline, or closed since),
+renders those facts from the store, asks Claude for a subject and a two-sentence lead per
+language, and creates the email in Buttondown as a **draft**. Open the Buttondown dashboard,
+read it, press send. Set the repository variable `NEWSLETTER_AUTOSEND` to `true` to skip that
+gate. Preview locally without touching anything:
+
+```
+python -m pipeline.newsletter data/items.json --dry-run --no-llm
+```
+
+`--force` ignores the fortnight guard; `--send` sends at once. The workflow commits
+`data/newsletter.json` with `[skip ci]`, so pull before local work as with the store.
+
 ## The loop
 
 1. **Pull first.** The workflow commits back to `main` as `monitor-bot`, so `git pull` before

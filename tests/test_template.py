@@ -8,7 +8,7 @@ REQUIRED_PLACEHOLDERS = [
     "__DESC__", "__SITE_URL__", "__COUNT__", "__BUILT__", "__SLUG__", "__LOCALE__", "__PLACE__",
     "__LICENCE_URL__",
     "<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "<!--__HEAD_LINKS__-->",
-    "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->",
+    "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->", "<!--__ANALYTICS__-->",
     "/*__DATA__*/[]", "/*__L__*/{}", "/*__CONFIG__*/{}",
 ]
 # Elements the inline script and the build step address by id.
@@ -25,7 +25,7 @@ def _html() -> str:
 
 
 ONCE_ONLY = {"<!--__STATS__-->", "<!--__ITEMS__-->", "<!--__JSONLD__-->", "<!--__HEAD_LINKS__-->",
-             "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->", "/*__DATA__*/[]", "/*__L__*/{}",
+             "<!--__LANG_BUTTONS__-->", "<!--__FORKS__-->", "<!--__ANALYTICS__-->", "<!--__NEWSLETTER__-->", "/*__DATA__*/[]", "/*__L__*/{}",
              "/*__CONFIG__*/{}", "__COUNT__"}
 
 
@@ -91,3 +91,19 @@ def test_client_rechecks_deadlines_against_the_readers_own_date():
     html = _html()
     assert "todayISO" in html and "r.closes>=todayISO()" in html
     assert "DATA.filter(upcoming)" in html, "the bulk download must use the same filter"
+
+
+def test_engagement_events_are_gated_on_the_configured_endpoint():
+    """The click tracker must be a no-op unless site.yaml names an analytics endpoint,
+    so a fork with the default empty block sends nothing anywhere."""
+    html = _html()
+    assert "CFG.analytics&&window.goatcounter" in html
+    assert '"/event/"+p' in html
+
+
+def test_subscribe_form_tag_follows_the_language_toggle():
+    """build.py renders the form only when site.yaml names a Buttondown account; the client
+    keeps its hidden tag equal to the reader's language and counts a submit as an event."""
+    html = _html()
+    assert '$("#nl-tag")' in html and "nlTag.value=lang" in html
+    assert 'el.closest("#nl-form")' in html

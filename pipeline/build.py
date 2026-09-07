@@ -332,6 +332,39 @@ def render_links_line(lang: str, today: date) -> str:
     )
 
 
+def render_analytics_html() -> str:
+    """The counter's script tag, or nothing when site.yaml names no endpoint."""
+    endpoint = (SITE["analytics"].get("goatcounter") or "").strip()
+    if not endpoint:
+        return ""
+    return f'<script data-goatcounter="{esc(endpoint)}" async src="//gc.zgo.at/count.js"></script>'
+
+
+def render_newsletter_html() -> str:
+    """Buttondown's hosted subscribe form, or nothing when site.yaml names no account. The
+    form posts straight to Buttondown, so the address never passes through this site; the
+    hidden `tag` carries the reader's language so issues can be targeted later."""
+    user = (SITE["newsletter"].get("buttondown") or "").strip()
+    if not user:
+        return ""
+    t = strings(PRIMARY)
+    action = f"https://buttondown.com/api/emails/embed-subscribe/{esc(user)}"
+    return (
+        f'<section class="subscribe" id="subscribe" aria-labelledby="subscribe-h">'
+        f'<h2 id="subscribe-h" data-i18n="newsletter_head">{esc(t["newsletter_head"])}</h2>'
+        f'<p data-i18n="newsletter_note">{esc(t["newsletter_note"])}</p>'
+        f'<form action="{action}" method="post" target="_blank" id="nl-form">'
+        f'<label class="sr-only" for="nl-email" data-i18n="newsletter_email">{esc(t["newsletter_email"])}</label>'
+        f'<input type="email" name="email" id="nl-email" required autocomplete="email" '
+        f'data-i18n-placeholder="newsletter_email" placeholder="{esc(t["newsletter_email"])}">'
+        f'<input type="hidden" name="tag" id="nl-tag" value="{esc(PRIMARY)}">'
+        f'<button type="submit" data-i18n="newsletter_button">{esc(t["newsletter_button"])}</button>'
+        f'</form>'
+        f'<p class="fine" data-i18n="newsletter_privacy">{esc(t["newsletter_privacy"])}</p>'
+        f'</section>'
+    )
+
+
 def render_forks_html() -> str:
     forks = load_forks()
     if not forks:
@@ -380,6 +413,8 @@ def build_site(items: list[Item], out: Path, today: date) -> list[dict]:
         "site": SITE_URL, "slug": SLUG, "name": NAME, "version": SITE.get("version", "1.0"),
         "primary": PRIMARY, "langs": LANGS, "locales": {x: locale(x) for x in LANGS},
         "fields": list(TRANSLATED_FIELDS),
+        "analytics": bool((SITE["analytics"].get("goatcounter") or "").strip()),
+        "newsletter": bool((SITE["newsletter"].get("buttondown") or "").strip()),
     }
     html = TEMPLATE.read_text(encoding="utf-8")
     html = fill_i18n(html, {**ui[PRIMARY], **ui[PRIMARY]["text"]})
@@ -394,6 +429,8 @@ def build_site(items: list[Item], out: Path, today: date) -> list[dict]:
     html = html.replace("<!--__HEAD_LINKS__-->", render_head_links())
     html = html.replace("<!--__LANG_BUTTONS__-->", render_lang_buttons())
     html = html.replace("<!--__FORKS__-->", render_forks_html())
+    html = html.replace("<!--__ANALYTICS__-->", render_analytics_html())
+    html = html.replace("<!--__NEWSLETTER__-->", render_newsletter_html())
     # Generated content goes in last so nothing inside it is scanned for placeholders.
     html = html.replace("<!--__STATS__-->", render_stats_html(records))
     html = html.replace("<!--__ITEMS__-->", render_items_html(records, {i.id: i for i in items}, today))

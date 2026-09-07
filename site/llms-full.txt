@@ -114,7 +114,7 @@ Summary (fr): Ordre de renvoi visant à examiner la gouvernance et la souveraine
 - Closes: no stated deadline
 - Days left: n/a
 - Topics: employment, children, privacy
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://sencanada.ca/en/committees/RIDR/
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-senate-ridr-ai-human-rights
 
@@ -138,7 +138,7 @@ Summary (fr): Le comité examine les effets de l'IA sur les droits de la personn
 - Closes: no stated deadline
 - Days left: n/a
 - Topics: deepfakes, copyright, elections
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://sencanada.ca/en/committees/trcm/
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-senate-trcm-ai-ict
 
@@ -282,7 +282,7 @@ Summary (fr): Déposé le 15 juin 2026 pour remplacer la LPRPDE. Selon des sourc
 - Closes: no stated deadline
 - Days left: n/a
 - Topics: biometrics, privacy
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/acts-regulations/forward-regulatory-plan/list/amending-citizenship-regulations-biometric-information.html
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ircc-citizenship-biometrics
 
@@ -306,7 +306,7 @@ Summary (fr): Projet de règlement exigeant les empreintes digitales et une phot
 - Closes: no stated deadline
 - Days left: n/a
 - Topics: standards, public-service
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://scc-ccn.ca/standards/notices-of-intent/csa-group/guidance-ai-regulatory-measures-directives-and-policies
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-csa-ai-regulatory-guidance
 
@@ -332,7 +332,7 @@ Summary (fr): Norme CSA en préparation visant à guider les organismes de régl
 - Closes: 2026-09-24
 - Days left: n/a
 - Topics: critical-infrastructure, frontier-models
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7550
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-petition-e-7550-data-centres
 
@@ -356,7 +356,7 @@ Summary (fr): La pétition demande à Ottawa de mettre fin aux incitatifs visant
 - Closes: 2026-09-17
 - Days left: n/a
 - Topics: critical-infrastructure
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7427
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-petition-e-7427-alberta-moratorium
 
@@ -380,7 +380,7 @@ Summary (fr): La pétition réclame un moratoire sur des projets comme Wonder Va
 - Closes: 2026-08-04
 - Days left: n/a
 - Topics: children, biometrics, privacy
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://www.priv.gc.ca/en/opc-news/news-and-announcements/2026/nr-c_260504/
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-opc-age-assurance-2026
 
@@ -500,7 +500,7 @@ Summary (fr): Programme de formation contingenté destiné aux doctorants en dé
 - Closes: 2026-03-31
 - Days left: n/a
 - Topics: public-service, procurement
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://open.canada.ca/data/en/dataset/fcbc0200-79ba-4fa4-94a6-00e32facea6b
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-tbs-ai-register-mvp
 
@@ -572,7 +572,7 @@ Summary (fr): La pétition demandait au ministre de l'IA de renforcer la Loi sur
 - Closes: 2025-11-14
 - Days left: n/a
 - Topics: safety-institute, research-funding
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://cifar.ca/ai/caisi/
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-caisi-catalyst-2025
 
@@ -596,7 +596,7 @@ Summary (fr): Jusqu'à 70 000 $ par année pendant deux ans pour un maximum de s
 - Closes: 2025-11-05
 - Days left: n/a
 - Topics: copyright, frontier-models
-- Verified by a human: no
+- Verified by a human: yes
 - Source: https://www.ourcommons.ca/documentviewer/en/45-1/CHPC/report-4/page-51
 - Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-chpc-ai-creative-industries
 

@@ -99,14 +99,27 @@ download:
 cal_fine: Each event is all-day on the closing date, with reminders 7 days and 1 day before. Always confirm the deadline on the official page.
 no_dated: No open item currently has a stated closing date, so there is nothing to add yet. Subscribe anyway and deadlines will appear as they are published.
 
-# digest
+# digest and newsletter
 week_of: week of
 nothing: Nothing this week.
 sec_closing: Closing within 7 days
 sec_new: New this fortnight
 sec_open: Still open
+sec_moved: Deadline changed
 sec_retired: Recently closed
 full_list: Full list
+newsletter_open_count: "{n} channels are open in all; the full list, with filters and calendar links, is at {url}."
+newsletter_subject: "{title}: {new} new, {closing} closing soon ({date})"   # stock subject when no model writes one
+newsletter_intro: >-
+  This fortnight: {new} new, {closing} closing within {days} days, {moved} with a changed
+  deadline and {retired} closed. Details follow; confirm every deadline on the official page.
+
+# subscribe form (shown only when site.yaml names a newsletter account)
+newsletter_head: Get this by email
+newsletter_note: A short issue every two weeks with what is new and what is about to close. Unsubscribe in one click.
+newsletter_email: Email address
+newsletter_button: Subscribe
+newsletter_privacy: The list is held by Buttondown; your address is never published or shared.
 
 # Sentence frames the build fills from data/site.yaml `text` (channels, audience, cadence)
 # and the item counts. They live here, not in Python, so a site whose primary language

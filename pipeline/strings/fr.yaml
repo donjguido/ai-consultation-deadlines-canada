@@ -120,8 +120,21 @@ nothing: Rien cette semaine.
 sec_closing: Clôture dans les 7 jours
 sec_new: Nouveautés des 14 derniers jours
 sec_open: Toujours ouvert
+sec_moved: Échéance modifiée
 sec_retired: Récemment clôturé
 full_list: Liste complète
+newsletter_open_count: "{n} canaux sont ouverts en tout ; la liste complète, avec filtres et liens de calendrier, se trouve à {url}."
+newsletter_subject: "{title} : {new} nouveautés, {closing} clôtures imminentes ({date})"
+newsletter_intro: >-
+  Cette quinzaine : {new} nouveautés, {closing} clôtures dans les {days} jours, {moved} échéance(s)
+  modifiée(s) et {retired} clôture(s). Les détails suivent ; confirmez chaque échéance sur la page officielle.
+
+# formulaire d'abonnement (affiché seulement si site.yaml nomme un compte d'infolettre)
+newsletter_head: Recevoir par courriel
+newsletter_note: Un court numéro toutes les deux semaines avec les nouveautés et les clôtures imminentes. Désabonnement en un clic.
+newsletter_email: Adresse courriel
+newsletter_button: S'abonner
+newsletter_privacy: La liste est hébergée par Buttondown ; votre adresse n'est jamais publiée ni partagée.
 
 # Cadres de phrase que la construction remplit à partir de data/site.yaml `text`
 # (channels, audience, cadence) et des comptes d'éléments.

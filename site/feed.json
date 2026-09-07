@@ -144,7 +144,7 @@
         "opened": null,
         "closes": null,
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.85
       }
     },
@@ -171,7 +171,7 @@
         "opened": "2025-10-30",
         "closes": null,
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.85
       }
     },
@@ -330,7 +330,7 @@
         "opened": null,
         "closes": null,
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.6
       }
     },
@@ -356,7 +356,7 @@
         "opened": "2025-06-25",
         "closes": null,
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.7
       }
     },
@@ -382,7 +382,7 @@
         "opened": "2026-06-26",
         "closes": "2026-09-24",
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.7
       }
     },
@@ -407,7 +407,7 @@
         "opened": "2026-05-20",
         "closes": "2026-09-17",
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.6
       }
     },
@@ -434,7 +434,7 @@
         "opened": "2026-05-04",
         "closes": "2026-08-04",
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.8
       }
     },
@@ -565,7 +565,7 @@
         "opened": "2025-11-28",
         "closes": "2026-03-31",
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.85
       }
     },
@@ -642,7 +642,7 @@
         "opened": "2025-10-03",
         "closes": "2025-11-14",
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.9
       }
     },
@@ -668,7 +668,7 @@
         "opened": "2025-09-22",
         "closes": "2025-11-05",
         "days_left": null,
-        "verified": false,
+        "verified": true,
         "relevance": 0.75
       }
     },
