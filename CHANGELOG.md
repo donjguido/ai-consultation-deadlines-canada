@@ -10,6 +10,13 @@ Ontario changed the place; Québec changed the primary language, and found the p
 "English" was standing in for "primary".
 
 ### Added
+
+- Fortnightly email newsletter through Buttondown: `newsletter.buttondown` in `site.yaml` turns
+  on the hosted subscribe form; `pipeline/newsletter.py` diffs the store against
+  `data/newsletter.json`, renders the facts from the store, has Claude write the subject and
+  lead per language, and files the issue through the Buttondown API (draft by default);
+  `.github/workflows/newsletter.yml` runs it weekly with a 13-day guard. Strings
+  `sec_moved` and `newsletter_*` in every language file.
 - Optional cookieless analytics: `analytics.goatcounter` in `site.yaml` renders the GoatCounter
   tag and the page counts clicks on item links, calendar options, feed links, topic chips and
   the language toggle as `/event/...` paths. Empty (the default and the scaffold) loads nothing.

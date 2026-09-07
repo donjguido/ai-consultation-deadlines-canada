@@ -44,6 +44,7 @@ def load_site(path: Path = SITE_FILE) -> dict[str, Any]:
     site.setdefault("author", {})
     site.setdefault("text", {})
     site.setdefault("analytics", {})
+    site.setdefault("newsletter", {})
     site["_path"] = str(path)
     return site
 

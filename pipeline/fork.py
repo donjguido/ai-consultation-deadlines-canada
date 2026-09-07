@@ -207,6 +207,11 @@ text:
 # paste its count URL. Empty means the page loads no analytics at all.
 analytics:
   goatcounter: ""
+# Fortnightly email, off unless `buttondown` names a Buttondown account (buttondown.com). The
+# page then shows Buttondown's hosted subscribe form and `python -m pipeline.newsletter` files
+# each issue through its API. Create your own account; never inherit the parent's.
+newsletter:
+  buttondown: ""
 keywords:                   # schema.org Dataset keywords
 {keywords}
 # The classifier prompt in pipeline/classify.py is jurisdiction-neutral; this block is

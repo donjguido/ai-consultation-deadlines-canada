@@ -19,7 +19,9 @@ REQUIRED_UI = [
     "add_cal", "ics_one", "deadline_prefix", "cal_unverified", "cal_tracked", "alarm_7", "alarm_1",
     "all_cal", "close", "all_title", "all_intro", "sub_head", "apple_sub", "copy_link", "copied",
     "sub_note", "once_head", "once_note", "download", "cal_fine", "no_dated",
-    "week_of", "nothing", "sec_closing", "sec_new", "sec_open", "sec_retired", "full_list",
+    "week_of", "nothing", "sec_closing", "sec_new", "sec_open", "sec_moved", "sec_retired", "full_list",
+    "newsletter_open_count", "newsletter_subject", "newsletter_intro", "newsletter_head", "newsletter_note",
+    "newsletter_email", "newsletter_button", "newsletter_privacy",
     "meta_description", "dataset_description", "llms_lead", "llms_built", "language_toggle",
     "date_format", "months_short",
 ]

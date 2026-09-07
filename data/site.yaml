@@ -80,6 +80,14 @@ text:
 analytics:
   goatcounter: ""           # e.g. https://ai-consultation-deadlines-canada.goatcounter.com/count
 
+# Fortnightly email, off unless `buttondown` names a Buttondown account (buttondown.com, free
+# under 100 subscribers). The page then shows Buttondown's hosted subscribe form, so no
+# address ever reaches this repository, and `python -m pipeline.newsletter` files each issue
+# through the Buttondown API (BUTTONDOWN_API_KEY) with Claude writing the subject and lead.
+# Buttondown keeps the list private: subscribers see their own unsubscribe link and nothing else.
+newsletter:
+  buttondown: ""            # the account's username, e.g. ai-consultation-deadlines-canada
+
 keywords:                   # schema.org Dataset keywords
   - AI governance
   - AI safety

@@ -1,0 +1,59 @@
+name: Newsletter
+# Files the fortnightly issue in Buttondown. Runs every Tuesday after the Monday curation
+# pass; pipeline/newsletter.py itself skips any run within 13 days of the last issue, so
+# the letter goes out fortnightly. The issue is left as a Buttondown draft for a person to
+# read and send unless the repository variable NEWSLETTER_AUTOSEND is "true".
+on:
+  schedule:
+    - cron: "0 14 * * 2"
+  workflow_dispatch:
+    inputs:
+      send:
+        description: Send at once instead of leaving a Buttondown draft
+        type: boolean
+        default: false
+      force:
+        description: Ignore the fortnight guard
+        type: boolean
+        default: false
+      dry_run:
+        description: Print the issue in the log; touch nothing
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r pipeline/requirements.txt pytest
+      - name: Test the newsletter module before spending anything
+        run: python -m pytest tests/test_newsletter.py tests/test_store.py
+      - name: Draft and file the issue
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          NEWSLETTER_AUTOSEND: ${{ vars.NEWSLETTER_AUTOSEND }}
+        run: |
+          if [ -z "$BUTTONDOWN_API_KEY" ] && [ "${{ inputs.dry_run }}" != "true" ]; then
+            echo "BUTTONDOWN_API_KEY secret not set; skipping the newsletter."
+            exit 0
+          fi
+          python -m pipeline.newsletter data/items.json \
+            ${{ inputs.send == true && '--send' || '' }} \
+            ${{ inputs.force == true && '--force' || '' }} \
+            ${{ inputs.dry_run == true && '--dry-run' || '' }}
+      - name: Commit the newsletter state
+        # [skip ci] keeps this commit from triggering the site rebuild; nothing on the site changed.
+        run: |
+          git config user.name "monitor-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/newsletter.json
+          git diff --cached --quiet || git commit -m "Newsletter issue $(date -u +%F) [skip ci]"
+          git push

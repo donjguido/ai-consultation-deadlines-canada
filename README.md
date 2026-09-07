@@ -69,6 +69,15 @@ aggregate without cookies or personal data, so no consent banner is needed. Leav
 nothing is loaded. `python -m pipeline.engagement` records the weekly signals that exist for a
 static site (feed reader subscribers, repository traffic, counter totals) in `data/engagement.csv`.
 
+The newsletter list lives at [Buttondown](https://buttondown.com/), never in this repository:
+the site's form posts the address straight to Buttondown's hosted endpoint, Buttondown handles
+double opt-in, unsubscribe links and the anti-spam footer, and it publishes no list of
+subscribers. `python -m pipeline.newsletter` writes each issue from `data/items.json` (every
+title, date and link comes from the store; Claude writes only the subject and a short lead per
+language) and files it through the Buttondown API as a draft for a person to send, or sends it
+when `NEWSLETTER_AUTOSEND=true`. `.github/workflows/newsletter.yml` runs it weekly and the script
+itself skips any run within 13 days of the last issue, recorded in `data/newsletter.json`.
+
 ## Curation
 
 Every Monday and Thursday: fetch, run `python -m pipeline.triage`, work its UNSEEN, STALE, NEEDS CHECK and NO FRENCH sections against the source pages, set `verified`, retire dead items with a `retired_reason`, rebuild, test, commit, then trigger the workflow (push to `main` or `gh workflow run daily.yml`). The full loop and the record rules are in [docs/CURATION.md](docs/CURATION.md).
@@ -81,6 +90,7 @@ For people:
 - RSS: https://donjguido.github.io/ai-consultation-deadlines-canada/feed.xml (French: `/feed-fr.xml`)
 - Calendar: https://donjguido.github.io/ai-consultation-deadlines-canada/deadlines.ics (French: `/deadlines-fr.ics`) — every open item whose closing date is still ahead, as an all-day event with reminders a week and a day before. Subscribe to it (`webcal://donjguido.github.io/ai-consultation-deadlines-canada/deadlines.ics`) and Google, Outlook and Apple Calendar re-read it as deadlines are added, changed, or pass.
 - Weekly digest: https://donjguido.github.io/ai-consultation-deadlines-canada/digest.md (French: `/digest-fr.md`)
+- Fortnightly email: the subscribe form on the site (once `newsletter.buttondown` is set in `data/site.yaml`). One bilingual issue every two weeks with what is new, what is closing and what moved.
 
 For machines:
 
