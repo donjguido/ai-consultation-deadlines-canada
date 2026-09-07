@@ -43,8 +43,7 @@ by eye.
 - B1. No place, author or language pair is named in code:
   `grep -rniE "canada|canadian|guidote|donjguido" --include=*.py --include=*.html --exclude=test_fork.py --exclude=test_template.py pipeline mcp_server tests`
   returns nothing. `test_fork.py` and `test_template.py` name the parent site on purpose,
-  as the guards that enforce this criterion; `gazette_notice` is a channel kind in the type
-  vocabulary, not a place, and is expected to appear.
+  as the guards that enforce this criterion.
 - B2. Every geography-specific string the fork changed lived in `data/` or
   `pipeline/strings/`. If you found one elsewhere, fail.
 - B3. Every key in `site.yaml` is documented in `FORKING.md` or in a comment in the file

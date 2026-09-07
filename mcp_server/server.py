@@ -273,7 +273,7 @@ def list_open(
     """List every currently open channel for participation, soonest closing first.
 
     Args:
-        type: Optional filter: consultation, call_for_briefs, gazette_notice,
+        type: Optional filter: consultation, call_for_briefs, regulatory_notice,
             funding_call, standards_review, petition, other.
         topic: Optional topic tag filter (see list_topics).
         lang: Language code for titles and body names (one of the site's languages).

@@ -28,6 +28,12 @@ An MCP server exposes the same store as tools an agent can call directly -- `lis
 assistant can answer "what is open right now" without fetching and re-parsing this site.
 See [docs/MCP.md](https://github.com/donjguido/ai-consultation-deadlines-canada/blob/main/docs/MCP.md).
 
+## Sister sites
+
+- [AI Consultation Deadlines Ontario](https://opengovlab.github.io/ai-consultation-deadlines-ontario): Ontario, Canada
+- [Échéances des consultations sur l'IA Québec](https://exemple-qc.github.io/echeances-consultations-ia-quebec): Québec, Canada
+- [forks.json](https://donjguido.github.io/ai-consultation-deadlines-canada/forks.json): the same list, machine-readable.
+
 ## Closing within 7 days
 
 - Nothing closing in the next 7 days.

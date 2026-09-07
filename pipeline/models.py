@@ -27,7 +27,7 @@ CLOSING_SOON_DAYS = 7       # "closing soon" = closes within this many days
 class ItemType(str, Enum):
     consultation = "consultation"
     call_for_briefs = "call_for_briefs"
-    gazette_notice = "gazette_notice"
+    regulatory_notice = "regulatory_notice"
     funding_call = "funding_call"
     standards_review = "standards_review"
     petition = "petition"

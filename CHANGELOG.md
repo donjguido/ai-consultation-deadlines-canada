@@ -28,6 +28,11 @@ Ontario changed the place; Québec changed the primary language, and found the p
   reports a column name the rows do not have once per source.
 
 ### Changed
+- The `gazette_notice` item type is now `regulatory_notice` ("Regulatory notice" / "Avis
+  réglementaire"): a fork without a gazette no longer inherits a Canada-flavoured label it cannot
+  remove. Existing stores: replace the value in `data/items.json`; MCP clients filtering on the
+  old value get no matches.
+- Ontario and Québec are listed in `data/forks.yaml` as the first sister sites.
 - The scaffold writes `site.yaml` as a text template, so every documentation comment survives;
   secondary-language prose blocks start empty (per-key fallback) instead of as an untranslated
   copy, so a fresh fork's test suite is green. It also empties the inherited `site/`.

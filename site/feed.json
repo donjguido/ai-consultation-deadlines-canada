@@ -325,7 +325,7 @@
           "new",
           "open"
         ],
-        "type": "gazette_notice",
+        "type": "regulatory_notice",
         "body": "Immigration, Refugees and Citizenship Canada",
         "opened": null,
         "closes": null,

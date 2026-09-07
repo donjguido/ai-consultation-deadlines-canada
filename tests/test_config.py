@@ -68,7 +68,7 @@ def test_every_strings_file_has_every_ui_key():
         assert not missing, f"pipeline/strings/{lang}.yaml is missing {missing}"
         for group in ("badge", "badge_hint"):
             assert set(raw[group]) == {"new", "open", "closing_soon", "retired"}, f"{lang}: {group}"
-        assert set(raw["type"]) >= {"consultation", "call_for_briefs", "gazette_notice", "funding_call",
+        assert set(raw["type"]) >= {"consultation", "call_for_briefs", "regulatory_notice", "funding_call",
                                     "standards_review", "petition", "other"}, f"{lang}: type labels"
         assert raw["date_style"] in ("iso", "long")
         assert len(raw["months_short"]) == 12 and {"{d}", "{mon}", "{y}"} <= set(re.findall(r"\{\w+\}", raw["date_format"]))

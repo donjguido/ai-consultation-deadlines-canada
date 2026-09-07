@@ -276,7 +276,7 @@ Summary (fr): Déposé le 15 juin 2026 pour remplacer la LPRPDE. Selon des sourc
 
 - ID: ircc-citizenship-biometrics
 - Body: Immigration, Refugees and Citizenship Canada
-- Type: Gazette notice
+- Type: Regulatory notice
 - Status: open
 - Opened: not stated
 - Closes: no stated deadline
