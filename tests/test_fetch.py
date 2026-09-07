@@ -7,24 +7,27 @@ from pipeline.config import SECONDARY
 CSV_CFG = {
     "key": "registry", "kind": "csv", "body": "Registry owner", "portal": "https://example.gov/portal",
     "id_prefix": "reg-", "open_statuses": ["O", "P"],
+    # Column names are deliberately not <field>_<lang>, so they cannot collide with a
+    # translated field whatever the site's language pair is (a fr-primary fork has
+    # SECONDARY == ["en"]).
     "columns": {
-        "id": "registration_number", "title": "title_en", "url": "profile_page_en",
+        "id": "registration_number", "title": "col_title", "url": "col_url",
         "opened": "start_date", "closes": "end_date", "status": "status", "body": "owner_org_title",
-        "text": ["title_en", "description_en"],
-        **{f"title_{x}": f"title_{x}" for x in SECONDARY},
+        "text": ["col_title", "col_desc"],
+        **{f"title_{x}": f"tr_{x}" for x in SECONDARY},
     },
 }
 
 
 def _row(**over):
     row = {
-        "registration_number": "123", "title_en": "Consultation on artificial intelligence rules",
-        "profile_page_en": "https://example.gov/c/123", "start_date": "2026-09-01T00:00:00",
+        "registration_number": "123", "col_title": "Consultation on artificial intelligence rules",
+        "col_url": "https://example.gov/c/123", "start_date": "2026-09-01T00:00:00",
         "end_date": "2026-10-01", "status": "O", "owner_org_title": "Ministry",
-        "description_en": "About AI.",
+        "col_desc": "About AI.",
     }
     for x in SECONDARY:
-        row[f"title_{x}"] = f"Titre {x}"
+        row[f"tr_{x}"] = f"Titre {x}"
     row.update(over)
     return row
 
@@ -41,12 +44,12 @@ def test_csv_row_maps_to_a_candidate():
 
 def test_closed_rows_and_irrelevant_rows_are_dropped():
     assert fetch._record(CSV_CFG, _row(status="C")) is None
-    assert fetch._record(CSV_CFG, _row(title_en="Fisheries licence renewal", description_en="Boats.")) is None
+    assert fetch._record(CSV_CFG, _row(col_title="Fisheries licence renewal", col_desc="Boats.")) is None
 
 
 def test_missing_id_falls_back_to_a_title_slug_and_missing_url_to_the_portal():
     cfg = {**CSV_CFG, "columns": {**CSV_CFG["columns"], "id": None}}
-    rec = fetch._record(cfg, _row(profile_page_en=""))
+    rec = fetch._record(cfg, _row(col_url=""))
     assert rec is not None
     assert rec["id"].startswith("reg-consultation-on-artificial")
     assert rec["url"] == "https://example.gov/portal"
@@ -98,15 +101,15 @@ def test_misspelt_column_warns_once_with_the_row_keys(capsys):
         cfg["columns"].pop(f"title_{x}", None)
     assert fetch._record(cfg, _row()) is None and fetch._record(cfg, _row()) is None
     err = capsys.readouterr().err
-    assert err.count("column 'titel'") == 1 and "title_en" in err
+    assert err.count("column 'titel'") == 1 and "col_title" in err
 
 
 def test_url_template_builds_a_link_from_row_fields():
     cfg = {**CSV_CFG, "url_template": "https://example.gov/dataset/{registration_number}",
-           "columns": {**CSV_CFG["columns"], "url": "profile_page_en"}}
-    rec = fetch._record(cfg, _row(profile_page_en=""))
+           "columns": {**CSV_CFG["columns"], "url": "col_url"}}
+    rec = fetch._record(cfg, _row(col_url=""))
     assert rec["url"] == "https://example.gov/dataset/123"
     rec = fetch._record(cfg, _row())
     assert rec["url"] == "https://example.gov/c/123", "a real url column wins over the template"
-    rec = fetch._record(cfg, _row(profile_page_en="", registration_number=""))
+    rec = fetch._record(cfg, _row(col_url="", registration_number=""))
     assert rec["url"] == "https://example.gov/portal", "an unfilled placeholder falls back to the portal"

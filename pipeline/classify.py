@@ -76,7 +76,7 @@ If a closing date is stated, return it as ISO 8601; otherwise leave it null."""
             parts.append(
                 f"For the {name} fields ({', '.join(lang_field(b, lang) for b in ('summary', 'why_it_matters', 'how_to_participate'))}): "
                 f"{style.strip()} Keep proper nouns, programme names, portal names, email addresses and dates accurate"
-                + (f"; {official.strip()}" if official else "") + "."
+                + (f"; {official.strip().rstrip('.')}" if official else "") + "."
             )
             parts.append(
                 f"For {lang_field('title', lang)} and {lang_field('body', lang)}: use the official {name} title and body "

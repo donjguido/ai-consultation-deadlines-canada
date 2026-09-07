@@ -357,7 +357,10 @@ def enabled_sources(sources: dict | None) -> list[dict]:
 
 def main(out_path: str) -> None:
     candidates: list[dict] = []
-    sources = enabled_sources(SOURCES)
+    try:
+        sources = enabled_sources(SOURCES)
+    except ValueError as e:
+        sys.exit(f"error: {e}")
     if not sources:
         print("data/sources.yaml has no enabled sources yet: add some (docs/FORKING.md, 'Fetcher kinds') "
               "and run this again.", file=sys.stderr)
@@ -372,7 +375,14 @@ def main(out_path: str) -> None:
     print(f"wrote {len(candidates)} candidates -> {out_path}")
 
 
+def cli(argv: list[str] | None = None) -> None:
+    import argparse
+    p = argparse.ArgumentParser(prog="python -m pipeline.fetch",
+                                description="Fetch candidates from every enabled source in data/sources.yaml.")
+    p.add_argument("out", help="where to write the candidates, e.g. data/candidates.json")
+    args = p.parse_args(argv)
+    main(args.out)
+
+
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        sys.exit("usage: python -m pipeline.fetch data/candidates.json")
-    main(sys.argv[1])
+    cli()

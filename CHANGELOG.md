@@ -5,9 +5,20 @@ the format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-Fixes from the first scored fork attempt (Ontario, `docs/fork-attempts/2026-09-06-ontario.md`).
+Fixes from the first two scored fork attempts (Ontario and Québec, `docs/fork-attempts/`).
+Ontario changed the place; Québec changed the primary language, and found the places where
+"English" was standing in for "primary".
 
 ### Added
+- The meta description, the schema.org dataset description and the `llms.txt` lead are
+  sentence frames in the strings files (`meta_description`, `dataset_description`,
+  `llms_lead`, `llms_built`), so a non-English site is not described in English.
+- Dates render server-side per the language's `date_style`, using new `date_format` and
+  `months_short` strings, so a `long` language is not served ISO dates until JavaScript runs.
+- `language_toggle` string for the language switch's accessible name.
+- The scaffold transliterates accents in the derived slug; `--slug`, `--year` and `--root`
+  are documented.
+- A "primary language is not English" subsection in `docs/FORKING.md`.
 - `docs/FORK-RUBRIC.md`: the pass/fail checklist a fork attempt is scored against.
 - `python -m pipeline.classify --print-prompt` prints the classifier prompt without an API key.
 - `url_template` on a `csv`/`json_api` source builds an item URL from row fields.
@@ -20,7 +31,13 @@ Fixes from the first scored fork attempt (Ontario, `docs/fork-attempts/2026-09-0
 - The scaffold writes `site.yaml` as a text template, so every documentation comment survives;
   secondary-language prose blocks start empty (per-key fallback) instead of as an untranslated
   copy, so a fresh fork's test suite is green. It also empties the inherited `site/`.
-- `tests/test_fork.py` reads the parent site's name from its config instead of hardcoding it.
+- `tests/test_fork.py` reads the parent site's name from its config instead of hardcoding it,
+  and runs the config and fetcher suites against a fresh scaffold for `en,fr`, `fr,en` and `en`.
+- `tests/test_fetch.py` fixtures use language-neutral column names (they collided with the
+  translated-field suffix on a French-primary fork); `tests/conftest.py` fixture bodies name
+  no place; `tests/test_store.py` accepts `url_template` or `portal` in place of `columns.url`.
+- `python -m pipeline.fetch` has a real command line (`--help` no longer writes a file called
+  `--help`), and a config error is one `error:` line rather than a traceback.
 
 ### Fixed
 - The keyword pre-filter wrapped the whole alternation in word boundaries, so stem fragments

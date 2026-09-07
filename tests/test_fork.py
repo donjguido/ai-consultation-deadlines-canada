@@ -84,14 +84,22 @@ def test_scaffolded_site_yaml_keeps_its_documentation(copy):
     assert PARENT_PLACE not in text and "donjguido" not in text
 
 
-def test_a_fresh_scaffold_passes_the_config_tests(copy):
-    """A fork is born green: the whole config suite runs against the scaffolded files
-    before a single hand edit (the deploy workflow refuses a red suite)."""
-    fork.main(ARGS + ["--root", str(copy), "--languages", "en,fr"])
+@pytest.mark.parametrize("languages", ["en,fr", "fr,en", "en"])
+def test_a_fresh_scaffold_passes_the_config_and_fetch_tests(copy, languages):
+    """A fork is born green whatever its language shape: the config and fetcher suites
+    run against the scaffolded files before a single hand edit (the deploy workflow
+    refuses a red suite). fr,en is the inverted pair a French-primary fork uses."""
+    fork.main(ARGS + ["--root", str(copy), "--languages", languages])
     env = {**os.environ, "MONITOR_SITE_CONFIG": str(copy / "data" / "site.yaml")}
-    res = subprocess.run([sys.executable, "-m", "pytest", "-q", "tests/test_config.py"],
-                         cwd=ROOT, env=env, capture_output=True, text=True, timeout=120)
+    res = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider",
+                          "tests/test_config.py", "tests/test_fetch.py"],
+                         cwd=ROOT, env=env, capture_output=True, text=True, timeout=180)
     assert res.returncode == 0, res.stdout + res.stderr
+
+
+def test_slug_transliterates_accents():
+    assert fork.slugify("Échéances des consultations sur l'IA Québec") == "echeances-des-consultations-sur-l-ia-quebec"
+    assert fork.slugify("Straße Zürich") == "strasse-zurich"
 
 
 def test_a_bilingual_fork_builds_from_an_empty_store(copy, tmp_path):

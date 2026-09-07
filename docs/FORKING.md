@@ -50,8 +50,32 @@ The scaffolded file carries a comment on every key. The ones people ask about:
 | `classifier.style.<lang>` | One paragraph per secondary language on how to write it well: register, date format, typography. |
 | `prefilter_keywords` | Regex fragments, one alternation. A fragment matches anywhere inside a word unless it carries its own `\b`, so `biom[ée]tri` catches every inflection and `\bAI\b` stays a whole word. |
 
+`version` is your site's own version string; it appears in the calendar PRODID and the fetchers'
+user agent, so bump it when you release. `classifier.official_names` is a bare clause without a
+final full stop; the prompt builder punctuates it.
+
 `python -m pipeline.classify --print-prompt` prints the prompt your `classifier` block builds,
 without an API key.
+
+### If your primary language is not English
+
+Everything reads the primary language from `site.yaml`, but three things are worth knowing
+before you start a French-, German- or Spanish-first site:
+
+- The scaffold's draft prose is English whatever the primary language. Replace the primary
+  `text` block wholesale; the untranslated-copy test only guards the secondary blocks, so
+  nothing else will catch an English primary block left in place.
+- In `items.json` the unsuffixed fields (`title`, `summary`, `body`, ...) carry the primary
+  language, and `<field>_<lang>` carries each secondary language. A French-primary site
+  therefore has a French `title` and an English `title_en`. The classifier, the feeds, the
+  MCP server and the site all follow that rule.
+- The sentence frames the build fills in (the meta description, the schema.org dataset
+  description, the lead of `llms.txt`) come from the primary language's strings file, so a
+  new language needs those keys translated too. `date_style: long` in a strings file formats
+  dates server-side with that file's `date_format` and `months_short`, and the page's client
+  formatter uses the same locale, so the first paint and a re-render agree.
+- The rest of `llms.txt` (the headings and the explanation of statuses) is English by design:
+  it is addressed to agents, and English is the language they all read.
 
 ## Step by step
 
@@ -71,7 +95,9 @@ without an API key.
    ```
 
    `--languages` is primary first; `--languages en` gives a monolingual site with no toggle.
-   `--dry-run` shows the plan and the checklist without writing. The command rewrites
+   `--slug` overrides the slug derived from the name (accents are transliterated, so an
+   accented name still gives a clean slug); `--year` sets the copyright year; `--root` acts on
+   another checkout. `--dry-run` shows the plan and the checklist without writing. The command rewrites
    `site.yaml` (keeping a comment on every key), empties `items.json`, resets `forks.yaml`
    (listing the original as a sister), replaces `sources.yaml` with a commented template of
    every fetcher kind, and empties the generated `site/` so the original's rendered pages do

@@ -25,11 +25,11 @@ Rien cette semaine.
 
 ## Toujours ouvert
 
-- **Faites-vous entendre sur la transparence de l'IA au Canada** (Innovation, Sciences et Développement économique Canada, clôture 2026-09-23)
+- **Faites-vous entendre sur la transparence de l'IA au Canada** (Innovation, Sciences et Développement économique Canada, clôture 23 sept. 2026)
   Consultation de deux mois, menée dans le cadre de la stratégie « L'IA pour tous », sur cinq mécanismes de transparence : la détection des contenus générés par l'IA, la divulgation des interactions avec un système d'IA, une information normalisée sur les systèmes d'IA, le signalement des incidents graves liés à l'IA et le suivi des activités des agents d'IA.
   Comment participer : Répondez au questionnaire en ligne ou envoyez un mémoire écrit par courriel à partir de la page de consultation d'ISDE avant le 23 septembre 2026.
   https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada
-- **CAN/DGSI 138 — L'IA responsable et visible pour le patient dans l'aide à la décision clinique : examen public** (Institut de normalisation en gouvernance numérique, clôture 2026-10-05)
+- **CAN/DGSI 138 — L'IA responsable et visible pour le patient dans l'aide à la décision clinique : examen public** (Institut de normalisation en gouvernance numérique, clôture 5 oct. 2026)
   Examen public de 60 jours d'un projet de Norme nationale du Canada fixant des exigences de gouvernance, de transparence, de supervision humaine et de surveillance du cycle de vie pour l'IA d'aide à la décision clinique.
   Comment participer : Téléchargez le projet de norme et transmettez vos commentaires au moyen du formulaire d'examen public de l'Institut avant le 5 octobre 2026.
   https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
@@ -64,11 +64,11 @@ Rien cette semaine.
 
 ## Récemment clôturé
 
-- **Pétition e-7550 : mettre fin aux incitatifs, aux subventions et à l'accélération des permis pour les centres de données d'IA** (Pétitions électroniques de la Chambre des communes, clôturé 2026-09-24)
+- **Pétition e-7550 : mettre fin aux incitatifs, aux subventions et à l'accélération des permis pour les centres de données d'IA** (Pétitions électroniques de la Chambre des communes, clôturé 24 sept. 2026)
   La pétition demande à Ottawa de mettre fin aux incitatifs visant les centres de données d'IA, de révoquer les permis délivrés sans examen par les collectivités et d'encadrer la sécurité, la transparence et l'efficacité dans l'usage des ressources. Elle compte 29 991 signatures validées. La page indique actuellement « Fermée à la signature », alors que la période annoncée court jusqu'au 24 septembre 2026.
   Comment participer : Si la signature est rouverte, signez en ligne sur la page de la pétition ; sinon, surveillez la réponse du gouvernement, attendue dans les 45 jours suivant la présentation.
   https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7550
-- **Pétition e-7427 : moratoire fédéral sur les centres de données d'IA à très grande échelle en Alberta** (Pétitions électroniques de la Chambre des communes, clôturé 2026-09-17)
+- **Pétition e-7427 : moratoire fédéral sur les centres de données d'IA à très grande échelle en Alberta** (Pétitions électroniques de la Chambre des communes, clôturé 17 sept. 2026)
   La pétition réclame un moratoire sur des projets comme Wonder Valley et Synapse Olds, l'interdiction du soutien fédéral aux installations alimentées par des combustibles fossiles ou fortes consommatrices d'eau, et une évaluation environnementale fédérale obligatoire assortie d'une consultation des peuples autochtones. Elle compte 27 472 signatures validées. La page indique « Fermée à la signature » malgré une période se terminant le 17 septembre 2026.
   Comment participer : Surveillez la page de la pétition pour sa présentation à la Chambre et la réponse du gouvernement.
   https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7427

@@ -107,3 +107,28 @@ sec_new: New this fortnight
 sec_open: Still open
 sec_retired: Recently closed
 full_list: Full list
+
+# Sentence frames the build fills from data/site.yaml `text` (channels, audience, cadence)
+# and the item counts. They live here, not in Python, so a site whose primary language
+# is not English is not described in English.
+meta_description: >-
+  Tracking {n} {channels} where {audience} can shape AI governance. {open} open now,
+  {soon} closing within 7 days. Each one has a plain-language summary and a concrete
+  way to take part. Updated {cadence}.
+dataset_description: >-
+  Every open channel through which {audience} can shape AI governance: {channels}. Each
+  record carries a plain-language summary, why it matters for AI safety, a concrete way
+  to take part, and a status derived from the stated closing date.
+llms_lead: >-
+  Every channel through which {audience} can shape how AI is governed -- {channels} --
+  each with a plain-language summary, why it matters for AI safety, and a concrete way
+  to take part.
+llms_built: >-
+  Built {date}. {n} items tracked: {open} open, {soon} closing within 7 days, {retired}
+  retired. Curated by hand {cadence}; every record carries a `verified` flag saying
+  whether a person has checked its dates and links against the source page.
+language_toggle: Language        # accessible name of the language switch
+
+# Server-side date formatting when `date_style` is long: {d} day, {mon} short month, {y} year.
+date_format: "{mon} {d}, {y}"
+months_short: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]

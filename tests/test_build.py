@@ -230,3 +230,17 @@ def test_cli_entrypoint_runs(tmp_path, sample_store):
     assert res.returncode == 0, res.stderr
     assert (out / "index.html").exists()
     assert "built" in res.stdout
+
+
+def test_dates_follow_the_language_date_style():
+    """The first paint uses the same format the client formatter would produce, so a
+    language with `date_style: long` is not served ISO dates until JavaScript runs."""
+    from pipeline.build import fmt_date
+    from pipeline.config import LANGS, strings
+    for lang in LANGS:
+        out = fmt_date("2026-12-05", lang)
+        if strings(lang).get("date_style") == "long":
+            assert out != "2026-12-05" and "2026" in out and strings(lang)["months_short"][11] in out
+        else:
+            assert out == "2026-12-05"
+    assert fmt_date(None, LANGS[0]) == ""

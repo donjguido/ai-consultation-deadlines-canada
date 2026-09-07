@@ -122,3 +122,29 @@ sec_new: Nouveautés des 14 derniers jours
 sec_open: Toujours ouvert
 sec_retired: Récemment clôturé
 full_list: Liste complète
+
+# Cadres de phrase que la construction remplit à partir de data/site.yaml `text`
+# (channels, audience, cadence) et des comptes d'éléments.
+meta_description: >-
+  Suivi de {n} {channels} où {audience} peuvent influencer la gouvernance de l'IA.
+  {open} ouverts, {soon} se terminant d'ici 7 jours. Chacun avec un résumé en langage clair
+  et une façon concrète d'y participer. Mis à jour {cadence}.
+dataset_description: >-
+  Tous les canaux ouverts par lesquels {audience} peuvent influencer la gouvernance de
+  l'IA : {channels}. Chaque fiche comporte un résumé en langage clair, pourquoi c'est
+  important pour la sûreté de l'IA, une façon concrète d'y participer et un statut dérivé
+  de la date de clôture annoncée.
+llms_lead: >-
+  Tous les canaux par lesquels {audience} peuvent influencer la gouvernance de l'IA --
+  {channels} -- chacun avec un résumé en langage clair, pourquoi c'est important pour la
+  sûreté de l'IA et une façon concrète d'y participer.
+llms_built: >-
+  Construit le {date}. {n} éléments suivis : {open} ouverts, {soon} se terminant d'ici
+  7 jours, {retired} clôturés. Curation manuelle {cadence} ; chaque fiche porte un
+  indicateur `verified` disant si une personne a vérifié ses dates et liens sur la page
+  source.
+language_toggle: Langue          # nom accessible du sélecteur de langue
+
+# Format des dates côté serveur quand `date_style` vaut long.
+date_format: "{d} {mon} {y}"
+months_short: [janv., févr., mars, avr., mai, juin, juil., août, sept., oct., nov., déc.]

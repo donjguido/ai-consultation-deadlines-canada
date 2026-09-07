@@ -30,6 +30,7 @@ from __future__ import annotations
 import argparse
 import re
 import shutil
+import unicodedata
 from pathlib import Path
 
 import yaml
@@ -38,6 +39,10 @@ from .config import ROOT
 
 
 def slugify(s: str) -> str:
+    """ASCII slug: accents are transliterated, not dropped, so an accented site name
+    gives "echeances-quebec" rather than "ch-ances-qu-bec". Override with --slug."""
+    s = s.replace("ß", "ss").replace("æ", "ae").replace("œ", "oe").replace("Æ", "AE").replace("Œ", "OE")
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
@@ -157,7 +162,7 @@ name: {name}
 slug: {slug}        # feed generator, calendar UIDs, user agent
 url: {url}
 repo: {repo}
-version: "0.1"
+version: "0.1"              # your site's version; shown in the calendar PRODID and the user agent
 author:
   name: {author}
   url: {author_url}

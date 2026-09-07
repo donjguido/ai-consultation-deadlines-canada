@@ -89,4 +89,6 @@ def test_sources_yaml_parses_and_has_unique_keys():
         assert s.get("body"), f"source {s['key']} has no body"
         if s["kind"] in ("csv", "json_api"):
             cols = s.get("columns") or {}
-            assert cols.get("title") and cols.get("url"), f"{s['key']}: columns need at least title and url"
+            assert cols.get("title"), f"{s['key']}: columns need at least title"
+            assert cols.get("url") or s.get("url_template") or s.get("portal"), (
+                f"{s['key']}: needs columns.url, or url_template / portal on the source")

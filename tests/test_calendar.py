@@ -139,8 +139,8 @@ def test_events_are_ordered_by_closing_date(cal):
 
 def test_commas_and_semicolons_are_escaped_in_text_values(cal):
     """make_item's body contains a comma; an unescaped one splits the value."""
-    desc = next(l for l in unfold(cal) if l.startswith("DESCRIPTION:Innovation"))
-    assert "Innovation\\, Science" in desc
+    desc = next(l for l in unfold(cal) if l.startswith("DESCRIPTION:Ministry"))
+    assert "Ministry of Example\\, Testing" in desc
     assert not re.search(r"(?<!\\),", desc.split(":", 1)[1]), "unescaped comma in a TEXT value"
 
 

@@ -137,6 +137,24 @@ def render_cal_menu(item: Item, lang: str = PRIMARY) -> str:
     )
 
 
+def fmt_date(iso: str | date | None, lang: str) -> str:
+    """A date as the strings file for `lang` wants it: ISO as written when `date_style`
+    is iso, else `date_format` filled with the day, the short month and the year. The
+    client formatter in the template does the same with Intl, so the first paint and a
+    re-render agree."""
+    if not iso:
+        return ""
+    s = iso.isoformat() if isinstance(iso, date) else str(iso)
+    t = strings(lang)
+    if t.get("date_style") != "long" or not t.get("months_short") or not t.get("date_format"):
+        return s
+    try:
+        y, m, d = (int(x) for x in s[:10].split("-"))
+        return t["date_format"].format(d=d, mon=t["months_short"][m - 1], y=y)
+    except (ValueError, IndexError):
+        return s
+
+
 def render_items_html(records: list[dict], by_id: dict[str, Item], today: date, lang: str = PRIMARY) -> str:
     t = strings(lang)
     out = []
@@ -144,12 +162,12 @@ def render_items_html(records: list[dict], by_id: dict[str, Item], today: date, 
         p = primary(r)
         if r["closes"]:
             label = t["closed"] if p == "retired" else t["closes"]
-            when = f'<b>{label} <time datetime="{esc(r["closes"])}">{esc(r["closes"])}</time></b>'
+            when = f'<b>{label} <time datetime="{esc(r["closes"])}">{esc(fmt_date(r["closes"], lang))}</time></b>'
             if r["days_left"] is not None:
                 when += f'<span>{days_left_label(r["days_left"], lang)}</span>'
         else:
             when = f'<b>{esc(t["no_deadline"])}</b>'
-        opened = (f'<span class="d">{esc(t["opened"])} <time datetime="{esc(r["opened"])}">{esc(r["opened"])}</time></span>'
+        opened = (f'<span class="d">{esc(t["opened"])} <time datetime="{esc(r["opened"])}">{esc(fmt_date(r["opened"], lang))}</time></span>'
                   if r["opened"] else "")
         shown = [b for b in r["badges"] if b != "open" or len(r["badges"]) == 1]
         badges = "".join(
@@ -205,11 +223,7 @@ def render_jsonld(records: list[dict], today: date) -> str:
     dataset = {
         "@type": "Dataset", "@id": f"{SITE_URL}/#dataset", "url": f"{SITE_URL}/",
         "name": t["text"]["dataset_name"],
-        "description": (
-            f"Every open channel through which {t['text']['audience']} can shape AI governance: "
-            f"{t['text']['channels']}. Each record carries a plain-language summary, why it matters "
-            f"for AI safety, a concrete way to take part, and a status derived from the stated closing date."
-        ),
+        "description": t["dataset_description"].format(audience=t["text"]["audience"], channels=t["text"]["channels"]),
         "creator": {"@id": person["@id"]}, "isAccessibleForFree": True,
         "license": licence.get("data_url", ""),
         "dateModified": today.isoformat(),
@@ -359,11 +373,8 @@ def build_site(items: list[Item], out: Path, today: date) -> list[dict]:
     t = strings(PRIMARY)
     open_n = sum(1 for r in records if r["status"] == "open")
     soon_n = sum(1 for r in records if "closing_soon" in r["badges"])
-    desc = (
-        f"Tracking {len(records)} {t['text']['channels']} where {t['text']['audience']} can shape "
-        f"AI governance. {open_n} open now, {soon_n} closing within 7 days. Each one has a "
-        f"plain-language summary and a concrete way to take part. Updated {t['text']['cadence']}."
-    )
+    desc = t["meta_description"].format(n=len(records), channels=t["text"]["channels"], audience=t["text"]["audience"],
+                                        open=open_n, soon=soon_n, cadence=t["text"]["cadence"])
     ui = {lang: ui_strings(lang, today) for lang in LANGS}
     config = {
         "site": SITE_URL, "slug": SLUG, "name": NAME, "version": SITE.get("version", "1.0"),
@@ -406,7 +417,7 @@ def build_feed(items: list[Item], out: Path, today: date, lang: str = PRIMARY) -
         text = lambda f: pick(i, f, lang)  # noqa: E731
         badges = " · ".join(t["badge"][b].upper() for b in i.badges(today))
         if i.closes:
-            closes = f"{t['closed'] if i.status(today) == 'retired' else t['closes']} {i.closes.isoformat()}"
+            closes = f"{t['closed'] if i.status(today) == 'retired' else t['closes']} {fmt_date(i.closes, lang)}"
         else:
             closes = t["no_deadline"]
         desc = escape(
@@ -601,7 +612,7 @@ def build_digest(items: list[Item], out: Path, today: date, lang: str = PRIMARY)
         lines = [f"## {title}\n"]
         for i in rows:
             if i.closes:
-                when = f"{t['closed'].lower() if i.status(today) == 'retired' else t['closes'].lower()} {i.closes.isoformat()}"
+                when = f"{t['closed'].lower() if i.status(today) == 'retired' else t['closes'].lower()} {fmt_date(i.closes, lang)}"
             else:
                 when = t["no_deadline"].lower()
             lines.append(
@@ -712,13 +723,14 @@ def build_llms(records: list[dict], out: Path, today: date) -> None:
         sisters = "\n## Sister sites\n\n" + "\n".join(
             f"- [{f['name']}]({f['url']}): {f.get('jurisdiction', '')}" for f in forks
         ) + f"\n- [forks.json]({SITE_URL}/forks.json): the same list, machine-readable.\n"
+    lead = t["llms_lead"].format(audience=t["text"]["audience"], channels=t["text"]["channels"])
+    built = t["llms_built"].format(date=today.isoformat(), n=len(records), open=len(open_recs), soon=len(soon),
+                                   retired=len(retired), cadence=t["text"]["cadence"])
     text = f"""# {t['text']['title']}
 
-> Every channel through which {t['text']['audience']} can shape how AI is governed --
-> {t['text']['channels']} -- each with a plain-language summary,
-> why it matters for AI safety, and a concrete way to take part.
+> {lead}
 
-Built {today.isoformat()}. {len(records)} items tracked: {len(open_recs)} open, {len(soon)} closing within 7 days, {len(retired)} retired. Curated by hand {t['text']['cadence']}; every record carries a `verified` flag saying whether a person has checked its dates and links against the source page.
+{built}
 
 Status is derived, not asserted: `new` means opened or first seen within 14 days,
 `closing soon` means the stated closing date is within 7 days, `retired` means past that

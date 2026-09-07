@@ -20,6 +20,8 @@ REQUIRED_UI = [
     "all_cal", "close", "all_title", "all_intro", "sub_head", "apple_sub", "copy_link", "copied",
     "sub_note", "once_head", "once_note", "download", "cal_fine", "no_dated",
     "week_of", "nothing", "sec_closing", "sec_new", "sec_open", "sec_retired", "full_list",
+    "meta_description", "dataset_description", "llms_lead", "llms_built", "language_toggle",
+    "date_format", "months_short",
 ]
 
 
@@ -69,6 +71,12 @@ def test_every_strings_file_has_every_ui_key():
         assert set(raw["type"]) >= {"consultation", "call_for_briefs", "gazette_notice", "funding_call",
                                     "standards_review", "petition", "other"}, f"{lang}: type labels"
         assert raw["date_style"] in ("iso", "long")
+        assert len(raw["months_short"]) == 12 and {"{d}", "{mon}", "{y}"} <= set(re.findall(r"\{\w+\}", raw["date_format"]))
+        for key, need in (("meta_description", {"n", "channels", "audience", "open", "soon", "cadence"}),
+                          ("dataset_description", {"audience", "channels"}),
+                          ("llms_lead", {"audience", "channels"}),
+                          ("llms_built", {"date", "n", "open", "soon", "retired", "cadence"})):
+            assert set(re.findall(r"\{(\w+)\}", raw[key])) == need, f"{lang}.{key} placeholders"
 
 
 def test_plural_forms_format_cleanly():

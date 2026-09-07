@@ -26,14 +26,14 @@ needs_second_language = pytest.mark.skipif(LANG2 is None, reason="site has a sin
 
 _EN = {
     "title": "Test consultation <script>alert(1)</script>",
-    "body": "Innovation, Science & Economic Development Canada",
+    "body": "Ministry of Example, Testing & Fixtures",
     "summary": 'A "quoted" summary with an ampersand & angle <brackets>.',
     "why_it_matters": "It matters.",
     "how_to_participate": "Email consult@example.gc.ca",
 }
 _FR = {
     "title": "Consultation de test",
-    "body": "Innovation, Sciences et Développement économique Canada",
+    "body": "Ministère de l'Exemple, des Essais et des Fixtures",
     "summary": "Un résumé en français.",
     "why_it_matters": "C'est important.",
     "how_to_participate": "Écrire à consult@example.gc.ca",
