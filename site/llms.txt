@@ -30,8 +30,8 @@ See [docs/MCP.md](https://github.com/donjguido/ai-consultation-deadlines-canada/
 
 ## Sister sites
 
-- [AI Consultation Deadlines Ontario](https://opengovlab.github.io/ai-consultation-deadlines-ontario): Ontario, Canada
-- [Échéances des consultations sur l'IA Québec](https://exemple-qc.github.io/echeances-consultations-ia-quebec): Québec, Canada
+- [AI Consultation Deadlines Ontario](https://donjguido.github.io/ai-consultation-deadlines-ontario): Ontario, Canada
+- [AI Consultation Deadlines Québec](https://donjguido.github.io/ai-consultation-deadlines-quebec): Québec, Canada
 - [forks.json](https://donjguido.github.io/ai-consultation-deadlines-canada/forks.json): the same list, machine-readable.
 
 ## Closing within 7 days

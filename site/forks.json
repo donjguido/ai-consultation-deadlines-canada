@@ -14,18 +14,18 @@
     {
       "name": "AI Consultation Deadlines Ontario",
       "jurisdiction": "Ontario, Canada",
-      "url": "https://opengovlab.github.io/ai-consultation-deadlines-ontario",
-      "repo": "https://github.com/opengovlab/ai-consultation-deadlines-ontario",
+      "url": "https://donjguido.github.io/ai-consultation-deadlines-ontario",
+      "repo": "https://github.com/donjguido/ai-consultation-deadlines-ontario",
       "languages": [
         "en",
         "fr"
       ]
     },
     {
-      "name": "Échéances des consultations sur l'IA Québec",
+      "name": "AI Consultation Deadlines Québec",
       "jurisdiction": "Québec, Canada",
-      "url": "https://exemple-qc.github.io/echeances-consultations-ia-quebec",
-      "repo": "https://github.com/exemple-qc/echeances-consultations-ia-quebec",
+      "url": "https://donjguido.github.io/ai-consultation-deadlines-quebec",
+      "repo": "https://github.com/donjguido/ai-consultation-deadlines-quebec",
       "languages": [
         "fr",
         "en"
