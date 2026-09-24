@@ -1,38 +1,5 @@
 [
   {
-    "id": "ised-2026-ai-transparency",
-    "title": "Have your say on advancing AI transparency in Canada",
-    "body": "Innovation, Science and Economic Development Canada",
-    "type": "consultation",
-    "url": "https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada",
-    "opened": "2026-07-23",
-    "closes": "2026-09-23",
-    "first_seen": "2026-09-06",
-    "summary": "Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents.",
-    "why_it_matters": "It is the first federal vehicle for incident reporting and agent-tracking rules since AIDA died, so submissions here shape Canada's baseline transparency regime for frontier models.",
-    "how_to_participate": "Answer the online questionnaire or email a written submission through the ISED consultation page before 23 September 2026.",
-    "topics": [
-      "frontier-models",
-      "deepfakes",
-      "standards"
-    ],
-    "relevance": 0.98,
-    "source": "ised",
-    "retired": false,
-    "retired_reason": null,
-    "verified": true,
-    "title_fr": "Faites-vous entendre sur la transparence de l'IA au Canada",
-    "body_fr": "Innovation, Sciences et Développement économique Canada",
-    "summary_fr": "Consultation de deux mois, menée dans le cadre de la stratégie « L'IA pour tous », sur cinq mécanismes de transparence : la détection des contenus générés par l'IA, la divulgation des interactions avec un système d'IA, une information normalisée sur les systèmes d'IA, le signalement des incidents graves liés à l'IA et le suivi des activités des agents d'IA.",
-    "why_it_matters_fr": "C'est le premier véhicule fédéral portant sur le signalement des incidents et le suivi des agents depuis l'abandon de la LIAD ; les mémoires déposés ici façonneront le régime de transparence de base applicable aux modèles de pointe au Canada.",
-    "how_to_participate_fr": "Répondez au questionnaire en ligne ou envoyez un mémoire écrit par courriel à partir de la page de consultation d'ISDE avant le 23 septembre 2026.",
-    "status": "open",
-    "badges": [
-      "open"
-    ],
-    "days_left": 16
-  },
-  {
     "id": "dgsi-138-clinical-ai",
     "title": "CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review",
     "body": "Digital Governance Standards Institute",
@@ -62,7 +29,7 @@
     "badges": [
       "open"
     ],
-    "days_left": 28
+    "days_left": 11
   },
   {
     "id": "ised-ai-compute-challenge",
@@ -93,7 +60,6 @@
     "how_to_participate_fr": "Les organisations admissibles présentent une demande par le guichet du Fonds d'intervention stratégique, à partir de la page du programme d'ISDE. Réception en continu, aucune date limite annoncée.",
     "status": "open",
     "badges": [
-      "new",
       "open"
     ],
     "days_left": null
@@ -160,7 +126,6 @@
     "how_to_participate_fr": "Envoyez un mémoire écrit par courriel à la greffière ou au greffier du RIDR. Réception en continu.",
     "status": "open",
     "badges": [
-      "new",
       "open"
     ],
     "days_left": null
@@ -227,7 +192,6 @@
     "how_to_participate_fr": "Déposez un mémoire (maximum 2 000 mots pour permettre la traduction) au moyen de la page « Soumettre un mémoire » du comité, sur noscommunes.ca.",
     "status": "open",
     "badges": [
-      "new",
       "open"
     ],
     "days_left": null
@@ -388,7 +352,6 @@
     "how_to_participate_fr": "Pas encore publié. Dès la parution dans la Partie I de la Gazette, transmettez vos commentaires par le système de consultation en ligne de la Gazette.",
     "status": "open",
     "badges": [
-      "new",
       "open"
     ],
     "days_left": null
@@ -451,6 +414,39 @@
     "summary_fr": "La pétition demande à Ottawa de mettre fin aux incitatifs visant les centres de données d'IA, de révoquer les permis délivrés sans examen par les collectivités et d'encadrer la sécurité, la transparence et l'efficacité dans l'usage des ressources. Elle compte 29 991 signatures validées. La page indique actuellement « Fermée à la signature », alors que la période annoncée court jusqu'au 24 septembre 2026.",
     "why_it_matters_fr": "C'est la plus importante pétition liée à l'IA en 2026 et le signe que la construction d'infrastructures de calcul, plutôt que le risque lié aux modèles, constitue la porte d'entrée du public dans la gouvernance de l'IA.",
     "how_to_participate_fr": "Si la signature est rouverte, signez en ligne sur la page de la pétition ; sinon, surveillez la réponse du gouvernement, attendue dans les 45 jours suivant la présentation.",
+    "status": "retired",
+    "badges": [
+      "retired"
+    ],
+    "days_left": null
+  },
+  {
+    "id": "ised-2026-ai-transparency",
+    "title": "Have your say on advancing AI transparency in Canada",
+    "body": "Innovation, Science and Economic Development Canada",
+    "type": "consultation",
+    "url": "https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada",
+    "opened": "2026-07-23",
+    "closes": "2026-09-23",
+    "first_seen": "2026-09-06",
+    "summary": "Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents.",
+    "why_it_matters": "It is the first federal vehicle for incident reporting and agent-tracking rules since AIDA died, so submissions here shape Canada's baseline transparency regime for frontier models.",
+    "how_to_participate": "Answer the online questionnaire or email a written submission through the ISED consultation page before 23 September 2026.",
+    "topics": [
+      "frontier-models",
+      "deepfakes",
+      "standards"
+    ],
+    "relevance": 0.98,
+    "source": "ised",
+    "retired": true,
+    "retired_reason": "closed",
+    "verified": true,
+    "title_fr": "Faites-vous entendre sur la transparence de l'IA au Canada",
+    "body_fr": "Innovation, Sciences et Développement économique Canada",
+    "summary_fr": "Consultation de deux mois, menée dans le cadre de la stratégie « L'IA pour tous », sur cinq mécanismes de transparence : la détection des contenus générés par l'IA, la divulgation des interactions avec un système d'IA, une information normalisée sur les systèmes d'IA, le signalement des incidents graves liés à l'IA et le suivi des activités des agents d'IA.",
+    "why_it_matters_fr": "C'est le premier véhicule fédéral portant sur le signalement des incidents et le suivi des agents depuis l'abandon de la LIAD ; les mémoires déposés ici façonneront le régime de transparence de base applicable aux modèles de pointe au Canada.",
+    "how_to_participate_fr": "Répondez au questionnaire en ligne ou envoyez un mémoire écrit par courriel à partir de la page de consultation d'ISDE avant le 23 septembre 2026.",
     "status": "retired",
     "badges": [
       "retired"

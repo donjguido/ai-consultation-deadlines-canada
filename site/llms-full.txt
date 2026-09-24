@@ -1,36 +1,12 @@
 # AI Consultation Deadlines Canada - full corpus
 
-Generated 2026-09-07 from https://donjguido.github.io/ai-consultation-deadlines-canada/items.json. 26 items.
+Generated 2026-09-24 from https://donjguido.github.io/ai-consultation-deadlines-canada/items.json. 26 items.
 CC BY 4.0. Government content under the Open Government Licence - Canada.
 Status is derived from the stated closing date: new = within 14 days of opening,
 closing soon = closes within 7 days, retired = past the date or withdrawn.
 `verified: false` means no person has yet checked the dates and links.
 
-## Open (13)
-
-### Have your say on advancing AI transparency in Canada
-
-- ID: ised-2026-ai-transparency
-- Body: Innovation, Science and Economic Development Canada
-- Type: Consultation
-- Status: open
-- Opened: 2026-07-23
-- Closes: 2026-09-23
-- Days left: 16
-- Topics: frontier-models, deepfakes, standards
-- Verified by a human: yes
-- Source: https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada
-- Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-2026-ai-transparency
-
-Summary: Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents.
-
-Why it matters: It is the first federal vehicle for incident reporting and agent-tracking rules since AIDA died, so submissions here shape Canada's baseline transparency regime for frontier models.
-
-How to participate: Answer the online questionnaire or email a written submission through the ISED consultation page before 23 September 2026.
-
-Title (fr): Faites-vous entendre sur la transparence de l'IA au Canada
-
-Summary (fr): Consultation de deux mois, menée dans le cadre de la stratégie « L'IA pour tous », sur cinq mécanismes de transparence : la détection des contenus générés par l'IA, la divulgation des interactions avec un système d'IA, une information normalisée sur les systèmes d'IA, le signalement des incidents graves liés à l'IA et le suivi des activités des agents d'IA.
+## Open (12)
 
 ### CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review
 
@@ -40,7 +16,7 @@ Summary (fr): Consultation de deux mois, menée dans le cadre de la stratégie �
 - Status: open
 - Opened: 2026-08-05
 - Closes: 2026-10-05
-- Days left: 28
+- Days left: 11
 - Topics: health, standards
 - Verified by a human: yes
 - Source: https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
@@ -320,7 +296,7 @@ Title (fr): Avis d'intention : orientations sur les mesures, directives et polit
 
 Summary (fr): Norme CSA en préparation visant à guider les organismes de réglementation et les ministères canadiens dans l'élaboration de politiques d'IA cohérentes, éthiques et transparentes, arrimées aux normes ISO/IEC 42001 et 23894. La date de l'examen public n'est pas encore annoncée.
 
-## Retired (13)
+## Retired (14)
 
 ### Petition e-7550: end incentives, subsidies and permit acceleration for AI data centres
 
@@ -345,6 +321,30 @@ How to participate: If signing is reopened, sign online on the petition page; ot
 Title (fr): Pétition e-7550 : mettre fin aux incitatifs, aux subventions et à l'accélération des permis pour les centres de données d'IA
 
 Summary (fr): La pétition demande à Ottawa de mettre fin aux incitatifs visant les centres de données d'IA, de révoquer les permis délivrés sans examen par les collectivités et d'encadrer la sécurité, la transparence et l'efficacité dans l'usage des ressources. Elle compte 29 991 signatures validées. La page indique actuellement « Fermée à la signature », alors que la période annoncée court jusqu'au 24 septembre 2026.
+
+### Have your say on advancing AI transparency in Canada
+
+- ID: ised-2026-ai-transparency
+- Body: Innovation, Science and Economic Development Canada
+- Type: Consultation
+- Status: retired
+- Opened: 2026-07-23
+- Closes: 2026-09-23
+- Days left: n/a
+- Topics: frontier-models, deepfakes, standards
+- Verified by a human: yes
+- Source: https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada
+- Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-2026-ai-transparency
+
+Summary: Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents.
+
+Why it matters: It is the first federal vehicle for incident reporting and agent-tracking rules since AIDA died, so submissions here shape Canada's baseline transparency regime for frontier models.
+
+How to participate: Answer the online questionnaire or email a written submission through the ISED consultation page before 23 September 2026.
+
+Title (fr): Faites-vous entendre sur la transparence de l'IA au Canada
+
+Summary (fr): Consultation de deux mois, menée dans le cadre de la stratégie « L'IA pour tous », sur cinq mécanismes de transparence : la détection des contenus générés par l'IA, la divulgation des interactions avec un système d'IA, une information normalisée sur les systèmes d'IA, le signalement des incidents graves liés à l'IA et le suivi des activités des agents d'IA.
 
 ### Petition e-7427: federal moratorium on hyperscale AI data centres in Alberta
 

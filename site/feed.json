@@ -13,33 +13,6 @@
   ],
   "items": [
     {
-      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-2026-ai-transparency",
-      "url": "https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada",
-      "external_url": "https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada",
-      "title": "Have your say on advancing AI transparency in Canada",
-      "content_text": "Innovation, Science and Economic Development Canada. Closes 2026-09-23. Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents. Why it matters: It is the first federal vehicle for incident reporting and agent-tracking rules since AIDA died, so submissions here shape Canada's baseline transparency regime for frontier models. How to participate: Answer the online questionnaire or email a written submission through the ISED consultation page before 23 September 2026.",
-      "summary": "Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents.",
-      "date_published": "2026-09-06T00:00:00Z",
-      "tags": [
-        "frontier-models",
-        "deepfakes",
-        "standards"
-      ],
-      "_monitor": {
-        "status": "open",
-        "badges": [
-          "open"
-        ],
-        "type": "consultation",
-        "body": "Innovation, Science and Economic Development Canada",
-        "opened": "2026-07-23",
-        "closes": "2026-09-23",
-        "days_left": 16,
-        "verified": true,
-        "relevance": 0.98
-      }
-    },
-    {
       "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-dgsi-138-clinical-ai",
       "url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
       "external_url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
@@ -60,7 +33,7 @@
         "body": "Digital Governance Standards Institute",
         "opened": "2026-08-05",
         "closes": "2026-10-05",
-        "days_left": 28,
+        "days_left": 11,
         "verified": true,
         "relevance": 0.85
       }
@@ -81,7 +54,6 @@
       "_monitor": {
         "status": "open",
         "badges": [
-          "new",
           "open"
         ],
         "type": "funding_call",
@@ -136,7 +108,6 @@
       "_monitor": {
         "status": "open",
         "badges": [
-          "new",
           "open"
         ],
         "type": "call_for_briefs",
@@ -191,7 +162,6 @@
       "_monitor": {
         "status": "open",
         "badges": [
-          "new",
           "open"
         ],
         "type": "call_for_briefs",
@@ -322,7 +292,6 @@
       "_monitor": {
         "status": "open",
         "badges": [
-          "new",
           "open"
         ],
         "type": "regulatory_notice",
@@ -384,6 +353,33 @@
         "days_left": null,
         "verified": false,
         "relevance": 0.7
+      }
+    },
+    {
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-2026-ai-transparency",
+      "url": "https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada",
+      "external_url": "https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada",
+      "title": "Have your say on advancing AI transparency in Canada",
+      "content_text": "Innovation, Science and Economic Development Canada. Closed 2026-09-23. Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents. Why it matters: It is the first federal vehicle for incident reporting and agent-tracking rules since AIDA died, so submissions here shape Canada's baseline transparency regime for frontier models. How to participate: Answer the online questionnaire or email a written submission through the ISED consultation page before 23 September 2026.",
+      "summary": "Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents.",
+      "date_published": "2026-09-06T00:00:00Z",
+      "tags": [
+        "frontier-models",
+        "deepfakes",
+        "standards"
+      ],
+      "_monitor": {
+        "status": "retired",
+        "badges": [
+          "retired"
+        ],
+        "type": "consultation",
+        "body": "Innovation, Science and Economic Development Canada",
+        "opened": "2026-07-23",
+        "closes": "2026-09-23",
+        "days_left": null,
+        "verified": true,
+        "relevance": 0.98
       }
     },
     {

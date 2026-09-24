@@ -23,6 +23,8 @@
   ],
   "relevance": 0.98,
   "source": "ised",
+  "retired": true,
+  "retired_reason": "closed",
   "verified": true
  },
  {
