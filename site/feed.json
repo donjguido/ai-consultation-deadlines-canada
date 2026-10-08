@@ -13,32 +13,6 @@
   ],
   "items": [
     {
-      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-dgsi-138-clinical-ai",
-      "url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
-      "external_url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
-      "title": "CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review",
-      "content_text": "Digital Governance Standards Institute. Closes 2026-10-05. 60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support. Why it matters: Sets concrete human-oversight and post-deployment monitoring duties for high-stakes AI, a template regulators beyond health are likely to reference. How to participate: Download the draft and submit comments through the DGSI public review form before 5 October 2026.",
-      "summary": "60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support.",
-      "date_published": "2026-09-06T00:00:00Z",
-      "tags": [
-        "health",
-        "standards"
-      ],
-      "_monitor": {
-        "status": "open",
-        "badges": [
-          "open"
-        ],
-        "type": "standards_review",
-        "body": "Digital Governance Standards Institute",
-        "opened": "2026-08-05",
-        "closes": "2026-10-05",
-        "days_left": 11,
-        "verified": true,
-        "relevance": 0.85
-      }
-    },
-    {
       "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-ised-ai-compute-challenge",
       "url": "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy/ai-compute-challenge",
       "external_url": "https://ised-isde.canada.ca/site/ised/en/canadian-sovereign-ai-compute-strategy/ai-compute-challenge",
@@ -327,6 +301,32 @@
         "days_left": null,
         "verified": false,
         "relevance": 0.7
+      }
+    },
+    {
+      "id": "https://donjguido.github.io/ai-consultation-deadlines-canada/#item-dgsi-138-clinical-ai",
+      "url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
+      "external_url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
+      "title": "CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review",
+      "content_text": "Digital Governance Standards Institute. Closed 2026-10-05. 60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support. Why it matters: Sets concrete human-oversight and post-deployment monitoring duties for high-stakes AI, a template regulators beyond health are likely to reference. How to participate: Download the draft and submit comments through the DGSI public review form before 5 October 2026.",
+      "summary": "60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support.",
+      "date_published": "2026-09-06T00:00:00Z",
+      "tags": [
+        "health",
+        "standards"
+      ],
+      "_monitor": {
+        "status": "retired",
+        "badges": [
+          "retired"
+        ],
+        "type": "standards_review",
+        "body": "Digital Governance Standards Institute",
+        "opened": "2026-08-05",
+        "closes": "2026-10-05",
+        "days_left": null,
+        "verified": true,
+        "relevance": 0.85
       }
     },
     {

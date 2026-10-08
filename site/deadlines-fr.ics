@@ -16,42 +16,4 @@ X-WR-CALDESC:Dates de clôture des consultations fédérales\, appels de m
 X-WR-CALLANG:fr-ca
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
-BEGIN:VEVENT
-UID:dgsi-138-clinical-ai@ai-consultation-deadlines-canada
-DTSTAMP:20260924T171155Z
-LAST-MODIFIED:20260924T171155Z
-DTSTART;VALUE=DATE:20261005
-DTEND;VALUE=DATE:20261006
-SUMMARY:Échéance : CAN/DGSI 138 — L'IA responsable et visible pour le p
- atient dans l'aide à la décision clinique : examen public
-DESCRIPTION:Institut de normalisation en gouvernance numérique\nExamen pub
- lic de 60 jours d'un projet de Norme nationale du Canada fixant des exigen
- ces de gouvernance\, de transparence\, de supervision humaine et de survei
- llance du cycle de vie pour l'IA d'aide à la décision clinique.\nPourquo
- i c'est important : La norme impose des obligations concrètes de supervis
- ion humaine et de suivi après déploiement pour une IA à enjeux élevés
- \, un modèle que des organismes de réglementation hors du secteur de la 
- santé reprendront vraisemblablement.\nComment participer : Téléchargez 
- le projet de norme et transmettez vos commentaires au moyen du formulaire 
- d'examen public de l'Institut avant le 5 octobre 2026.\nhttps://dgc-cgn.or
- g/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
- \nSuivi par Échéances des consultations sur l'IA Canada : https://donjgu
- ido.github.io/ai-consultation-deadlines-canada
-URL:https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clini
- cal-decision-support/
-TRANSP:TRANSPARENT
-CATEGORIES:health,standards
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:CAN/DGSI 138 — L'IA responsable et visible pour le patient da
- ns l'aide à la décision clinique : examen public : clôture dans 7 jours
-TRIGGER;VALUE=DURATION:-P7D
-END:VALARM
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:CAN/DGSI 138 — L'IA responsable et visible pour le patient da
- ns l'aide à la décision clinique : examen public : clôture demain
-TRIGGER;VALUE=DURATION:-P1D
-END:VALARM
-END:VEVENT
 END:VCALENDAR

@@ -50,7 +50,9 @@
   ],
   "relevance": 0.85,
   "source": "scc",
-  "verified": true
+  "verified": true,
+  "retired": true,
+  "retired_reason": "closed"
  },
  {
   "id": "ised-ai-compute-challenge",

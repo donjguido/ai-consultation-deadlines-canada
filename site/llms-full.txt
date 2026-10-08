@@ -1,36 +1,12 @@
 # AI Consultation Deadlines Canada - full corpus
 
-Generated 2026-09-24 from https://donjguido.github.io/ai-consultation-deadlines-canada/items.json. 26 items.
+Generated 2026-10-08 from https://donjguido.github.io/ai-consultation-deadlines-canada/items.json. 26 items.
 CC BY 4.0. Government content under the Open Government Licence - Canada.
 Status is derived from the stated closing date: new = within 14 days of opening,
 closing soon = closes within 7 days, retired = past the date or withdrawn.
 `verified: false` means no person has yet checked the dates and links.
 
-## Open (12)
-
-### CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review
-
-- ID: dgsi-138-clinical-ai
-- Body: Digital Governance Standards Institute
-- Type: Standards review
-- Status: open
-- Opened: 2026-08-05
-- Closes: 2026-10-05
-- Days left: 11
-- Topics: health, standards
-- Verified by a human: yes
-- Source: https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
-- Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-dgsi-138-clinical-ai
-
-Summary: 60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support.
-
-Why it matters: Sets concrete human-oversight and post-deployment monitoring duties for high-stakes AI, a template regulators beyond health are likely to reference.
-
-How to participate: Download the draft and submit comments through the DGSI public review form before 5 October 2026.
-
-Title (fr): CAN/DGSI 138 — L'IA responsable et visible pour le patient dans l'aide à la décision clinique : examen public
-
-Summary (fr): Examen public de 60 jours d'un projet de Norme nationale du Canada fixant des exigences de gouvernance, de transparence, de supervision humaine et de surveillance du cycle de vie pour l'IA d'aide à la décision clinique.
+## Open (11)
 
 ### AI Compute Challenge: call for proposals
 
@@ -296,7 +272,31 @@ Title (fr): Avis d'intention : orientations sur les mesures, directives et polit
 
 Summary (fr): Norme CSA en préparation visant à guider les organismes de réglementation et les ministères canadiens dans l'élaboration de politiques d'IA cohérentes, éthiques et transparentes, arrimées aux normes ISO/IEC 42001 et 23894. La date de l'examen public n'est pas encore annoncée.
 
-## Retired (14)
+## Retired (15)
+
+### CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review
+
+- ID: dgsi-138-clinical-ai
+- Body: Digital Governance Standards Institute
+- Type: Standards review
+- Status: retired
+- Opened: 2026-08-05
+- Closes: 2026-10-05
+- Days left: n/a
+- Topics: health, standards
+- Verified by a human: yes
+- Source: https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
+- Permalink: https://donjguido.github.io/ai-consultation-deadlines-canada/#item-dgsi-138-clinical-ai
+
+Summary: 60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support.
+
+Why it matters: Sets concrete human-oversight and post-deployment monitoring duties for high-stakes AI, a template regulators beyond health are likely to reference.
+
+How to participate: Download the draft and submit comments through the DGSI public review form before 5 October 2026.
+
+Title (fr): CAN/DGSI 138 — L'IA responsable et visible pour le patient dans l'aide à la décision clinique : examen public
+
+Summary (fr): Examen public de 60 jours d'un projet de Norme nationale du Canada fixant des exigences de gouvernance, de transparence, de supervision humaine et de surveillance du cycle de vie pour l'IA d'aide à la décision clinique.
 
 ### Petition e-7550: end incentives, subsidies and permit acceleration for AI data centres
 

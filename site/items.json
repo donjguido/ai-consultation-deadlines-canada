@@ -1,37 +1,5 @@
 [
   {
-    "id": "dgsi-138-clinical-ai",
-    "title": "CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review",
-    "body": "Digital Governance Standards Institute",
-    "type": "standards_review",
-    "url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
-    "opened": "2026-08-05",
-    "closes": "2026-10-05",
-    "first_seen": "2026-09-06",
-    "summary": "60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support.",
-    "why_it_matters": "Sets concrete human-oversight and post-deployment monitoring duties for high-stakes AI, a template regulators beyond health are likely to reference.",
-    "how_to_participate": "Download the draft and submit comments through the DGSI public review form before 5 October 2026.",
-    "topics": [
-      "health",
-      "standards"
-    ],
-    "relevance": 0.85,
-    "source": "scc",
-    "retired": false,
-    "retired_reason": null,
-    "verified": true,
-    "title_fr": "CAN/DGSI 138 — L'IA responsable et visible pour le patient dans l'aide à la décision clinique : examen public",
-    "body_fr": "Institut de normalisation en gouvernance numérique",
-    "summary_fr": "Examen public de 60 jours d'un projet de Norme nationale du Canada fixant des exigences de gouvernance, de transparence, de supervision humaine et de surveillance du cycle de vie pour l'IA d'aide à la décision clinique.",
-    "why_it_matters_fr": "La norme impose des obligations concrètes de supervision humaine et de suivi après déploiement pour une IA à enjeux élevés, un modèle que des organismes de réglementation hors du secteur de la santé reprendront vraisemblablement.",
-    "how_to_participate_fr": "Téléchargez le projet de norme et transmettez vos commentaires au moyen du formulaire d'examen public de l'Institut avant le 5 octobre 2026.",
-    "status": "open",
-    "badges": [
-      "open"
-    ],
-    "days_left": 11
-  },
-  {
     "id": "ised-ai-compute-challenge",
     "title": "AI Compute Challenge: call for proposals",
     "body": "Innovation, Science and Economic Development Canada",
@@ -385,6 +353,38 @@
     "status": "open",
     "badges": [
       "open"
+    ],
+    "days_left": null
+  },
+  {
+    "id": "dgsi-138-clinical-ai",
+    "title": "CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review",
+    "body": "Digital Governance Standards Institute",
+    "type": "standards_review",
+    "url": "https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/",
+    "opened": "2026-08-05",
+    "closes": "2026-10-05",
+    "first_seen": "2026-09-06",
+    "summary": "60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support.",
+    "why_it_matters": "Sets concrete human-oversight and post-deployment monitoring duties for high-stakes AI, a template regulators beyond health are likely to reference.",
+    "how_to_participate": "Download the draft and submit comments through the DGSI public review form before 5 October 2026.",
+    "topics": [
+      "health",
+      "standards"
+    ],
+    "relevance": 0.85,
+    "source": "scc",
+    "retired": true,
+    "retired_reason": "closed",
+    "verified": true,
+    "title_fr": "CAN/DGSI 138 — L'IA responsable et visible pour le patient dans l'aide à la décision clinique : examen public",
+    "body_fr": "Institut de normalisation en gouvernance numérique",
+    "summary_fr": "Examen public de 60 jours d'un projet de Norme nationale du Canada fixant des exigences de gouvernance, de transparence, de supervision humaine et de surveillance du cycle de vie pour l'IA d'aide à la décision clinique.",
+    "why_it_matters_fr": "La norme impose des obligations concrètes de supervision humaine et de suivi après déploiement pour une IA à enjeux élevés, un modèle que des organismes de réglementation hors du secteur de la santé reprendront vraisemblablement.",
+    "how_to_participate_fr": "Téléchargez le projet de norme et transmettez vos commentaires au moyen du formulaire d'examen public de l'Institut avant le 5 octobre 2026.",
+    "status": "retired",
+    "badges": [
+      "retired"
     ],
     "days_left": null
   },

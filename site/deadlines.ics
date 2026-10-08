@@ -14,39 +14,4 @@ X-WR-CALDESC:Closing dates for federal consultations\, calls for briefs\, G
 X-WR-CALLANG:en-ca
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 X-PUBLISHED-TTL:PT12H
-BEGIN:VEVENT
-UID:dgsi-138-clinical-ai@ai-consultation-deadlines-canada
-DTSTAMP:20260924T171155Z
-LAST-MODIFIED:20260924T171155Z
-DTSTART;VALUE=DATE:20261005
-DTEND;VALUE=DATE:20261006
-SUMMARY:Deadline: CAN/DGSI 138 Patient-Visible and Accountable AI in Clinic
- al Decision Support: public review
-DESCRIPTION:Digital Governance Standards Institute\n60-day public review of
-  a proposed National Standard of Canada setting governance\, transparency\
- , human-oversight and lifecycle-monitoring requirements for AI clinical de
- cision support.\nWhy it matters: Sets concrete human-oversight and post-de
- ployment monitoring duties for high-stakes AI\, a template regulators beyo
- nd health are likely to reference.\nHow to participate: Download the draft
-  and submit comments through the DGSI public review form before 5 October 
- 2026.\nhttps://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-c
- linical-decision-support/\nTracked by AI Consultation Deadlines Canada: ht
- tps://donjguido.github.io/ai-consultation-deadlines-canada
-URL:https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clini
- cal-decision-support/
-TRANSP:TRANSPARENT
-CATEGORIES:health,standards
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Dec
- ision Support: public review closes in 7 days
-TRIGGER;VALUE=DURATION:-P7D
-END:VALARM
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Dec
- ision Support: public review closes tomorrow
-TRIGGER;VALUE=DURATION:-P1D
-END:VALARM
-END:VEVENT
 END:VCALENDAR

@@ -1,4 +1,4 @@
-# AI Consultation Deadlines Canada, week of 2026-09-24
+# AI Consultation Deadlines Canada, week of 2026-10-08
 
 ## Closing within 7 days
 
@@ -10,10 +10,6 @@ Nothing this week.
 
 ## Still open
 
-- **CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review** (Digital Governance Standards Institute, closes 2026-10-05)
-  60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support.
-  How to participate: Download the draft and submit comments through the DGSI public review form before 5 October 2026.
-  https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
 - **AI Compute Challenge: call for proposals** (Innovation, Science and Economic Development Canada, no stated deadline)
   Up to $700M for commercial or consortium proposals to build domestic AI data-centre capacity, with priority to projects that keep sensitive data in Canada. Applications accepted on an ongoing basis.
   How to participate: Eligible organizations apply through the Strategic Response Fund intake on the ISED program page. Rolling intake, no stated deadline.
@@ -61,17 +57,13 @@ Nothing this week.
 
 ## Recently closed
 
-- **Have your say on advancing AI transparency in Canada** (Innovation, Science and Economic Development Canada, closed 2026-09-23)
-  Two-month consultation under the AI for All strategy on five transparency mechanisms: detecting AI-generated content, disclosing when people interact with AI, standardized information about AI systems, tracking serious AI incidents, and tracking the activities of AI agents.
-  How to participate: Answer the online questionnaire or email a written submission through the ISED consultation page before 23 September 2026.
-  https://ised-isde.canada.ca/site/ised/en/have-your-say-advancing-ai-transparency-canada
+- **CAN/DGSI 138 Patient-Visible and Accountable AI in Clinical Decision Support: public review** (Digital Governance Standards Institute, closed 2026-10-05)
+  60-day public review of a proposed National Standard of Canada setting governance, transparency, human-oversight and lifecycle-monitoring requirements for AI clinical decision support.
+  How to participate: Download the draft and submit comments through the DGSI public review form before 5 October 2026.
+  https://dgc-cgn.org/product/patient-visible-and-accountable-ai-in-clinical-decision-support/
 - **Petition e-7550: end incentives, subsidies and permit acceleration for AI data centres** (House of Commons e-petitions, closed 2026-09-24)
   Asks Ottawa to end incentives for AI data centres, revoke permits lacking community vetting, and regulate safety, transparency and resource efficiency. 29,991 validated signatures. The page currently reads 'Closed for signature' although the stated window runs to 24 September 2026.
   How to participate: If signing is reopened, sign online on the petition page; otherwise watch for the government response, due within 45 days of presentation.
   https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7550
-- **Petition e-7427: federal moratorium on hyperscale AI data centres in Alberta** (House of Commons e-petitions, closed 2026-09-17)
-  Seeks a moratorium on projects such as Wonder Valley and Synapse Olds, a ban on federal support for fossil-fuelled or water-intensive facilities, and mandatory federal environmental assessment with Indigenous consultation. 27,472 validated signatures. The page reads 'Closed for signature' despite a window ending 17 September 2026.
-  How to participate: Watch the petition page for presentation in the House and the government response.
-  https://www.ourcommons.ca/petitions/en/Petition/Details?Petition=e-7427
 
 Full list: https://donjguido.github.io/ai-consultation-deadlines-canada  ·  RSS: https://donjguido.github.io/ai-consultation-deadlines-canada/feed.xml  ·  calendar: https://donjguido.github.io/ai-consultation-deadlines-canada/deadlines.ics
